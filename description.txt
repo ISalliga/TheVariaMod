@@ -1,0 +1,18 @@
+Varia is a general content mod, aiming to add amounts of unique content like your wildest dreams could think up... and will.
+
+The mod currently adds:
+
+- A new biome: the Cavity!
+The Cavity is an area underground that has been affected by a plague that could even infect stone! It didn't spread very far, but it does hurt the environment a LOT, and if you're not careful, the mutant beasts that roam the Cavity may kill you... 
+It's not like the risk/reward factor is lacking, however. There is an ore that forms in the Cavity, and it's quite hardy.
+
+Two new Hardmode bosses: the Fallen Angel, and Nice Guy!
+
+Sprites created by:
+Red, Moonburn, Koopahunter197, KittyKitCatCat, PhilCo, Five, Santer, JaceDaDorito, Eritoniac the Blue Storm, Cooper, and Turquoise
+
+Code created by:
+qwerty3.14, and Turquoise
+
+Soundtrack created by:
+Turquoise

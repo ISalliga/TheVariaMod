@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8298EAB6-0586-4BDA-9483-83624B66B13A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Varia</RootNamespace>
+    <AssemblyName>Varia</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CavityGen.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianBar.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianBow.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianKnifeProj.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianOre.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianKnife.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianRevolver.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianClaws.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianSaber.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianScepter.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CacitianWand.cs" />
+    <Compile Include="Items\Cavity\Cacitian\CavitousSmog.cs" />
+    <Compile Include="Items\Cavity\Cacitian\ToxicPuddle.cs" />
+    <Compile Include="Items\Cavity\Cacitian\ToxicWaste.cs" />
+    <Compile Include="Items\Cavity\Holestone.cs" />
+    <Compile Include="Items\FallenAngel\AngelBag.cs" />
+    <Compile Include="Items\FallenAngel\ArchangelsStaff.cs" />
+    <Compile Include="Items\FallenAngel\CorruptHalo.cs" />
+    <Compile Include="Items\FallenAngel\CorruptHaloProj.cs" />
+    <Compile Include="Items\FallenAngel\DarkAfterimage.cs" />
+    <Compile Include="Items\FallenAngel\DarklightBlade.cs" />
+    <Compile Include="Items\FallenAngel\DarklightEssence.cs" />
+    <Compile Include="Items\FallenAngel\DarklightSwordBeam.cs" />
+    <Compile Include="Items\FallenAngel\GazeOfTheHolyCity.cs" />
+    <Compile Include="Items\FallenAngel\HolyLaser.cs" />
+    <Compile Include="Items\FallenAngel\HolyMachine.cs" />
+    <Compile Include="Items\FallenAngel\LightAfterimage.cs" />
+    <Compile Include="Items\FallenAngel\MegaArchorb.cs" />
+    <Compile Include="Items\FallenAngel\MegaArchorbFriendly.cs" />
+    <Compile Include="Items\FallenAngel\MegaCannon.cs" />
+    <Compile Include="Items\FallenAngel\MiniArchorb.cs" />
+    <Compile Include="Items\FallenAngel\MiniArchorbFriendly.cs" />
+    <Compile Include="Items\FallenAngel\MiniArchorbFriendlyShortFuse.cs" />
+    <Compile Include="Items\FallenAngel\TheInfinityCloud.cs" />
+    <Compile Include="Items\FallenAngel\UnholyBeacon.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\Agateclaw.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\Amianthus.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\AmianthusProj.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\ArrowShard.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\Chrysopra.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\CrystalArrow.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\CrystalliaBar.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonBoost.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonChestguard.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonDamageBoost.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonDefenseBoost.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonGreaves.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonHeadguard.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonMask.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\TheBlanchard.cs" />
+    <Compile Include="Items\Miscellaneous\CrystalliaGear\Xanthia.cs" />
+    <Compile Include="Items\Miscellaneous\Resizers\Bigifier.cs" />
+    <Compile Include="Items\Miscellaneous\Resizers\BigThing.cs" />
+    <Compile Include="Items\Miscellaneous\Resizers\Smallerizer.cs" />
+    <Compile Include="Items\Miscellaneous\Resizers\SmallThing.cs" />
+    <Compile Include="Items\Optime\BNGProj.cs" />
+    <Compile Include="Items\Optime\DeceitBeam.cs" />
+    <Compile Include="Items\Optime\HappyBombProj.cs" />
+    <Compile Include="Items\Optime\HappyBomb.cs" />
+    <Compile Include="Items\Optime\HisTopHat.cs" />
+    <Compile Include="Items\Optime\MesmerBeam.cs" />
+    <Compile Include="Items\Optime\MiniMinigun.cs" />
+    <Compile Include="Items\Optime\NegativeEnergyField.cs" />
+    <Compile Include="Items\Optime\OptimeBag.cs" />
+    <Compile Include="Items\Optime\OptimesGrasp.cs" />
+    <Compile Include="Items\Optime\PureConcentratedDarkness.cs" />
+    <Compile Include="Items\Optime\StaffOfMesmerization.cs" />
+    <Compile Include="Items\Optime\StormFromHell.cs" />
+    <Compile Include="Items\Optime\SwordOfDeception.cs" />
+    <Compile Include="Items\Optime\TheBNG.cs" />
+    <Compile Include="Items\Optime\TheDarknessInside.cs" />
+    <Compile Include="Items\Optime\TheForgottenSheath.cs" />
+    <Compile Include="Items\Optime\TinyDarkThing.cs" />
+    <Compile Include="Methods.cs" />
+    <Compile Include="NPCs\Cavity\FleshyBat.cs" />
+    <Compile Include="NPCs\Cavity\MutantSlime.cs" />
+    <Compile Include="NPCs\Cavity\MutantSlimeFleshwave.cs" />
+    <Compile Include="NPCs\Cavity\Spiller.cs" />
+    <Compile Include="NPCs\Cavity\SpillerRain.cs" />
+    <Compile Include="NPCs\FallenAngel\ChargedOrb.cs" />
+    <Compile Include="NPCs\FallenAngel\FallenAngel.cs" />
+    <Compile Include="NPCs\FallenAngel\FallenAngel_Dark.cs" />
+    <Compile Include="NPCs\FallenAngel\FallenAngel_Light.cs" />
+    <Compile Include="NPCs\FallenAngel\Forcefield.cs" />
+    <Compile Include="NPCs\FallenAngel\OrbitingTurret.cs" />
+    <Compile Include="NPCs\FallenAngel\UnholyTurret.cs" />
+    <Compile Include="NPCs\FallenAngel\UnholyTurretBeam.cs" />
+    <Compile Include="NPCs\Minibosses\GreyColossus.cs" />
+    <Compile Include="NPCs\Optime\Optime.cs" />
+    <Compile Include="NPCs\Optime\Happifier.cs" />
+    <Compile Include="NPCs\Optime\OrbitingMask.cs" />
+    <Compile Include="NPCs\Optime\NiceGuy.cs" />
+    <Compile Include="NPCs\VariaGlobalNPC.cs" />
+    <Compile Include="Tiles\CacitianOre.cs" />
+    <Compile Include="Tiles\Holestone.cs" />
+    <Compile Include="Tiles\HolestoneWall.cs" />
+    <Compile Include="Tiles\ProtectiveHoney.cs" />
+    <Compile Include="VariaMod.cs" />
+    <Compile Include="VariaPlayer.cs" />
+    <Compile Include="VariaWorld.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

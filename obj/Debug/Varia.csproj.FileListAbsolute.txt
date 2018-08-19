@@ -1,0 +1,12 @@
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Varia.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Varia.pdb
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Microsoft.Xna.Framework.Xact.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\Terraria.exe
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.csprojAssemblyReference.cache
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.csproj.CoreCompileInputs.cache
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.csproj.CopyComplete
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.pdb

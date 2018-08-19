@@ -1,0 +1,9 @@
+author = Turquoise
+version = 1.0
+displayName = Varia (Open Beta)
+homepage = https://www.discord.gg/3XbTBAb/
+hideCode = true
+hideResources = false
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+includePDB = true
