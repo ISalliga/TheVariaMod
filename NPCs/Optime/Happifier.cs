@@ -23,6 +23,7 @@ namespace Varia.NPCs.Optime
             projectile.aiStyle = 0;
             projectile.hostile = true;
             projectile.tileCollide = false;
+            aiType = ProjectileID.Bullet;
             projectile.penetrate = 5;
             projectile.timeLeft = 1200;
         }

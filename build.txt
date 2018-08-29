@@ -1,7 +1,7 @@
 author = Turquoise
-version = 1.0
+version = 1.0.2
 displayName = Varia (Open Beta)
-homepage = https://www.discord.gg/3XbTBAb/
+homepage = https://www.discord.gg/3D6GGtX/
 hideCode = true
 hideResources = false
 includeSource = true

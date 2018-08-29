@@ -13,6 +13,7 @@ namespace Varia.Tiles
 			Main.tileMergeDirt[Type] = true;
 			drop = mod.ItemType("Holestone");
 			AddMapEntry(new Color(114, 66, 0));
-		}
+            Main.tileBlockLight[Type] = true;
+        }
 	}
 }

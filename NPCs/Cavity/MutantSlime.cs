@@ -20,6 +20,7 @@ namespace Varia.NPCs.Cavity
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mutant Slime");
+            Main.npcFrameCount[npc.type] = Main.npcFrameCount[2];
         }
 
         public override void SetDefaults()
@@ -28,6 +29,8 @@ namespace Varia.NPCs.Cavity
             npc.aiStyle = 1;
             npc.damage = Main.expertMode ? 50 : 70;
             npc.defense = 0;
+            animationType = NPCID.BlueSlime;
+            aiType = NPCID.BlueSlime;
             npc.knockBackResist = 0f;
             npc.width = 44;
             npc.height = 30;

@@ -20,7 +20,7 @@ namespace Varia.NPCs.Cavity
 		    projectile.damage = 4;
             projectile.hostile = true;
             projectile.penetrate = 5;
-            projectile.timeLeft = 100;
+            projectile.timeLeft = 20;
         }
 		public override void SetStaticDefaults()
 		{

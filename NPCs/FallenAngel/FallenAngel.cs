@@ -16,6 +16,9 @@ namespace Varia.NPCs.FallenAngel
     public class FallenAngel : ModNPC
     {
         Vector2 tPos;
+        bool vc1 = false;
+        bool vc2 = false;
+        bool vc3 = false;
         int despawn = 0;
         int turretTime = 0;
         int stationaryTurretTime = 0;
@@ -76,6 +79,20 @@ namespace Varia.NPCs.FallenAngel
         }
         public override void AI()
         {
+            /*
+            if (!vc1)
+            {
+                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Spawn"));
+                vc1 = true;
+            }
+            if (!vc2)
+            {
+                if (npc.life < npc.lifeMax * 0.65f)
+                {
+                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_65"));
+                    vc2 = true;
+                }
+            }*/
             Player player = Main.player[npc.target];
             if (!Main.player[npc.target].dead)
             {
@@ -187,6 +204,7 @@ namespace Varia.NPCs.FallenAngel
                     NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
                     NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
                     clonesSpawned = true;
+                    //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
                 }
             }
             //Main.NewText(NPC.CountNPCS(mod.NPCType("OrbitingTurret")));

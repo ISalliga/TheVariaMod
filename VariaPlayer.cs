@@ -19,6 +19,12 @@ namespace Varia
         //Accessories
         public bool infinityCloudEquipped = false;
         public int forgottenSheath = 0;
+        public bool trydanCore = false;
+
+        //Summons
+        public bool rorPet = false;
+        public bool hunkOChunk = false;
+        public bool grimeBaby = false;
 
         //Biomes
         public bool zoneCavity = false;
@@ -34,9 +40,16 @@ namespace Varia
 
         public override void ResetEffects()
         {
+            trydanCore = false;
+            taxonGreaves = false;
+            taxonSetBonus = false;
+            taxonSetBonus2 = false;
             infinityCloudEquipped = false;
             freeFall = false;
             hisTopHat = false;
+            rorPet = false;
+            hunkOChunk = false;
+            grimeBaby = false;
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -44,6 +57,10 @@ namespace Varia
             if (taxonGreaves)
             {
                 player.AddBuff(mod.BuffType("TaxonBoost"), 180);
+            }
+            if (trydanCore)
+            {
+                Projectile.NewProjectile(player.Center.X, player.Center.Y, 0, 0, mod.ProjectileType("ReactorCloud"), 30, 0f, Main.myPlayer, 0f, 0f);
             }
         }
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)

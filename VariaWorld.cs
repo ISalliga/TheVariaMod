@@ -30,13 +30,26 @@ namespace Varia
 		public static bool downedAngel = false;
         public static bool downedOptime = false;
 		public static bool storyMode = false;
+
+        public static int hunkCount = 0;
 		
 		public override void Initialize()
 		{
-			downedAngel = false;
+            hunkCount = 0;
+            downedAngel = false;
             downedOptime = false;
             storyMode = false;
 		}
+
+        public override void PostUpdate()
+        {
+            if (hunkCount > 2)
+            {
+                NPC.SpawnOnPlayer(1, mod.NPCType("FallenAngel"));
+                hunkCount = 0;
+            }
+        }
+
         public override TagCompound Save()
         {
             var downed = new List<string>();

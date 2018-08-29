@@ -18,9 +18,10 @@ namespace Varia.Items.Optime
 		public override void SetDefaults()
 		{
 			item.damage = 10;
-			item.summon = true;
+			item.magic = true;
             item.mana = 8;
 			item.width = 68;
+            item.noMelee = true;
 			item.height = 68;
 			item.useTime = 14;
 			item.useAnimation = 14;

@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Terraria;
+using Varia;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,6 +29,8 @@ namespace Varia.NPCs.Optime
         {
             DisplayName.SetDefault("Optime");
             Main.npcFrameCount[npc.type] = Main.npcFrameCount[4];
+            NPCID.Sets.TrailCacheLength[npc.type] = 5;    //The length of old position to be recorded
+            NPCID.Sets.TrailingMode[npc.type] = 0;        //The recording mode
         }
 
         public override void SetDefaults()
@@ -205,7 +212,7 @@ namespace Varia.NPCs.Optime
             if (!Main.expertMode)
             {
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(25, 31)); // darklight essence.... hmmmmmm
+                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(25, 31));
                 }
             }
             else
@@ -214,6 +221,20 @@ namespace Varia.NPCs.Optime
             }
             potionType = ItemID.GreaterHealingPotion;
             VariaWorld.downedOptime = true;
+        }
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < npc.oldPos.Length; k++)
+            {
+                Texture2D OptimeThing = mod.GetTexture("NPCs/Optime/Optime_Trail");
+                lightColor = new Color(k * 50, 0, 0);
+                Vector2 drawPos = npc.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, npc.gfxOffY);
+                drawPos.Y += 33;
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                spriteBatch.Draw(OptimeThing, drawPos, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
         }
     }
 }

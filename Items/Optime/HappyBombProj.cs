@@ -25,7 +25,8 @@ namespace Varia.Items.Optime
 
         public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            spriteBatch.Draw(mod.GetTexture("Items/Optime/HappyBombGM"), new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height), new Color(255, 255, 255, 254));
+            Texture2D face = mod.GetTexture("Items/Optime/HappyBombGM");
+            spriteBatch.Draw(mod.GetTexture("Items/Optime/HappyBombGM"), new Vector2(projectile.position.X - Main.screenPosition.X + projectile.width * 0.5f, projectile.position.Y - Main.screenPosition.Y + projectile.height - face.Height * 0.5f + 2f), new Rectangle((int)projectile.position.X, (int)projectile.position.Y, projectile.width, projectile.height), Color.White, projectile.rotation, face.Size(), projectile.scale, SpriteEffects.None, 0f);
         }
 
         public override void AI()

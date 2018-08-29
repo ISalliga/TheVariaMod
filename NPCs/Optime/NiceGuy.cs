@@ -16,6 +16,7 @@ namespace Varia.NPCs.Optime
     public class NiceGuy : ModNPC
     {
         int despawn = 0;
+        int afterimage = 255;
 
         int maskCount = 0;
         int attackTime = 0;
@@ -37,10 +38,11 @@ namespace Varia.NPCs.Optime
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 50 : 90;
             npc.defense = 0;
-            npc.knockBackResist = 0.2f;
+            npc.knockBackResist = 0f;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NiceGuy");
             npc.width = 64;
             npc.height = 102;
+            npc.alpha = 0;
             npc.boss = true;
             npc.value = Item.buyPrice(0, 11, 0, 0);
             npc.lavaImmune = true;
@@ -56,20 +58,15 @@ namespace Varia.NPCs.Optime
         //Main.netMode !=1 prevents things from happening on the client, over 99% of multiplayer specific bugs are from client server desync
         //Server dessyncs are cause by rng as the server and client can roll different numbers
         // Projectile.NewProjectile() when run on both server and client will cause two projectiles to generate
-        /*public override void BossLoot(ref string name, ref int potionType)
+        /*public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
         {
-            if (!Main.expertMode)
-            {
-                {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PureConcentradedEdge"), Main.rand.Next(26, 34)); // darklight essence.... hmmmmmm
-                }
-            }
-            else
-            {
-                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("OptimeBag"), 1);
-            }
-            potionType = ItemID.GreaterHealingPotion;
-            VariaWorld.downedAngel = true;
+            npc.alpha -= damage / 3;
+            afterimage -= damage / 3;
+        }
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            npc.alpha -= damage / 3;
+            afterimage -= damage / 3;
         }*/
         public override void AI()
         {
@@ -159,6 +156,18 @@ namespace Varia.NPCs.Optime
                 npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
                 npc.frameCounter = 0;
             }
+        }
+
+        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            Texture2D Illusion = mod.GetTexture("NPCs/Optime/NiceGuy_Illusion");
+            lightColor = new Color(256, 256, 256);
+            lightColor.A = (byte)afterimage;
+            Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length) / (float)npc.oldPos.Length);
+            color.A = (byte)(-color.A - 510);
+            color = Color.Lerp(color, Color.Transparent, color.A / 255f);
+            spriteBatch.Draw(Illusion, npc.position, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
         }
     }
 }

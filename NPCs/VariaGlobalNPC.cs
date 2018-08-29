@@ -28,5 +28,24 @@ namespace AgheriumMod.NPCs
                 return true;
             }
         }
+        public override void NPCLoot(NPC npc)
+        {
+            if (npc.type == 439 && Main.rand.Next(1, 3) == 1)
+            {
+                switch(Main.rand.Next(0, 2))
+                {
+                case 0:
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Smallerizer"), 1);
+                        break;
+                    }
+                case 1:
+                    {
+                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Bigifier"), 1);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

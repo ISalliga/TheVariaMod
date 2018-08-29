@@ -13,7 +13,7 @@ namespace Varia.Items.FallenAngel
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Holy Machine");
-			Tooltip.SetDefault("Rapidly fires lasers");
+			Tooltip.SetDefault("Rapidly fires homing lasers");
         }
         public override void SetDefaults()
 		{

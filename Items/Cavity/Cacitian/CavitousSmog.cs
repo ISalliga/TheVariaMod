@@ -56,7 +56,7 @@ namespace Varia.Items.Cavity.Cacitian
             }
             projectile.velocity.X = (projectile.velocity.X * 15) / 16;
             projectile.velocity.Y = (projectile.velocity.Y * 15) / 16;
-            projectile.scale += .05f;
+            projectile.scale += .015f;
         }
     }
 }

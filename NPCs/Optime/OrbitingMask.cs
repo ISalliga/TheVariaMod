@@ -28,7 +28,7 @@ namespace Varia.NPCs.Optime
         public override void SetDefaults()
         {
             npc.scale = 1f;
-            npc.lifeMax = Main.expertMode ? 25 : 15;
+            npc.lifeMax = Main.expertMode ? 15 : 10;
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 25 : 42;
             npc.defense = 9999;
