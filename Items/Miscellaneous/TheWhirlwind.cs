@@ -48,17 +48,11 @@ namespace Varia.Items.Miscellaneous
         public override void AddRecipes()
 		{
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.Cloud, 25);
-            recipe.AddIngredient(ItemID.DemoniteBar, 15);
+            recipe.AddIngredient(null, "TheVacuum", 1);
+            recipe.AddIngredient(ItemID.HallowedBar, 15);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();
-            ModRecipe recipe1 = new ModRecipe(mod);
-            recipe1.AddIngredient(ItemID.Cloud, 25);
-            recipe1.AddIngredient(ItemID.CrimtaneBar, 15);
-            recipe1.AddTile(TileID.Anvils);
-            recipe1.SetResult(this);
-            recipe1.AddRecipe();
         }
     }
 }

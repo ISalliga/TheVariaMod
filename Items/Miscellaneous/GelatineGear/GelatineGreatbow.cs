@@ -17,8 +17,8 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             item.width = 58;
             item.height = 28;
             item.crit = 20; 
-            item.useTime = 15;
-            item.useAnimation = 15;
+            item.useTime = 25;
+            item.useAnimation = 25;
             item.useStyle = 5;
             item.noMelee = true;
             item.knockBack = 4.25f;

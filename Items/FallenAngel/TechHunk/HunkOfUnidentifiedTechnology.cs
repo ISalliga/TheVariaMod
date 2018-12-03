@@ -42,7 +42,7 @@ namespace Varia.Items.FallenAngel.TechHunk
         {
             if (NPC.downedMechBoss1 || NPC.downedMechBoss2 || NPC.downedMechBoss3)
             {
-                return SpawnCondition.OverworldNight.Chance * 0.03f;
+                return SpawnCondition.Sky.Chance * 0.03f;
             }
             else return 0.0f;
         }

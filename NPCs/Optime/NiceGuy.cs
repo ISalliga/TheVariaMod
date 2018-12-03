@@ -9,6 +9,7 @@ using Terraria;
 using Varia;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Graphics.Shaders;
 
 namespace Varia.NPCs.Optime
 {
@@ -16,14 +17,15 @@ namespace Varia.NPCs.Optime
     public class NiceGuy : ModNPC
     {
         int despawn = 0;
-        int afterimage = 255;
 
-        int maskCount = 0;
-        int attackTime = 0;
-        int maskTime = 0;
-        int boltTime = 0;
-        bool maskSpam = false;
-        bool bolts = false;
+        int shootTime = 0;
+        int shootInterval = 200;
+        int orbTime = 400;
+        int portTime = 400;
+        int crosshairTime = 400;
+
+        bool phase1Yet = false;
+        public int hits = 0;
 
         public override void SetStaticDefaults()
         {
@@ -34,108 +36,160 @@ namespace Varia.NPCs.Optime
 
         public override void SetDefaults()
         {
-            npc.lifeMax = Main.expertMode ? 3150 : 6000;
+            npc.lifeMax = Main.expertMode ? 12000 : 20000;
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 50 : 90;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/NiceGuy");
             npc.width = 64;
-            npc.height = 102;
+            npc.height = 106;
             npc.alpha = 0;
             npc.boss = true;
             npc.value = Item.buyPrice(0, 11, 0, 0);
             npc.lavaImmune = true;
             npc.noGravity = false;
             npc.noTileCollide = false;
-            Main.npcFrameCount[npc.type] = 4;
+            Main.npcFrameCount[npc.type] = 6;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/NiceGuy_Hit");
         }
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = (int)(npc.lifeMax*2*bossLifeScale); // more health in expert for more players
+            npc.lifeMax = (int)(npc.lifeMax*bossLifeScale);
         }
-        //Main.netMode !=1 prevents things from happening on the client, over 99% of multiplayer specific bugs are from client server desync
-        //Server dessyncs are cause by rng as the server and client can roll different numbers
-        // Projectile.NewProjectile() when run on both server and client will cause two projectiles to generate
-        /*public override void OnHitByProjectile(Projectile projectile, int damage, float knockback, bool crit)
-        {
-            npc.alpha -= damage / 3;
-            afterimage -= damage / 3;
-        }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            npc.alpha -= damage / 3;
-            afterimage -= damage / 3;
-        }*/
         public override void AI()
         {
-            maskCount = NPC.CountNPCS(mod.NPCType("OrbitingMask"));
-
             Player player = Main.player[npc.target];
-
-            if(Main.player[npc.target].dead)
+            if (!Main.player[npc.target].dead)
             {
-                npc.position.Y += 5;
+                despawn = 0;
+            }
+            else
+            {
+                npc.velocity.Y += despawn;
                 despawn++;
-                if (despawn > 50)
+                if (despawn > 40)
                 {
                     npc.active = false;
                 }
             }
-
-            attackTime++;
-            if (attackTime == 300)
+            shootTime++;
+            if (shootTime >= shootInterval)
             {
-                switch(Main.rand.Next(1, 4))
+                switch(Main.rand.Next(1, 5))
                 {
                     case 1:
                         {
-                            if (maskCount == 0)
+                            if (NPC.CountNPCS(mod.NPCType("TopHat")) < 3)
+                            for (int i = 0; i < Main.rand.Next(3, 6); i++)
                             {
-                                maskSpam = true;
+                                int hat = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TopHat"), 0);
+                                Main.npc[hat].velocity.X = Main.rand.Next(-20, 21);
+                                Main.npc[hat].velocity.Y = Main.rand.Next(-20, 0);
                             }
                             break;
                         }
                     case 2:
                         {
-                            bolts = true;
+                            portTime = 39;
                             break;
                         }
                     case 3:
                         {
-                            Projectile.NewProjectile(new Vector2(player.Center.X - 400, player.Center.Y), npc.DirectionTo(new Vector2(npc.Center.X + 20, npc.Center.Y)) * 20, mod.ProjectileType("Happifier"), Main.expertMode ? 40 : 70, 0.4f);
-                            Projectile.NewProjectile(new Vector2(player.Center.X + 400, player.Center.Y), npc.DirectionTo(new Vector2(npc.Center.X - 20, npc.Center.Y)) * 20, mod.ProjectileType("Happifier"), Main.expertMode ? 40 : 70, 0.4f);
-                            Projectile.NewProjectile(new Vector2(player.Center.X, player.Center.Y - 400), npc.DirectionTo(new Vector2(npc.Center.X, npc.Center.Y + 20)) * 20, mod.ProjectileType("Happifier"), Main.expertMode ? 40 : 70, 0.4f);
-                            Projectile.NewProjectile(new Vector2(player.Center.X, player.Center.Y + 400), npc.DirectionTo(new Vector2(npc.Center.X, npc.Center.Y - 20)) * 20, mod.ProjectileType("Happifier"), Main.expertMode ? 40 : 70, 0.4f);
+                            orbTime = 0;
+                            break;
+                        }
+                    case 4:
+                        {
+                            crosshairTime = 0;
                             break;
                         }
                 }
-                attackTime = 0;
+                shootTime = 0;
+                shootInterval = Main.rand.Next(190, 251);
             }
-            if (maskSpam)
+            orbTime++;
+            if (orbTime == 50 || orbTime == 70 || orbTime == 100 || orbTime == 140 || orbTime == 190)
             {
-                maskTime++;
-                if (maskTime == 1 || maskTime == 12 || maskTime == 24 || maskTime == 36 || maskTime == 48 || maskTime == 60)
                 {
-                    int mask = NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("OrbitingMask"), 0, npc.whoAmI);
-                    Main.npc[mask].velocity.X = Main.rand.Next(-10, 10);
-                    Main.npc[mask].velocity.Y = Main.rand.Next(-10, 10);
+                    float Speed = 14f;
+                    int damage = Main.expertMode ? 25 : 42;
+                    if (Main.netMode != 1)
+                    {
+                        Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * (Speed + Main.rand.Next(-5, 5)), mod.ProjectileType("HappyOrb"), damage, 0f, Main.myPlayer);
+                    }
                 }
             }
-
-            if (bolts)
+            crosshairTime++;
+            if (crosshairTime == 50 || crosshairTime == 100 || crosshairTime == 150 || crosshairTime == 200 || crosshairTime == 250)
             {
-                boltTime++;
-                if (boltTime == 1 || boltTime == 12 || boltTime == 24 || boltTime == 36 || boltTime == 48)
                 {
-                    Projectile.NewProjectile(npc.Center, npc.DirectionTo(player.Center) * 20, mod.ProjectileType("Happifier"), Main.expertMode ? 40 : 70, 0.4f);
-                    Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 72), npc.Center);
+                    int damage = 0;
+                    if (Main.netMode != 1)
+                    {
+                        Projectile.NewProjectile(player.Center.X + Main.rand.Next(-50, 50), player.Center.Y + Main.rand.Next(-50, 50), 0f, 0f, mod.ProjectileType("HappyCrosshair"), damage, 0f, Main.myPlayer);
+                    }
                 }
-                if (boltTime == 48)
+            }
+            portTime++;
+            if (portTime == 40 || portTime == 80 || portTime == 120 || portTime == 160 || portTime == 200)
+            {
+                switch (player.position.X > npc.position.X)
                 {
-                    boltTime = 0;
-                    bolts = false;
+                    case true:
+                        {
+                            for (int i = 0; i < 40; i++)
+                            {
+                                Dust dust;
+                                Vector2 position = npc.position;
+                                dust = Main.dust[Terraria.Dust.NewDust(position, npc.width, npc.height, 218, 0f, 0f, 0, new Color(255, 255, 255), 3.815789f)];
+                                dust.noGravity = true;
+                                dust.shader = GameShaders.Armor.GetSecondaryShader(61, Main.LocalPlayer);
+                                dust.fadeIn = 3f;
+                            }
+                            npc.position.X += npc.Distance(player.Center) * 0.4f;
+                            for (int i = 0; i < 19; i++)
+                            {
+                                if (Main.tile[(int)(npc.Center.X / 16), (int)(npc.Center.Y / 16) + 1].active() && Main.tileSolid[Main.tile[(int)(npc.Center.X / 16), (int)(npc.Center.Y / 16) + 1].type]) npc.position.Y -= 16;
+                            }
+                            for (int i = 0; i < 40; i++)
+                            {
+                                Dust dust;
+                                Vector2 position = npc.position;
+                                dust = Main.dust[Terraria.Dust.NewDust(position, npc.width, npc.height, 218, 0f, 0f, 0, new Color(255, 255, 255), 3.815789f)];
+                                dust.noGravity = true;
+                                dust.shader = GameShaders.Armor.GetSecondaryShader(61, Main.LocalPlayer);
+                                dust.fadeIn = 3f;
+                            }
+                            break;
+                        }
+                    case false:
+                        {
+                            for (int i = 0; i < 40; i++)
+                            {
+                                Dust dust;
+                                Vector2 position = npc.position;
+                                dust = Main.dust[Terraria.Dust.NewDust(position, npc.width, npc.height, 218, 0f, 0f, 0, new Color(255, 255, 255), 3.815789f)];
+                                dust.noGravity = true;
+                                dust.shader = GameShaders.Armor.GetSecondaryShader(61, Main.LocalPlayer);
+                                dust.fadeIn = 3f;
+                            }
+                            npc.position.X -= npc.Distance(player.Center) * 0.4f;
+                            for (int i = 0; i < 19; i++)
+                            {
+                                if (Main.tile[(int)(npc.Center.X / 16), (int)(npc.Center.Y / 16) + 1].active() && Main.tileSolid[Main.tile[(int)(npc.Center.X / 16), (int)(npc.Center.Y / 16) + 1].type]) npc.position.Y -= 16;
+                            }
+                            for (int i = 0; i < 40; i++)
+                            {
+                                Dust dust;
+                                Vector2 position = npc.position;
+                                dust = Main.dust[Terraria.Dust.NewDust(position, npc.width, npc.height, 218, 0f, 0f, 0, new Color(255, 255, 255), 3.815789f)];
+                                dust.noGravity = true;
+                                dust.shader = GameShaders.Armor.GetSecondaryShader(61, Main.LocalPlayer);
+                                dust.fadeIn = 3f;
+                            }
+                            break;
+                        }
                 }
             }
         }
@@ -151,23 +205,11 @@ namespace Varia.NPCs.Optime
             npc.spriteDirection = 0;
             npc.rotation = 0;
             npc.frameCounter++;
-            if (npc.frameCounter >= 10) // ticks per frame
+            if (npc.frameCounter >= 5) // ticks per frame
             {
                 npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
                 npc.frameCounter = 0;
             }
-        }
-
-        public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
-        {
-            Vector2 drawOrigin = new Vector2(Main.npcTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
-            Texture2D Illusion = mod.GetTexture("NPCs/Optime/NiceGuy_Illusion");
-            lightColor = new Color(256, 256, 256);
-            lightColor.A = (byte)afterimage;
-            Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length) / (float)npc.oldPos.Length);
-            color.A = (byte)(-color.A - 510);
-            color = Color.Lerp(color, Color.Transparent, color.A / 255f);
-            spriteBatch.Draw(Illusion, npc.position, null, color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
         }
     }
 }

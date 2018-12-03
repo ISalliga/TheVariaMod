@@ -31,7 +31,7 @@ namespace Varia.Items.Optime
 			projectile.width = 6;
 			projectile.height = 6;
 			projectile.ignoreWater = true;
-			projectile.penetrate = -1;
+			projectile.penetrate = 1;
 			projectile.tileCollide = false;
 			projectile.knockBack = 0;
 		}

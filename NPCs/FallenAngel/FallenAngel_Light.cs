@@ -29,7 +29,7 @@ namespace Varia.NPCs.FallenAngel
 			npc.dontTakeDamage = true;
             npc.lifeMax = Main.expertMode ? 15000 : 10000;
             npc.aiStyle = 0;
-            npc.damage = Main.expertMode ? 50 : 84;
+            npc.damage = Main.expertMode ? 35 : 50;
             npc.defense = Main.expertMode ? 1 : 1;
             npc.knockBackResist = 0.2f;
             npc.width = 152;

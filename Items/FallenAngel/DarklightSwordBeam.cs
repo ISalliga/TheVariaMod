@@ -50,10 +50,10 @@ namespace Varia.Items.FallenAngel
 				Main.dust[num624].noGravity = true;
 				Main.dust[num624].velocity *= 5f;
 			}
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -12, mod.ProjectileType("LightAfterimage"), 30, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -12, mod.ProjectileType("DarkAfterimage"), 30, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, -6, mod.ProjectileType("LightAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, -6, mod.ProjectileType("DarkAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -12, mod.ProjectileType("LightAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -12, mod.ProjectileType("DarkAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, -6, mod.ProjectileType("LightAfterimage"), 18, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, -6, mod.ProjectileType("DarkAfterimage"), 18, 0f, Main.myPlayer, 0f, 0f);
         }
 	}
 }

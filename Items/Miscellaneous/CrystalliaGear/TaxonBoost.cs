@@ -22,10 +22,10 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		}
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.meleeCrit += 13;
-			player.rangedCrit += 13;
-			player.magicCrit += 13;
-			player.thrownCrit += 13;
+			player.meleeCrit += 12;
+			player.rangedCrit += 12;
+			player.magicCrit += 12;
+			player.thrownCrit += 12;
 		}
 	}
 }

@@ -17,7 +17,7 @@ namespace Varia.Items.Cavity.Cacitian
         }
         public override void SetDefaults()
 		{
-			item.damage = 14;
+			item.damage = 12;
 			item.noMelee = true;
 			item.ranged = true;
 			item.autoReuse = false;
@@ -25,10 +25,10 @@ namespace Varia.Items.Cavity.Cacitian
 			item.width = 28;
 			item.height = 30;
 			item.useStyle = 5;
-            item.useTime = 15;
+            item.useTime = 20;
 			item.UseSound = SoundID.Item11;
             item.shootSpeed = 6f;
-			item.useAnimation = 15;                         
+			item.useAnimation = 20;                         
 			item.shoot = 282;
 			item.value = 2700;
 			item.useAmmo = AmmoID.Bullet;

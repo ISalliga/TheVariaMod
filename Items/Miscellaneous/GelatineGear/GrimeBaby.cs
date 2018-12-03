@@ -36,12 +36,13 @@ namespace Varia.Items.Miscellaneous.GelatineGear
 
 		public override bool PreAI()
 		{
-			Player player = Main.player[projectile.owner];
+            Player player = Main.player[projectile.owner];
 			return true;
 		}
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            projectile.rotation = 0;
             return false;
         }
 

@@ -27,7 +27,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 			item.height = 18;
 			item.value = 10000;
 			item.rare = 2;
-			item.defense = 19;
+			item.defense = 15;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

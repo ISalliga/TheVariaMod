@@ -95,9 +95,11 @@ namespace Varia.NPCs.FallenAngel
 
                 if (Main.netMode != 1)
                 {
-                    Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(npc.rotation) * Speed)), (float)((Math.Sin(npc.rotation) * Speed)), mod.ProjectileType("UnholyTurretBeam"), damage, 0f, Main.myPlayer);
+                    if (Main.rand.Next(1, 3) != 1)
+                    {
+                        Projectile.NewProjectile(npc.Center.X, npc.Center.Y, (float)((Math.Cos(npc.rotation) * Speed)), (float)((Math.Sin(npc.rotation) * Speed)), mod.ProjectileType("UnholyTurretBeam"), damage, 0f, Main.myPlayer);
+                    }
                 }
-
                 shootTime = 0;
             }
             return false;

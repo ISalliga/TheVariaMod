@@ -14,7 +14,7 @@ namespace Varia.Items.Miscellaneous.Resizers
 		public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bigifier");
-            Tooltip.SetDefault("Makes enemies larger \n'If I had a dollar for every pixel I can see right now, I'd have 75 cents.");
+            Tooltip.SetDefault("Makes enemies larger \n'If I had a dollar for every pixel I can see right now, I'd have 75 cents.'");
         }
         public override void SetDefaults()
         {

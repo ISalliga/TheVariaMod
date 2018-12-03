@@ -17,7 +17,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 
-namespace AgheriumMod.NPCs
+namespace Varia.NPCs
 {
     public class VariaGlobalNPC : GlobalNPC
     {
@@ -28,6 +28,7 @@ namespace AgheriumMod.NPCs
                 return true;
             }
         }
+
         public override void NPCLoot(NPC npc)
         {
             if (npc.type == 439 && Main.rand.Next(1, 3) == 1)

@@ -40,8 +40,8 @@ namespace varia.Items.FallenAngel.TechHunk
         {
             for (int index = 0; index < Main.rand.Next(1, 3); ++index)
             {
-                float SpeedX = speedX + (float)Main.rand.Next(-30, 31) * 0.045f;
-                float SpeedY = speedY + (float)Main.rand.Next(-30, 31) * 0.045f;
+                float SpeedX = speedX + (float)Main.rand.Next(-60, 61) * 0.045f;
+                float SpeedY = speedY + (float)Main.rand.Next(-60, 61) * 0.045f;
                 int projectile1 = Projectile.NewProjectile(position.X, position.Y, SpeedX * 1.4f, SpeedY * 1.4f, 88, damage - Main.rand.Next(3), knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
 				Main.projectile[projectile1].penetrate = 1;
             }

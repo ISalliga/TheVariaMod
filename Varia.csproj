@@ -34,7 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CavityGen.cs" />
+    <Compile Include="BiomeGen.cs" />
+    <Compile Include="Items\Anomaly\AnomalousAltarItem.cs" />
+    <Compile Include="Items\Anomaly\AnomalyBag.cs" />
     <Compile Include="Items\Cavity\Cacitian\CacitianBar.cs" />
     <Compile Include="Items\Cavity\Cacitian\CacitianBow.cs" />
     <Compile Include="Items\Cavity\Cacitian\CacitianKnifeProj.cs" />
@@ -53,6 +55,15 @@
     <Compile Include="Items\Cavity\Cacitian\ToxicWaste.cs" />
     <Compile Include="Items\Cavity\Holestone.cs" />
     <Compile Include="Items\Cavity\MutatedBlob.cs" />
+    <Compile Include="Items\Cavity\PlaguedStabber.cs" />
+    <Compile Include="Items\EverlastingBreeze\CrystallizedMemories.cs" />
+    <Compile Include="Items\EverlastingBreeze\GalaxianMirror.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateBrick.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateChair.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateDoor.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateTable.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateTorch.cs" />
+    <Compile Include="Items\EverlastingBreeze\StarplateWall.cs" />
     <Compile Include="Items\FallenAngel\AngelBag.cs" />
     <Compile Include="Items\FallenAngel\ArchangelsStaff.cs" />
     <Compile Include="Items\FallenAngel\CorruptHalo.cs" />
@@ -82,6 +93,8 @@
     <Compile Include="Items\FallenAngel\TechHunk\TrydanReactorCore.cs" />
     <Compile Include="Items\FallenAngel\TheInfinityCloud.cs" />
     <Compile Include="Items\FallenAngel\UnholyBeacon.cs" />
+    <Compile Include="Items\Miscellaneous\AmberLaser.cs" />
+    <Compile Include="Items\Miscellaneous\AmberSplitter.cs" />
     <Compile Include="Items\Miscellaneous\CrystalliaGear\Agateclaw.cs" />
     <Compile Include="Items\Miscellaneous\CrystalliaGear\Amianthus.cs" />
     <Compile Include="Items\Miscellaneous\CrystalliaGear\AmianthusProj.cs" />
@@ -98,6 +111,8 @@
     <Compile Include="Items\Miscellaneous\CrystalliaGear\TaxonMask.cs" />
     <Compile Include="Items\Miscellaneous\CrystalliaGear\TheBlanchard.cs" />
     <Compile Include="Items\Miscellaneous\CrystalliaGear\Xanthia.cs" />
+    <Compile Include="Items\Miscellaneous\DeathwishBagnagProj.cs" />
+    <Compile Include="Items\Miscellaneous\DeathwishBagnakhs.cs" />
     <Compile Include="Items\Miscellaneous\Everjust.cs" />
     <Compile Include="Items\Miscellaneous\GelatineGear\GelatineScepter.cs" />
     <Compile Include="Items\Miscellaneous\GelatineGear\FlamingBlob.cs" />
@@ -112,10 +127,17 @@
     <Compile Include="Items\Miscellaneous\GelatineGear\RorbertPet.cs" />
     <Compile Include="Items\Miscellaneous\GelatineGear\RorbertPetBuff.cs" />
     <Compile Include="Items\Miscellaneous\GelatineGear\SlimyBarricade.cs" />
+    <Compile Include="Items\Miscellaneous\GuardianBuff.cs" />
+    <Compile Include="Items\Miscellaneous\GuardianMinion.cs" />
+    <Compile Include="Items\Miscellaneous\GuardiansSacredBone.cs" />
+    <Compile Include="Items\Miscellaneous\RainGuillotineProj.cs" />
+    <Compile Include="Items\Miscellaneous\RainGuillotines.cs" />
     <Compile Include="Items\Miscellaneous\Resizers\Bigifier.cs" />
     <Compile Include="Items\Miscellaneous\Resizers\BigThing.cs" />
     <Compile Include="Items\Miscellaneous\Resizers\Smallerizer.cs" />
     <Compile Include="Items\Miscellaneous\Resizers\SmallThing.cs" />
+    <Compile Include="Items\Miscellaneous\SanguineSpike.cs" />
+    <Compile Include="Items\Miscellaneous\SpikeProj.cs" />
     <Compile Include="Items\Miscellaneous\TheBlackHole.cs" />
     <Compile Include="Items\Miscellaneous\TheVacuum.cs" />
     <Compile Include="Items\Miscellaneous\TheWhirlwind.cs" />
@@ -140,15 +162,38 @@
     <Compile Include="Items\Optime\TheDarknessInside.cs" />
     <Compile Include="Items\Optime\TheForgottenSheath.cs" />
     <Compile Include="Items\Optime\TinyDarkThing.cs" />
+    <Compile Include="Items\QueensInfantry\Arachnophobia.cs" />
+    <Compile Include="Items\QueensInfantry\QueenBag.cs" />
+    <Compile Include="Items\QueensInfantry\QueensJaw.cs" />
+    <Compile Include="Items\QueensInfantry\QueensJawProj.cs" />
+    <Compile Include="Items\QueensInfantry\QueensJewel.cs" />
+    <Compile Include="Items\QueensInfantry\RainforestsBane.cs" />
+    <Compile Include="Items\QueensInfantry\VenomBubble.cs" />
+    <Compile Include="Items\QueensInfantry\VenomPiercer.cs" />
     <Compile Include="Items\StoryModeOnly\RhinestoneCrown.cs" />
     <Compile Include="Items\StoryModeOnly\StoryBook.cs" />
     <Compile Include="Items\StoryModeOnly\StoryModeLinearItem.cs" />
     <Compile Include="Items\StoryModeOnly\StoryModeLinearNPC.cs" />
     <Compile Include="Items\StoryModeOnly\StoryModeLinearTile.cs" />
     <Compile Include="Methods.cs" />
+    <Compile Include="NPCs\AnomalousBlaster.cs" />
+    <Compile Include="NPCs\AnomalousCaster.cs" />
+    <Compile Include="NPCs\AnomalousCharger.cs" />
+    <Compile Include="NPCs\Anomaly\AnomalousBolt.cs" />
+    <Compile Include="NPCs\Anomaly\AnomalousWormhole.cs" />
+    <Compile Include="NPCs\Anomaly\AnomalyMinion1.cs" />
+    <Compile Include="NPCs\Anomaly\AnomalyMinion2.cs" />
+    <Compile Include="NPCs\Anomaly\AnomalyMinion3.cs" />
+    <Compile Include="NPCs\Anomaly\GlitchProj.cs" />
+    <Compile Include="NPCs\Anomaly\TheAnomaly.cs" />
+    <Compile Include="NPCs\Anomaly\TheAnomalyGrief.cs" />
+    <Compile Include="NPCs\Anomaly\TheAnomalyRage.cs" />
     <Compile Include="NPCs\Cavity\FleshyBat.cs" />
     <Compile Include="NPCs\Cavity\Hardmode\Feeder.cs" />
+    <Compile Include="NPCs\Cavity\Hardmode\Spew.cs" />
+    <Compile Include="NPCs\Cavity\Hardmode\Spewer.cs" />
     <Compile Include="NPCs\Cavity\Hardmode\TaintedAmalgam.cs" />
+    <Compile Include="NPCs\Cavity\Hardmode\TaintedFleshBall.cs" />
     <Compile Include="NPCs\Cavity\MutantSlime.cs" />
     <Compile Include="NPCs\Cavity\MutantSlimeFleshwave.cs" />
     <Compile Include="NPCs\Cavity\Spiller.cs" />
@@ -161,23 +206,56 @@
     <Compile Include="NPCs\FallenAngel\OrbitingTurret.cs" />
     <Compile Include="NPCs\FallenAngel\UnholyTurret.cs" />
     <Compile Include="NPCs\FallenAngel\UnholyTurretBeam.cs" />
-    <Compile Include="NPCs\Minibosses\GreyColossus.cs" />
+    <Compile Include="NPCs\Optime\HappyCrosshair.cs" />
+    <Compile Include="NPCs\Optime\HappyOrb.cs" />
+    <Compile Include="NPCs\Optime\HisRemnant.cs" />
     <Compile Include="NPCs\Optime\Optime.cs" />
     <Compile Include="NPCs\Optime\Happifier.cs" />
-    <Compile Include="NPCs\Optime\OrbitingMask.cs" />
     <Compile Include="NPCs\Optime\NiceGuy.cs" />
+    <Compile Include="NPCs\Optime\OptimePortal.cs" />
+    <Compile Include="NPCs\Optime\OptimeRift.cs" />
+    <Compile Include="NPCs\Optime\OptimeSplosion.cs" />
+    <Compile Include="NPCs\Optime\TopHat.cs" />
+    <Compile Include="NPCs\QueensInfantry\BugAttractant.cs" />
+    <Compile Include="NPCs\QueensInfantry\SpiderEgg.cs" />
+    <Compile Include="NPCs\QueensInfantry\SpiderQueen.cs" />
+    <Compile Include="NPCs\QueensInfantry\JumpingSpider.cs" />
+    <Compile Include="NPCs\QueensInfantry\RocketSpider.cs" />
+    <Compile Include="NPCs\QueensInfantry\SturdyVenom.cs" />
+    <Compile Include="NPCs\QueensInfantry\VenomousPuddle.cs" />
+    <Compile Include="NPCs\QueensInfantry\VenomousWaste.cs" />
+    <Compile Include="NPCs\QueensInfantry\WingedSpider.cs" />
+    <Compile Include="NPCs\SoulOfTheGuide\SoulboundArrow.cs" />
+    <Compile Include="NPCs\SoulOfTheGuide\SoulFire.cs" />
+    <Compile Include="NPCs\SoulOfTheGuide\SoulFragment.cs" />
+    <Compile Include="NPCs\SoulOfTheGuide\SoulOfTheGuide.cs" />
+    <Compile Include="NPCs\SoulOfTheGuide\TrueWoodenBow.cs" />
     <Compile Include="NPCs\VariaGlobalNPC.cs" />
     <Compile Include="Tiles\CacitianOre.cs" />
     <Compile Include="Tiles\CavityMusicBox.cs" />
+    <Compile Include="Tiles\CrystallizedMemories.cs" />
     <Compile Include="Tiles\FAMusicBox.cs" />
+    <Compile Include="Tiles\ForgottenCloud.cs" />
+    <Compile Include="Tiles\ForgottenGrass.cs" />
     <Compile Include="Tiles\Holestone.cs" />
     <Compile Include="Tiles\HolestoneWall.cs" />
     <Compile Include="Tiles\ProtectiveHoney.cs" />
+    <Compile Include="Tiles\StarplateBrick.cs" />
+    <Compile Include="Tiles\StarplateFurniture\GalaxianMirror.cs" />
+    <Compile Include="Tiles\StarplateFurniture\StarplateChair.cs" />
+    <Compile Include="Tiles\StarplateFurniture\StarplateDoorClosed.cs" />
+    <Compile Include="Tiles\StarplateFurniture\StarplateDoorOpen.cs" />
+    <Compile Include="Tiles\StarplateFurniture\StarplateTable.cs" />
+    <Compile Include="Tiles\StarplateFurniture\StarplateTorch.cs" />
+    <Compile Include="Tiles\StarplateWall.cs" />
     <Compile Include="VariaMod.cs" />
     <Compile Include="VariaPlayer.cs" />
     <Compile Include="VariaWorld.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="BaseMod">
+      <HintPath>.\BaseMod.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\References\Microsoft.Xna.Framework.dll</HintPath>
@@ -201,7 +279,10 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Items\EverlastingBreeze\Gear\" />
+    <Folder Include="Items\SoulOfTheGuide\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>

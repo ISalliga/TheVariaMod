@@ -9,11 +9,11 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Agateclaw");
-			Tooltip.SetDefault("Hitting enemies increases your critical strike chance");
+			Tooltip.SetDefault("Hitting enemies has a 20% chance to increase your critical strike chance by 12% for five seconds");
 		}
 		public override void SetDefaults()
 		{
-			item.damage = 20;
+			item.damage = 13;
 			item.melee = true;
 			item.useStyle = 1;
 			item.knockBack = 3;
@@ -30,7 +30,10 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		}
 		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
 		{
-			player.AddBuff(mod.BuffType("TaxonBoost"), 300);
+            if (Main.rand.Next(1, 21) == 1)
+            {
+                player.AddBuff(mod.BuffType("TaxonBoost"), 300);
+            }
 		}
 		public override void AddRecipes()
 		{

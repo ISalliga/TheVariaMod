@@ -23,6 +23,10 @@ namespace Varia.Items.Miscellaneous
             // 5 second fuse.
             projectile.timeLeft = 300;
         }
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return new Color(Main.DiscoR, 0, Main.DiscoB, projectile.alpha);
+        }
         public override void SetStaticDefaults()
         {
             Main.projFrames[projectile.type] = 5;

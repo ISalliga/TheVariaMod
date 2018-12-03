@@ -52,7 +52,7 @@ namespace Varia.Items.FallenAngel
             }
             if (flag14)
             {
-                if (Main.rand.Next(10) == 0)
+                if (Main.rand.Next(30) == 0)
                 {
                     for (int k = 0; k < 3; k++)
                     {

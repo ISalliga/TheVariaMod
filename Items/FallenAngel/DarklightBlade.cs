@@ -13,7 +13,7 @@ namespace Varia.Items.FallenAngel
 		}
 		public override void SetDefaults()
 		{
-			item.damage = 57;
+			item.damage = 51;
 			item.melee = true;
 			item.width = 68;
 			item.height = 68;

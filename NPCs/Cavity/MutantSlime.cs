@@ -27,7 +27,7 @@ namespace Varia.NPCs.Cavity
         {
             npc.lifeMax = Main.expertMode ? 45 : 90;
             npc.aiStyle = 1;
-            npc.damage = Main.expertMode ? 50 : 70;
+            npc.damage = Main.expertMode ? 10 : 15;
             npc.defense = 0;
             animationType = NPCID.BlueSlime;
             aiType = NPCID.BlueSlime;
@@ -51,8 +51,8 @@ namespace Varia.NPCs.Cavity
 			cooldown++;
             if (npc.collideY && collided == false)
             {
-				Projectile.NewProjectile(npc.Center.X + 18, npc.Center.Y + 10, 11, 0, mod.ProjectileType("MutantSlimeFleshwave"), Main.expertMode ? 10 : 18, 0f, 0);
-				Projectile.NewProjectile(npc.Center.X - 18, npc.Center.Y + 10, -11, 0, mod.ProjectileType("MutantSlimeFleshwave"), Main.expertMode ? 10 : 18, 0f, 0);
+				Projectile.NewProjectile(npc.Center.X + 18, npc.Center.Y + 10, 11, 0, mod.ProjectileType("MutantSlimeFleshwave"), Main.expertMode ? 11 : 18, 0f, 0);
+				Projectile.NewProjectile(npc.Center.X - 18, npc.Center.Y + 10, -11, 0, mod.ProjectileType("MutantSlimeFleshwave"), Main.expertMode ? 11 : 18, 0f, 0);
 				collided = true;
 				cooldown = 0;
             }

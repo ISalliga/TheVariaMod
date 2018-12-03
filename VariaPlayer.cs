@@ -11,6 +11,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Graphics.Shaders;
 using Terraria.GameInput;
+using Varia;
 
 namespace Varia
 {
@@ -25,9 +26,11 @@ namespace Varia
         public bool rorPet = false;
         public bool hunkOChunk = false;
         public bool grimeBaby = false;
+        public bool guardianMinion = false;
 
         //Biomes
         public bool zoneCavity = false;
+        public bool zoneBreeze = false;
 
         //Armor sets
         public bool taxonGreaves = false;
@@ -37,6 +40,7 @@ namespace Varia
         //Other
         public bool freeFall = false;
         public bool hisTopHat = false;
+        Vector2 oldPos = Vector2.Zero;
 
         public override void ResetEffects()
         {
@@ -45,11 +49,11 @@ namespace Varia
             taxonSetBonus = false;
             taxonSetBonus2 = false;
             infinityCloudEquipped = false;
-            freeFall = false;
             hisTopHat = false;
             rorPet = false;
             hunkOChunk = false;
             grimeBaby = false;
+            guardianMinion = false;
         }
 
         public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
@@ -119,10 +123,6 @@ namespace Varia
                 {
                     damage = damage / 2 * 3;
                 }
-                else
-                {
-
-                }
                 forgottenSheath--;
             }
         }
@@ -136,10 +136,11 @@ namespace Varia
 
         public override void UpdateBiomes()
         {
-            zoneCavity = (VariaWorld.cavityTiles > 40);
+            zoneCavity = (VariaWorld.cavityTiles > 60);
+            zoneBreeze = (VariaWorld.breezeTiles > 60 && VariaWorld.breezeTiles2 > 30);
         }
-		
-		public override bool CustomBiomesMatch(Player other)
+
+        public override bool CustomBiomesMatch(Player other)
         {
             VariaPlayer otherPlayer = other.GetModPlayer<VariaPlayer>(mod);
             return zoneCavity == otherPlayer.zoneCavity;
@@ -149,12 +150,14 @@ namespace Varia
         {
             VariaPlayer otherPlayer = other.GetModPlayer<VariaPlayer>(mod);
             otherPlayer.zoneCavity = zoneCavity;
+            otherPlayer.zoneBreeze = zoneBreeze;
         }
 
         public override void SendCustomBiomes(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
             flags[0] = zoneCavity;
+            flags[1] = zoneBreeze;
             writer.Write(flags);
         }
 
@@ -162,6 +165,7 @@ namespace Varia
         {
             BitsByte flags = reader.ReadByte();
             zoneCavity = flags[0];
+            zoneBreeze = flags[1];
         }
 
         public override void UpdateEquips(ref bool wallSpeedBuff, ref bool tileSpeedBuff, ref bool tileRangeBuff)
@@ -170,6 +174,8 @@ namespace Varia
             {
                 if (player.statMana > 15)
                 {
+                    player.noFallDmg = true;
+                    player.noFallDmg = false;
                     if (!Main.tile[(int)player.Center.X / 16, (int)(player.Center.Y / 16) + 2].active() || !Main.tileSolid[Main.tile[(int)player.Center.X / 16, (int)(player.Center.Y / 16) + 2].type])
                     {
                         player.velocity.Y = -7;
@@ -216,8 +222,22 @@ namespace Varia
                 if (Main.tile[(int)(player.Center.X / 16 + 1), (int)(player.Center.Y / 16 + 3)].active() && Main.tile[(int)(player.Center.X / 16 + 1), (int)(player.Center.Y / 16 + 4)].type != 19)
                 {
                     player.position.Y = 12;
+                    if (Main.rand.NextFloat() < 1f)
+                    {
+                        for (int i = 0; i < 50; i++)
+                        {
+                            Dust dust;
+                            Vector2 position = player.Center;
+                            dust = Main.dust[Terraria.Dust.NewDust(position, 1, 1, 16, (float)Main.rand.Next(-5, 6), 7.105264f, 0, new Color(255, 255, 255), 1f)];
+                            dust.shader = GameShaders.Armor.GetSecondaryShader(33, Main.LocalPlayer);
+                            dust.fadeIn = 0.9868421f;
+                        }
+                    }
                 }
+                player.canCarpet = false;
             }
+            if (NPC.AnyNPCs(mod.NPCType("TheRainmaker"))) freeFall = true;
+            else freeFall = false;
         }
     }
 }

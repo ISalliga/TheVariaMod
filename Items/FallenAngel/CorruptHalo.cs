@@ -14,7 +14,7 @@ namespace Varia.Items.FallenAngel
         public override void SetDefaults()
         {
             item.CloneDefaults(ItemID.TheEyeOfCthulhu);
-            item.damage = 44;
+            item.damage = 36;
             item.height = 13;
             item.value = 40000;
             item.rare = 5;

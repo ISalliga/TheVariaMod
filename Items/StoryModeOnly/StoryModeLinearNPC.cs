@@ -20,23 +20,26 @@ namespace Varia.Items.StoryModeOnly
     {
         public override void AI(NPC npc)
         {
-            if (npc.type == 35 && !NPC.downedQueenBee)
+            if (VariaWorld.storyMode)
             {
-                npc.active = false;
-                Main.NewText("You cannot summon Skeletron until you have defeated the Queen Bee.", 155, 97, 174);
-            }
-            if (npc.type == 36 && !NPC.downedQueenBee)
-            {
-                npc.active = false;
-            }
-            if (npc.type == 113 && !NPC.downedBoss3)
-            {
-                npc.active = false;
-                Main.NewText("You cannot summon the Wall of Flesh until you have gained access to the Dungeon.", 155, 97, 174);
-            }
-            if (npc.type == 114 && !NPC.downedBoss3)
-            {
-                npc.active = false;
+                if (npc.type == 35 && !NPC.downedQueenBee)
+                {
+                    npc.active = false;
+                    Main.NewText("You cannot summon Skeletron until you have defeated the Queen Bee.", 155, 97, 174);
+                }
+                if (npc.type == 36 && !NPC.downedQueenBee)
+                {
+                    npc.active = false;
+                }
+                if (npc.type == 113 && !NPC.downedBoss3)
+                {
+                    npc.active = false;
+                    Main.NewText("You cannot summon the Wall of Flesh until you have gained access to the Dungeon.", 155, 97, 174);
+                }
+                if (npc.type == 114 && !NPC.downedBoss3)
+                {
+                    npc.active = false;
+                }
             }
         }
     }

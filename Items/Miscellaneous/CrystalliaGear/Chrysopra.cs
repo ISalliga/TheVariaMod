@@ -14,7 +14,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		int arrowType;
         public override void SetDefaults()
         {
-            item.damage = 19;
+            item.damage = 15;
             item.ranged = true;
             item.width = 58;
             item.height = 28;
@@ -35,7 +35,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Chrysopra");
-			Tooltip.SetDefault("Shoots a barrage of crystal shards \nOn a 1-in-3 chance, turns your bullet into a crystal bullet");
+			Tooltip.SetDefault("Shoots a barrage of crystal shards");
         }
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
@@ -45,15 +45,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
                 float SpeedY = speedY + (float)Main.rand.Next(-60, 61) * 0.045f;
                 int projectile1 = Projectile.NewProjectile(position.X, position.Y, SpeedX * 1.4f, SpeedY * 1.4f, 94, damage - 10, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
             }
-			if (Main.rand.Next(1, 4) == 1)
-			{
-				int projectile2 = Projectile.NewProjectile(position.X, position.Y, speedX, speedY, 89, damage, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
-				return false;
-			}
-			else
-			{
-				return true;
-			}
+			return true;
         }
         public override void AddRecipes()
 		{

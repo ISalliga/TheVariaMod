@@ -73,12 +73,17 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 				Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 70), projectile.Center);
 				WorldGen.KillTile((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16));
 			}
-			if (Main.tile[(int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16)].type == (TileID.Crimtane))
-			{
-				Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 70), projectile.Center);
-				WorldGen.KillTile((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16));
-			}
-			if (Main.tile[(int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16)].type == (TileID.Hellstone))
+            if (Main.tile[(int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16)].type == (TileID.Crimtane))
+            {
+                Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 70), projectile.Center);
+                WorldGen.KillTile((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16));
+            }
+            if (Main.tile[(int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16)].type == (mod.TileType("CacitianOre")))
+            {
+                Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 70), projectile.Center);
+                WorldGen.KillTile((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16));
+            }
+            if (Main.tile[(int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16)].type == (TileID.Hellstone))
 			{
 				Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 70), projectile.Center);
 				WorldGen.KillTile((int)(projectile.Center.X / 16), (int)(projectile.Center.Y / 16));

@@ -84,5 +84,19 @@ namespace Varia.NPCs.FallenAngel
                 npc.frameCounter = 0;
             }
         }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        {
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[npc.type].Width * 0.5f, npc.height * 0.5f);
+            for (int k = 0; k < 3; k++)
+            {
+                Texture2D flicker = mod.GetTexture("NPCs/FallenAngel/Forcefield");
+                lightColor = new Color(0, 15, 25, npc.alpha);
+                Vector2 drawPos = new Vector2(npc.position.X + Main.rand.Next(-15, 16), npc.position.Y + Main.rand.Next(-15, 16));
+                Color color = npc.GetAlpha(lightColor) * ((float)(npc.oldPos.Length - k) / (float)npc.oldPos.Length);
+                spriteBatch.Draw(flicker, drawPos, new Rectangle(npc.frame.X, npc.frame.Y, npc.frame.X + npc.width, npc.frame.Y + npc.height), color, npc.rotation, drawOrigin, npc.scale, SpriteEffects.None, 0f);
+            }
+            return true;
+        }
     }
 }

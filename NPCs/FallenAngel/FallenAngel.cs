@@ -41,7 +41,7 @@ namespace Varia.NPCs.FallenAngel
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 25 : 42;
             npc.defense = Main.expertMode ? 2 : 2;
-            npc.knockBackResist = 0.2f;
+            npc.knockBackResist = 1f;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FallenAngel");
             npc.width = 152;
             npc.height = 114;
@@ -79,28 +79,14 @@ namespace Varia.NPCs.FallenAngel
         }
         public override void AI()
         {
-            /*
-            if (!vc1)
-            {
-                Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Spawn"));
-                vc1 = true;
-            }
-            if (!vc2)
-            {
-                if (npc.life < npc.lifeMax * 0.65f)
-                {
-                    Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_65"));
-                    vc2 = true;
-                }
-            }*/
             Player player = Main.player[npc.target];
             if (!Main.player[npc.target].dead)
             {
                 despawn = 0;
                 tPos.X = player.Center.X;
                 tPos.Y = player.Center.Y - 70;
-                npc.velocity.X += (npc.DirectionTo(tPos).X * Vector2.Distance(npc.Center, tPos) / 600);
-                npc.velocity.Y += (npc.DirectionTo(tPos).Y * Vector2.Distance(npc.Center, tPos) / 600);
+                npc.velocity.X += (npc.DirectionTo(tPos).X * Vector2.Distance(npc.Center, tPos) / 1000);
+                npc.velocity.Y += (npc.DirectionTo(tPos).Y * Vector2.Distance(npc.Center, tPos) / 1000);
             }
             else
             {
@@ -129,7 +115,7 @@ namespace Varia.NPCs.FallenAngel
             {
                 stationaryTurretTime++;
             }
-            if (stationaryTurretTime == 500)
+            if (stationaryTurretTime == 720)
             {
                 NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-1, 2) * 50, (int)npc.Center.Y + Main.rand.Next(-1, 2) * 50, mod.NPCType("UnholyTurret"), 0, npc.whoAmI);
                 stationaryTurretTime = 0;
@@ -197,16 +183,33 @@ namespace Varia.NPCs.FallenAngel
                 forcefield = false;
             }
             hasPersonalForcefield = false;
-            if (npc.life < npc.lifeMax * 0.3333f && Main.netMode !=1)
+            if (Main.expertMode)
             {
-                if (!clonesSpawned)
+                if (npc.life < npc.lifeMax * 0.3f && Main.netMode != 1)
                 {
-                    NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
-                    NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
-                    clonesSpawned = true;
-                    //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
+                    if (!clonesSpawned)
+                    {
+                        NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
+                        NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
+                        clonesSpawned = true;
+                        //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
+                    }
                 }
             }
+            else
+            {
+                if (npc.life < npc.lifeMax * 0.1f && Main.netMode != 1)
+                {
+                    if (!clonesSpawned)
+                    {
+                        NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
+                        NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
+                        clonesSpawned = true;
+                        //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
+                    }
+                }
+            }
+            
             //Main.NewText(NPC.CountNPCS(mod.NPCType("OrbitingTurret")));
             /*
             

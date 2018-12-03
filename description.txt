@@ -1,4 +1,4 @@
-Varia is a general content mod, aiming to add amounts of unique content like your wildest dreams could think up... and will.
+Varia is a general content mod, aiming to add amounts of content only your wildest dreams could think up... and will.
 
 The mod currently adds:
 
@@ -6,15 +6,15 @@ The mod currently adds:
 The Cavity is an area underground that has been affected by a plague that could even infect stone! It didn't spread very far, but it does hurt the environment a LOT, and if you're not careful, the mutant beasts that roam the Cavity may kill you... 
 It's not like the risk/reward factor is lacking, however. There is an ore that forms in the Cavity, and it's quite hardy.
 
-Two new Hardmode bosses: the Fallen Angel, and Nice Guy!
+Two new pre-Hardmode bosss: the Soul of the Guide and the Spider Queen!
+
+Three new Hardmode bosses: the Fallen Angel, Nice Guy, and the Anomaly!
 
 Sprites created by:
-Red, moonburn, MoonlitWyvern, Sok, Schmizz, Nao, Koopahunter197, KittyKitCatCat, PhilCo, Five, Santer, JaceDaDorito, Eritoniac the Blue Storm, Cooper, v1tell, and Turquoise
+Red, GeneralFefnirski, inSignia, Moonburn, MoonlitWyvern, Sok, Schmizz, Nao, Koopahunter197, KittyKitCatCat, PhilCo, Calming, Five, Santer, SUS, JaceDaDorito, Eritoniac the Blue Storm, Cooper, Daddy, Anóteróntas, Blockaroz, v1tell, and Turquoise
 
 Code created by:
 qwerty3.14, GabeHasWon, and Turquoise
 
-Soundtrack created by:
-Turquoise
-
-If you would like to contribute to the mod, click the homepage link to join our official Discord server so you can post your things!
+Soundtrack created by Turquoise, with help from:
+Charliedebnam, and SpectralAves

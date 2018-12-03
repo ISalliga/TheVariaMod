@@ -41,7 +41,11 @@ namespace Varia.NPCs.Cavity.Hardmode
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            return 0.0f;
+            if (Main.hardMode)
+            {
+                return VariaWorld.cavityTiles > 75 ? 8f : 0f;
+            }
+            else return 0.0f;
         }
         public override void AI()
 		{
@@ -49,7 +53,8 @@ namespace Varia.NPCs.Cavity.Hardmode
             shootTime++;
             if (shootTime > 80)
             {
-
+                Projectile.NewProjectile(new Vector2(npc.Center.X, npc.Center.Y), npc.DirectionTo(player.Center) * 13, mod.ProjectileType("TaintedFleshBall"), Main.expertMode ? 30 : 45, 0f);
+                shootTime = 0;
             }
         }
         public override void NPCLoot()

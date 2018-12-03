@@ -22,14 +22,17 @@ namespace Varia.Items.StoryModeOnly
         {
             if (item.type == ItemID.GuideVoodooDoll && item.lavaWet)
             {
-                int variable = Player.FindClosest(item.position, item.width, item.height);
-                Player player = Main.player[Player.FindClosest(item.position, item.width, item.height)];
-                Item.NewItem((int)item.position.X, (int)item.position.Y, player.width, player.height, ItemID.GuideVoodooDoll, 1, false, item.prefix);
-                item.active = false;
-                item.type = 0;
-                //item.name = ""; 
-                item.stack = 0;
-                Main.NewText("The doll vaporizes in the lava, but when you look at your inventory you realize it's still there", 155, 97, 174);
+                if (VariaWorld.storyMode)
+                {
+                    int variable = Player.FindClosest(item.position, item.width, item.height);
+                    Player player = Main.player[Player.FindClosest(item.position, item.width, item.height)];
+                    Item.NewItem((int)item.position.X, (int)item.position.Y, player.width, player.height, ItemID.GuideVoodooDoll, 1, false, item.prefix);
+                    item.active = false;
+                    item.type = 0;
+                    //item.name = ""; 
+                    item.stack = 0;
+                    Main.NewText("The doll vaporizes in the lava, but when you look at your inventory you realize it's still there", 155, 97, 174);
+                }
             }
         }
         public override bool CanUseItem(Item item, Player player)

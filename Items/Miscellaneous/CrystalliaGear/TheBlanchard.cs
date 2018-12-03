@@ -11,7 +11,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
         public override void SetDefaults()
         {
 
-            item.damage = 60;
+            item.damage = 49;
             item.ranged = true;
             item.width = 40;
             item.height = 68;
