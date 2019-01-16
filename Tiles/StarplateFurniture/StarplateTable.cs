@@ -16,7 +16,7 @@ namespace Varia.Tiles.StarplateFurniture
 			TileObjectData.addTile(Type);
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Starplate Table");
-			AddMapEntry(new Color(142, 117, 191), name);
+            AddMapEntry(new Color(142, 117, 191), name);
 			disableSmartCursor = true;
 		}
 

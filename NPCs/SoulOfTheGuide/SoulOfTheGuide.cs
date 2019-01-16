@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BaseMod;
 using System.Threading.Tasks;
 using Terraria;
 using Varia;
@@ -41,7 +40,7 @@ namespace Varia.NPCs.SoulOfTheGuide
         public override void SetDefaults()
         {
             npc.lifeMax = Main.expertMode ? 600 : 1700;
-            npc.aiStyle = -1;
+            npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 6 : 9;
             npc.defense = 0;
             npc.knockBackResist = 0f;
@@ -94,7 +93,31 @@ namespace Varia.NPCs.SoulOfTheGuide
                     npc.active = false;
                 }
             }
-            else BaseAI.AISpaceOctopus(npc, ref npc.ai, 0.05f, 5f, 140f);
+            else
+            {
+                targetX = player.Center.X;
+                targetY = player.Center.Y - 100;
+                {
+                    float dist = ((float)(Math.Sqrt((targetX - npc.Center.X) * (targetX - npc.Center.X) + (targetY - npc.Center.Y) * (targetY - npc.Center.Y))));
+                    tVel = dist / 20;
+                    if (vMag < vMax && vMag < tVel)
+                    {
+                        vMag += vAccel;
+                    }
+                    if (vMag > tVel)
+                    {
+                        vMag -= vAccel;
+                    }
+
+                    if (dist != 0)
+                    {
+                        Vector2 tPos;
+                        tPos.X = targetX;
+                        tPos.Y = targetY;
+                        npc.velocity = npc.DirectionTo(tPos) * vMag;
+                    }
+                }
+            }
 
             timer++;
 

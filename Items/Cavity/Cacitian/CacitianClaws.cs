@@ -39,8 +39,8 @@ namespace Varia.Items.Cavity.Cacitian
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "CacitianBar", 3);
-            recipe.AddIngredient(null, "MutatedBlob", 5);
+			recipe.AddIngredient(null,  "CacitianBar",  3);
+            recipe.AddIngredient(null,  "MutatedBlob",  5);
             recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

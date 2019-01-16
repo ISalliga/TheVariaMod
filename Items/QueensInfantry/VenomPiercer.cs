@@ -26,9 +26,9 @@ namespace Varia.Items.QueensInfantry
 			item.height = 30;
 			item.useStyle = 5;
             item.useTime = 18;
-            item.shootSpeed = 6f;				//Speed is not important here
+            item.shootSpeed = 14f;				//Speed is not important here
 			item.useAnimation = 2;                         
-			item.shoot = 282;
+			item.shoot = mod.ProjectileType("VenomPiercerProj");
 			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.useAmmo = AmmoID.Arrow;
 		}
@@ -49,7 +49,7 @@ namespace Varia.Items.QueensInfantry
                 {
                     value9 -= vector7;
                 }
-                int venomPierce = Projectile.NewProjectile(vector2.X + value9.X, vector2.Y + value9.Y, speedX, speedY, 282, (int)((double)damage * 0.75f), knockBack, player.whoAmI, 0.0f, 0.0f);
+                int venomPierce = Projectile.NewProjectile(vector2.X + value9.X, vector2.Y + value9.Y, speedX, speedY, mod.ProjectileType("VenomPiercerProj"), (int)((double)damage * 0.75f), knockBack, player.whoAmI, 0.0f, 0.0f);
                 Main.projectile[venomPierce].penetrate = 4;
             }
             return false;

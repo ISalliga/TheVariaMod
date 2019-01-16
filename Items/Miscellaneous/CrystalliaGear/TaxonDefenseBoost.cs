@@ -20,7 +20,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 			DisplayName.SetDefault("Taxon Defense Boost");
 			Description.SetDefault("I'M INVINCIBLE! (8% increased damage reduction)");
 		}
-		public override void Update(Player player, ref int buffIndex)
+		public override void Update(Player player,  ref int buffIndex)
 		{
 			player.endurance += 0.08f;
 		}

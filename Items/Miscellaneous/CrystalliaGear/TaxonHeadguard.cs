@@ -30,7 +30,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 			item.defense = 15;
 		}
 
-		public override bool IsArmorSet(Item head, Item body, Item legs)
+		public override bool IsArmorSet(Item head,  Item body,  Item legs)
 		{
 			return body.type == mod.ItemType("TaxonChestguard") && legs.type == mod.ItemType("TaxonGreaves");
 		}
@@ -50,7 +50,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Upon critically hitting an enemy, your damage is boosted by 10% for four seconds";
+			player.setBonus = "Upon critically hitting an enemy,  your damage is boosted by 10% for four seconds";
 			player.GetModPlayer<VariaPlayer>().taxonSetBonus = true;
 			Player.jumpHeight += 10;
 		}
@@ -58,9 +58,9 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(502, 15);
-			recipe.AddIngredient(3, 75);
-			recipe.AddIngredient(null, "CrystalliaBar", 15);
+			recipe.AddIngredient(502,  15);
+			recipe.AddIngredient(3,  75);
+			recipe.AddIngredient(null,  "CrystalliaBar",  15);
 			recipe.AddTile(134);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

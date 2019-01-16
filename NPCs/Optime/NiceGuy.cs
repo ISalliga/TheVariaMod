@@ -19,13 +19,15 @@ namespace Varia.NPCs.Optime
         int despawn = 0;
 
         int shootTime = 0;
-        int shootInterval = 200;
+        int shootInterval = 165;
         int orbTime = 400;
         int portTime = 400;
         int crosshairTime = 400;
 
         bool phase1Yet = false;
         public int hits = 0;
+
+        bool justPorted = true;
 
         public override void SetStaticDefaults()
         {

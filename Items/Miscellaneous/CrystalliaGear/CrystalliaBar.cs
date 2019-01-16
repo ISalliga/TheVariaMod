@@ -21,8 +21,8 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.CrystalShard, 2);
-			recipe.AddIngredient(ItemID.AdamantiteOre, 5);
+			recipe.AddIngredient(ItemID.CrystalShard,  2);
+			recipe.AddIngredient(ItemID.AdamantiteOre,  5);
 			recipe.AddTile(TileID.AdamantiteForge);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -12,7 +12,7 @@ namespace Varia.Items.Cavity.Cacitian
             Main.buffNoTimeDisplay[Type] = true;
 		}
 
-        public override void Update(Player player, ref int buffIndex)
+        public override void Update(Player player,  ref int buffIndex)
         {
             if (player.ownedProjectileCounts[mod.ProjectileType("ChunkyBoi")] > 0)
             {

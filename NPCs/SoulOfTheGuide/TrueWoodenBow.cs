@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BaseMod;
+
 using Terraria;
 using Varia;
 using Terraria.ID;

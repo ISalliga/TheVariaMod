@@ -44,13 +44,13 @@ namespace Varia.Items.FallenAngel
 			jutTime++;
 			if (jutTime == 39)
 			{
-				mousePos = new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y);
+				mousePos = new Vector2(Main.MouseWorld.X,  Main.MouseWorld.Y);
 				jutSpeed = 30;
 				projectile.scale += 0.04f;
 			}
 			if (jutTime > 39)
 			{
-				Vector2 toTarget = new Vector2(mousePos.X - projectile.Center.X, mousePos.Y - projectile.Center.Y);
+				Vector2 toTarget = new Vector2(mousePos.X - projectile.Center.X,  mousePos.Y - projectile.Center.Y);
 				toTarget.Normalize();
 				projectile.velocity = toTarget * jutSpeed;
 				jutSpeed -= 2;
@@ -69,7 +69,7 @@ namespace Varia.Items.FallenAngel
         {
 			for (int num623 = 0; num623 < 25; num623++)
 			{
-				int num624 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 20, 0f, 0f, 100, Color.Purple, 3f);
+				int num624 = Dust.NewDust(new Vector2(projectile.position.X,  projectile.position.Y),  projectile.width,  projectile.height,  20,  0f,  0f,  100,  Color.Purple,  3f);
 				Main.dust[num624].noGravity = true;
 				Main.dust[num624].velocity *= 5f;
 			}

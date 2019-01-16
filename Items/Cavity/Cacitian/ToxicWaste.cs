@@ -37,7 +37,7 @@ namespace Varia.Items.Cavity.Cacitian
         }
         public override void Kill(int timeLeft)
         {
-            Projectile.NewProjectile(projectile.Center.X - 5, projectile.Center.Y, 0, 0, mod.ProjectileType("ToxicPuddle"), 13, 0, projectile.owner, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
+            Projectile.NewProjectile(projectile.Center.X - 5,  projectile.Center.Y,  0,  0,  mod.ProjectileType("ToxicPuddle"),  13,  0,  projectile.owner,  0.0f,  0.5f + (float)Main.rand.NextDouble() * 0.9f);
         }
     }
 }

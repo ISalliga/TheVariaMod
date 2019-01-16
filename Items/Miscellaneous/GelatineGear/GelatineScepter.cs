@@ -25,13 +25,13 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             item.useStyle = 1;
             item.noMelee = true;
             item.knockBack = 3;
-            item.value = Item.buyPrice(0, 0, 10, 0);
+            item.value = Item.buyPrice(0,  0,  10,  0);
             item.rare = 3;
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType("GrimeBaby");
             item.shootSpeed = 10f;
             item.buffType = mod.BuffType("GrimeBuff"); //The buff added to player after used the item
-            item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
+            item.buffTime = 3600;               //The duration of the buff,  here is 60 seconds
         }
 
         public override bool AltFunctionUse(Player player)
@@ -39,7 +39,7 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             return true;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player,  ref Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
             return player.altFunctionUse != 2;
         }

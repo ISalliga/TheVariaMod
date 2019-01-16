@@ -16,7 +16,7 @@ namespace Varia.Items.Miscellaneous
             item.ranged = true;
             item.width = 58;
             item.height = 28;
-            item.crit = 20; 
+            item.crit = 20;
             item.useTime = 10;
             item.useAnimation = 10;
             item.useStyle = 5;
@@ -25,8 +25,8 @@ namespace Varia.Items.Miscellaneous
             item.value = 40000;
             item.shoot = 3;
             item.rare = 3;
-			item.useAmmo = AmmoID.Bullet;
-			item.UseSound = SoundID.Item38;
+            item.useAmmo = AmmoID.Bullet;
+            item.UseSound = SoundID.Item38;
             item.autoReuse = true;
             item.shootSpeed = 9f;
         }
@@ -40,13 +40,17 @@ namespace Varia.Items.Miscellaneous
             Main.projectile[proj3].scale = 2f;
             return false;
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-11, -4);
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Black Hole");
-			Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you \nRapidly fires bursts of three");
+            Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you \nRapidly fires bursts of three");
         }
         public override void AddRecipes()
-		{
+        {
             ModRecipe recipe1 = new ModRecipe(mod);
             recipe1.AddIngredient(null, "TheWhirlwind", 1);
             recipe1.AddIngredient(3456, 20);

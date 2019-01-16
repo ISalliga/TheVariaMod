@@ -21,7 +21,7 @@ namespace Varia.Items.Cavity.Cacitian
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "CacitianOre", 3);
+			recipe.AddIngredient(null,  "CacitianOre",  3);
 			recipe.AddTile(TileID.Furnaces);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

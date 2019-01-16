@@ -43,8 +43,9 @@ namespace Varia
         public static int hitsTakenNice = 0;
 
         public static int hunkCount = 0;
-		
-		public override void Initialize()
+
+
+        public override void Initialize()
 		{
             hunkCount = 0;
             downedAngel = false;
@@ -60,7 +61,7 @@ namespace Varia
         {
             if (hunkCount > 2)
             {
-                NPC.SpawnOnPlayer(Player.FindClosest(new Vector2(1f, 1f), 1, 1), mod.NPCType("FallenAngel"));
+                NPC.SpawnOnPlayer(Player.FindClosest(new Vector2(Main.maxTilesX / 2, Main.maxTilesY / 2), Main.maxTilesX / 2, Main.maxTilesY / 2), mod.NPCType("FallenAngel"));
                 hunkCount = 0;
             }
             if (NPC.AnyNPCs(mod.NPCType("Optime")) == false && NPC.AnyNPCs(mod.NPCType("NiceGuy")) == false)

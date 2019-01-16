@@ -40,20 +40,20 @@ namespace Varia.Items.FallenAngel
         {
             for (int num623 = 0; num623 < 35; num623++)
 			{
-				int num624 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 20, 0f, 0f, 100, Color.Purple, 3f);
+				int num624 = Dust.NewDust(new Vector2(projectile.position.X,  projectile.position.Y),  projectile.width,  projectile.height,  20,  0f,  0f,  100,  Color.Purple,  3f);
 				Main.dust[num624].noGravity = true;
 				Main.dust[num624].velocity *= 5f;
 			}
 			for (int num623 = 0; num623 < 35; num623++)
 			{
-				int num624 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 20, 0f, 0f, 100, Color.SkyBlue, 3f);
+				int num624 = Dust.NewDust(new Vector2(projectile.position.X,  projectile.position.Y),  projectile.width,  projectile.height,  20,  0f,  0f,  100,  Color.SkyBlue,  3f);
 				Main.dust[num624].noGravity = true;
 				Main.dust[num624].velocity *= 5f;
 			}
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -5, -12, mod.ProjectileType("LightAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 5, -12, mod.ProjectileType("DarkAfterimage"), 20, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, -7, -6, mod.ProjectileType("LightAfterimage"), 18, 0f, Main.myPlayer, 0f, 0f);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, 7, -6, mod.ProjectileType("DarkAfterimage"), 18, 0f, Main.myPlayer, 0f, 0f);
+			Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  -5,  -12,  mod.ProjectileType("LightAfterimage"),  20,  0f,  Main.myPlayer,  0f,  0f);
+			Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  5,  -12,  mod.ProjectileType("DarkAfterimage"),  20,  0f,  Main.myPlayer,  0f,  0f);
+			Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  -7,  -6,  mod.ProjectileType("LightAfterimage"),  18,  0f,  Main.myPlayer,  0f,  0f);
+			Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  7,  -6,  mod.ProjectileType("DarkAfterimage"),  18,  0f,  Main.myPlayer,  0f,  0f);
         }
 	}
 }

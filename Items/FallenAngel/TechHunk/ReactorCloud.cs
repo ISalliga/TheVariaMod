@@ -36,7 +36,7 @@ namespace Varia.Items.FallenAngel.TechHunk
 		{
 			for (int dusterino = 0; dusterino <= 3; dusterino++)
 			{
-				Dust dust = Main.dust[Terraria.Dust.NewDust(projectile.Center, 1, 1, 226, Main.rand.Next(-6, 7), Main.rand.Next(-6, 7), 0, new Color(255,255,255), 0.5f)];
+				Dust dust = Main.dust[Terraria.Dust.NewDust(projectile.Center,  1,  1,  226,  Main.rand.Next(-6,  7),  Main.rand.Next(-6,  7),  0,  new Color(255, 255, 255),  0.5f)];
 				dust.noGravity = true;
 			}
 			slowTime++;

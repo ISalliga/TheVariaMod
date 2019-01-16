@@ -27,7 +27,6 @@ namespace Varia.NPCs.FallenAngel
         public override void SetDefaults()
         {
             npc.scale = 0f;
-            npc.dontTakeDamage = true;
             npc.lifeMax = Main.expertMode ? 100 : 150;
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 25 : 42;
@@ -61,7 +60,7 @@ namespace Varia.NPCs.FallenAngel
                 
             
             //Factors for calculations
-            double deg = (double)npc.ai[1] * 2; //The degrees, you can multiply npc.ai[1] to make it orbit faster, may be choppy depending on the value
+            double deg = (double)npc.ai[1]; //The degrees, you can multiply npc.ai[1] to make it orbit faster, may be choppy depending on the value
             double rad = deg * (Math.PI / 180); //Convert degrees to radians
             double dist = 200; //Distance away from angel
 
@@ -72,7 +71,7 @@ namespace Varia.NPCs.FallenAngel
             npc.position.Y = parent.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 2;
 
             //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
-            npc.ai[1] += 2f;
+            npc.ai[1] += 3f;
 
             npc.velocity.X = npc.velocity.X * 3 / 4;
             npc.velocity.Y = npc.velocity.Y * 3 / 4;

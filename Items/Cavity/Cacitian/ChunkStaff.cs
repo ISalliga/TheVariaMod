@@ -16,7 +16,7 @@ namespace Varia.Items.Cavity.Cacitian
 
         public override void SetDefaults()
         {
-            item.damage = 18;
+            item.damage = 8;
             item.summon = true;
             item.mana = 10;
             item.width = 40;
@@ -26,13 +26,13 @@ namespace Varia.Items.Cavity.Cacitian
             item.useStyle = 1;
             item.noMelee = true;
             item.knockBack = 3;
-            item.value = Item.buyPrice(0, 0, 9, 0);
+            item.value = Item.buyPrice(0,  0,  9,  0);
             item.rare = 3;
             item.UseSound = SoundID.Item44;
             item.shoot = mod.ProjectileType("ChunkyBoi");
             item.shootSpeed = 10f;
             item.buffType = mod.BuffType("ChunkyBuff"); //The buff added to player after used the item
-            item.buffTime = 3600;               //The duration of the buff, here is 60 seconds
+            item.buffTime = 3600;               //The duration of the buff,  here is 60 seconds
         }
 
         public override bool AltFunctionUse(Player player)
@@ -40,7 +40,7 @@ namespace Varia.Items.Cavity.Cacitian
             return true;
         }
 
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player,  ref Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
             return player.altFunctionUse != 2;
         }
@@ -56,8 +56,8 @@ namespace Varia.Items.Cavity.Cacitian
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "CacitianBar", 3);
-            recipe.AddIngredient(null, "MutatedBlob", 16);
+            recipe.AddIngredient(null,  "CacitianBar",  3);
+            recipe.AddIngredient(null,  "MutatedBlob",  16);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

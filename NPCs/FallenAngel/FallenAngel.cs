@@ -16,17 +16,22 @@ namespace Varia.NPCs.FallenAngel
     public class FallenAngel : ModNPC
     {
         Vector2 tPos;
-        bool vc1 = false;
-        bool vc2 = false;
-        bool vc3 = false;
         int despawn = 0;
-        int turretTime = 0;
-        int stationaryTurretTime = 0;
-        int chargedOrbTime = 0;
-        int forcefieldTime = 0;
-        bool forcefield = false;
 
-        bool clonesSpawned = false;
+        int attackTime = 0;
+        int attackInterval = 170;
+
+        int gravityTime = 1000;
+        
+        int turretRingTime = 1000;
+
+        int deathRayTime = 1000;
+
+        int dartTrapTime = 1000;
+
+        bool phase2Yet = false;
+
+        bool vulnerable = false;
 
         public override void SetStaticDefaults()
         {
@@ -41,7 +46,7 @@ namespace Varia.NPCs.FallenAngel
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 25 : 42;
             npc.defense = Main.expertMode ? 2 : 2;
-            npc.knockBackResist = 1f;
+            npc.knockBackResist = 0f;
             music = mod.GetSoundSlot(SoundType.Music, "Sounds/Music/FallenAngel");
             npc.width = 152;
             npc.height = 114;
@@ -98,118 +103,42 @@ namespace Varia.NPCs.FallenAngel
                 }
             }
 
-            turretTime++;
-            if (turretTime == 1 )
+            //if (!vulnerable)
             {
-                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("OrbitingTurret"), 0, npc.whoAmI);
-            }
-            if (turretTime == 61 )
-            {
-                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("OrbitingTurret"), 0, npc.whoAmI);
-            } 
-            if (turretTime == 121)
-            {
-                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("OrbitingTurret"), 0, npc.whoAmI);
-            }
-            if (!clonesSpawned)
-            {
-                stationaryTurretTime++;
-            }
-            if (stationaryTurretTime == 720)
-            {
-                NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-1, 2) * 50, (int)npc.Center.Y + Main.rand.Next(-1, 2) * 50, mod.NPCType("UnholyTurret"), 0, npc.whoAmI);
-                stationaryTurretTime = 0;
-            }
-
-            chargedOrbTime++;
-            if (chargedOrbTime == 65)
-            {
-                if (Main.rand.Next(1, 4) == 1 && Main.netMode !=1)
+                attackTime++;
+                if (attackTime >= attackInterval)
                 {
-                    if (!clonesSpawned)
+                    switch (Main.rand.Next(1, 5))
                     {
-                        float Speed = 10f;
-                        Vector2 vector8 = new Vector2(npc.position.X + (npc.width / 2), npc.position.Y + (npc.height / 2));
-                        int damage = Main.expertMode ? 25 : 42;
-                        int type = mod.ProjectileType("ChargedOrb");
-                        float rotation = (float)Math.Atan2(vector8.Y - (player.position.Y + (player.height * 0.5f)), vector8.X - (player.position.X + (player.width * 0.5f)));
-                        int num54 = Projectile.NewProjectile(vector8.X, vector8.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, Main.myPlayer);
+                        case 1:
+                            {
+                                gravityTime = 0;
+                                NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("TurretCenter"), 0, npc.whoAmI);
+                                break;
+                            }
+                        case 2:
+                            {
+                                NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("TurretCenter"), 0, npc.whoAmI);
+                                break;
+                            }
+                        case 3:
+                            {
+                                deathRayTime = 0;
+                                NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("TurretCenter"), 0, npc.whoAmI);
+                                break;
+                            }
+                        case 4:
+                            {
+                                dartTrapTime = 0;
+                                NPC.NewNPC((int)npc.position.X, (int)npc.position.Y, mod.NPCType("TurretCenter"), 0, npc.whoAmI);
+                                break;
+                            }
                     }
-                    else
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            int damage = Main.expertMode ? 25 : 42;
-                            int type = mod.ProjectileType("ChargedOrb");
-                            int proj = Projectile.NewProjectile(npc.Center.X, npc.Center.Y, Main.rand.Next(-10, 11), Main.rand.Next(-10, 11), type, damage, 0f, Main.myPlayer);
-                        }
-                    }
+                    attackInterval = Main.rand.Next(160, 181);
+                    //attackTime = 0;
                 }
-                chargedOrbTime = 0;
             }
 
-            if (!forcefield)
-            {
-                forcefieldTime++;
-            }
-
-            if (forcefieldTime >= 400)
-            {
-                if (Main.rand.Next(1, 6) == 1 && Main.netMode !=1)
-                {
-                    forcefield = true;
-                    NPC.NewNPC((int)npc.Center.X + Main.rand.Next(-1, 2) * 50, (int)npc.Center.Y + Main.rand.Next(-1, 2) * 50, mod.NPCType("Forcefield") , 0, npc.whoAmI); //at the end the npc.whoAmI tells the orcefield's npc.ai[0] to equal the npc's nuumber in the Main.npc[] array
-                    
-                }
-                forcefieldTime = 0;
-            }
-
-            //int forcefieldCount = NPC.CountNPCS(mod.NPCType("Forcefield"));
-            for(int i=0; i<200; i++)
-            {
-                if(Main.npc[i].type == mod.NPCType("Forcefield") && (int)Main.npc[i].ai[0] == npc.whoAmI && Main.npc[i].active) //checks for a forcefield npc and if it's ai[0] is equal to npc.whoAmI meaning its parent
-                {
-                    hasPersonalForcefield = true;
-                }
-
-            }
-            if (hasPersonalForcefield)
-            {
-                npc.dontTakeDamage = true;
-            }
-            else
-            {
-                npc.dontTakeDamage = false;
-                forcefield = false;
-            }
-            hasPersonalForcefield = false;
-            if (Main.expertMode)
-            {
-                if (npc.life < npc.lifeMax * 0.3f && Main.netMode != 1)
-                {
-                    if (!clonesSpawned)
-                    {
-                        NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
-                        NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
-                        clonesSpawned = true;
-                        //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
-                    }
-                }
-            }
-            else
-            {
-                if (npc.life < npc.lifeMax * 0.1f && Main.netMode != 1)
-                {
-                    if (!clonesSpawned)
-                    {
-                        NPC.NewNPC((int)npc.Center.X + 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Dark"), 0, npc.whoAmI);
-                        NPC.NewNPC((int)npc.Center.X - 85, (int)npc.Center.Y, mod.NPCType("FallenAngel_Light"), 0, npc.whoAmI);
-                        clonesSpawned = true;
-                        //Main.PlaySound(mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/FA_Shadow"));
-                    }
-                }
-            }
-            
             //Main.NewText(NPC.CountNPCS(mod.NPCType("OrbitingTurret")));
             /*
             

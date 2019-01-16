@@ -28,18 +28,18 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 			item.autoReuse = true;
 			item.useTurn = true;
 		}
-		public override void OnHitNPC(Player player, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(Player player,  NPC target,  int damage,  float knockback,  bool crit)
 		{
-            if (Main.rand.Next(1, 21) == 1)
+            if (Main.rand.Next(1,  21) == 1)
             {
-                player.AddBuff(mod.BuffType("TaxonBoost"), 300);
+                player.AddBuff(mod.BuffType("TaxonBoost"),  300);
             }
 		}
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.StoneBlock, 95);
-			recipe.AddIngredient(null, "CrystalliaBar", 9);
+			recipe.AddIngredient(ItemID.StoneBlock,  95);
+			recipe.AddIngredient(null,  "CrystalliaBar",  9);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

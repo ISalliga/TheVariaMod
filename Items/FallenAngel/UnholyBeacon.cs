@@ -47,9 +47,8 @@ namespace Varia.Items.FallenAngel
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.SoulofNight, 1);
-			recipe.AddIngredient(ItemID.SoulofLight, 1);
-            recipe.AddIngredient(null, "DarklightEssence", 10);
+			recipe.AddIngredient(ItemID.SoulofNight, 7);
+			recipe.AddIngredient(ItemID.SoulofLight, 7);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this, 1);
 			recipe.AddRecipe();

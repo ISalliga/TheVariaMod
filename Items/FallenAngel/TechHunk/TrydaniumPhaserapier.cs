@@ -30,9 +30,9 @@ namespace Varia.Items.FallenAngel.TechHunk
 			item.autoReuse = true;
 			item.useTurn = true;
 		}
-        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player,  ref Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
-            int spark = Projectile.NewProjectile(player.Center.X + player.direction * 36, player.Center.Y + 12, 0, 0, mod.ProjectileType("LanceSpark"), 78, 0f, Main.myPlayer, 0f, 0f);
+            int spark = Projectile.NewProjectile(player.Center.X + player.direction * 36,  player.Center.Y + 24,  0,  0,  mod.ProjectileType("LanceSpark"),  78,  0f,  Main.myPlayer,  0f,  0f);
             Main.projectile[spark].ai[0] = player.direction;
             return false;
         }

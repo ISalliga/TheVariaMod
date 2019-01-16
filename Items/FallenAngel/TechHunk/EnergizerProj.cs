@@ -37,8 +37,8 @@ namespace Varia.Items.FallenAngel.TechHunk
 		}
 		public override void Kill(int timeLeft)
         {
-            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2, 94), projectile.Center);
-			Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, Main.rand.Next(-2, 3), Main.rand.Next(-2, 3), mod.ProjectileType("EnergizerCloud"), 20, 0f, Main.myPlayer, 0f, 0f);
+            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2,  94),  projectile.Center);
+			Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  Main.rand.Next(-2,  3),  Main.rand.Next(-2,  3),  mod.ProjectileType("EnergizerCloud"),  20,  0f,  Main.myPlayer,  0f,  0f);
         }
 	}
 }

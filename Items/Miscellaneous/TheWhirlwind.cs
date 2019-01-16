@@ -16,7 +16,7 @@ namespace Varia.Items.Miscellaneous
             item.ranged = true;
             item.width = 58;
             item.height = 28;
-            item.crit = 20; 
+            item.crit = 20;
             item.useTime = 40;
             item.useAnimation = 40;
             item.useStyle = 5;
@@ -25,8 +25,8 @@ namespace Varia.Items.Miscellaneous
             item.value = 40000;
             item.shoot = 3;
             item.rare = 3;
-			item.useAmmo = AmmoID.Bullet;
-			item.UseSound = SoundID.Item34;
+            item.useAmmo = AmmoID.Bullet;
+            item.UseSound = SoundID.Item34;
             item.autoReuse = true;
             item.shootSpeed = 9f;
         }
@@ -40,13 +40,17 @@ namespace Varia.Items.Miscellaneous
             Main.projectile[proj3].scale = 1.5f;
             return false;
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-13, -5);
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Whirlwind");
-			Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you \nFires a burst of three");
+            Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you \nFires a burst of three");
         }
         public override void AddRecipes()
-		{
+        {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(null, "TheVacuum", 1);
             recipe.AddIngredient(ItemID.HallowedBar, 15);

@@ -17,9 +17,9 @@ namespace Varia.Items.QueensInfantry
 			item.magic = true;
 			item.width = 50;
 			item.height = 50;
-			item.useTime = 10;
-			item.useAnimation = 25;
-			item.shoot = mod.ProjectileType("VenomBubble");
+			item.useTime = 15;
+			item.useAnimation = 15;
+			item.shoot = mod.ProjectileType("VenomBolt");
 			item.shootSpeed = 10;
 			item.useStyle = 1;
 			item.mana = 9;

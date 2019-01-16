@@ -38,15 +38,15 @@ namespace Varia.Items.Cavity.Cacitian
             projectile.velocity.X = projectile.velocity.X * 50 / 51;
 
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target,  int damage,  float knockback,  bool crit)
         {
-            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(42, 5), projectile.Center);
-            target.AddBuff(BuffID.Poisoned, 120);
+            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(42,  5),  projectile.Center);
+            target.AddBuff(BuffID.Poisoned,  120);
         }
 
         public override void Kill(int timeLeft)
         {
-            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(42, 5), projectile.Center);
+            Main.PlaySound(new Terraria.Audio.LegacySoundStyle(42,  5),  projectile.Center);
         }
 	}
 }

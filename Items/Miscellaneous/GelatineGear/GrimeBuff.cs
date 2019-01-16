@@ -12,7 +12,7 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             Main.buffNoTimeDisplay[Type] = true;
 		}
 
-        public override void Update(Player player, ref int buffIndex)
+        public override void Update(Player player,  ref int buffIndex)
         {
             if (player.ownedProjectileCounts[mod.ProjectileType("GrimeBaby")] > 0)
             {

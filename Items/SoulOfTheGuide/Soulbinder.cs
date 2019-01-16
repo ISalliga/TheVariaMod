@@ -12,8 +12,8 @@ namespace Varia.Items.SoulOfTheGuide
 {
     public class Soulbinder : ModItem
     {
-		float damageBonus = 0.01f;
-		int damageBonusTime = 0;
+        float damageBonus = 0.01f;
+        int damageBonusTime = 0;
         public override void SetDefaults()
         {
 
@@ -30,20 +30,36 @@ namespace Varia.Items.SoulOfTheGuide
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Soulbinder");
-            Tooltip.SetDefault("1% extra damage to start off \nAs you use the accessory the value gets higher, resetting at 1% after 25%");
+            Tooltip.SetDefault("1% extra damage to start off \nAs you use the accessory the value gets higher, resetting at 1% after 25% \n");
+        }
+        public override bool CloneNewInstances
+        {
+            get { return true; }
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            foreach (TooltipLine line in tooltips) //runs through all tooltip lines
+            {
+                if (line.mod == "Terraria" && line.Name == "Tooltip2") //this checks if it's the line we're interested in
+                {
+                    line.text = "Currently provides " + damageBonus * 100 + "% increased damage"; //change tooltip
+                }
+
+            }
+
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			damageBonusTime++;
-			if (damageBonusTime > 59)
-			{
-				damageBonus += 0.01f;
-				damageBonusTime = 0;
-			}
-			if (damageBonus >= 0.26f)
-			{
-				damageBonus = 0.01f;
-			}
+            damageBonusTime++;
+            if (damageBonusTime > 59)
+            {
+                damageBonus += 0.01f;
+                damageBonusTime = 0;
+            }
+            if (damageBonus >= 0.26f)
+            {
+                damageBonus = 0.01f;
+            }
             player.magicDamage += damageBonus;
             player.meleeDamage += damageBonus;
             player.rangedDamage += damageBonus;

@@ -16,7 +16,7 @@ namespace Varia.Items.Miscellaneous
             item.ranged = true;
             item.width = 58;
             item.height = 28;
-            item.crit = 20; 
+            item.crit = 20;
             item.useTime = 40;
             item.useAnimation = 40;
             item.useStyle = 5;
@@ -26,7 +26,7 @@ namespace Varia.Items.Miscellaneous
             item.rare = 3;
             item.shoot = 3;
             item.useAmmo = AmmoID.Bullet;
-			item.UseSound = SoundID.Item34;
+            item.UseSound = SoundID.Item34;
             item.autoReuse = true;
             item.shootSpeed = 9f;
         }
@@ -35,13 +35,17 @@ namespace Varia.Items.Miscellaneous
             Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("VacuumShot"), damage, 0.3f, player.whoAmI, 0, 0);
             return false;
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-8, -4);
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The Vacuum");
-			Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you");
+            Tooltip.SetDefault("Instead of knocking enemies back, this weapon pulls them toward you");
         }
         public override void AddRecipes()
-		{
+        {
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Cloud, 25);
             recipe.AddIngredient(ItemID.DemoniteBar, 15);

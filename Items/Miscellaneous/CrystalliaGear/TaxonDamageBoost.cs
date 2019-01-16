@@ -20,7 +20,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 			DisplayName.SetDefault("Taxon Damage Boost");
 			Description.SetDefault("Knock 'em dead! (10% increased damage)");
 		}
-		public override void Update(Player player, ref int buffIndex)
+		public override void Update(Player player,  ref int buffIndex)
 		{
 			player.meleeDamage *= 1.1f;
 			player.rangedDamage *= 1.1f;

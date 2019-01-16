@@ -26,7 +26,7 @@ namespace Varia.Items.Miscellaneous.Resizers
 			{
 				float x = projectile.position.X - projectile.velocity.X / 10f * (float)num134;
 				float y = projectile.position.Y - projectile.velocity.Y / 10f * (float)num134;
-				int num135 = Dust.NewDust(new Vector2(x, y), 1, 1, 15, 0f, 0f, 0, default(Color), 1f);
+				int num135 = Dust.NewDust(new Vector2(x,  y),  1,  1,  15,  0f,  0f,  0,  default(Color),  1f);
 				Main.dust[num135].alpha = projectile.alpha;
 				Main.dust[num135].position.X = x;
 				Main.dust[num135].position.Y = y;
@@ -35,7 +35,7 @@ namespace Varia.Items.Miscellaneous.Resizers
 			}
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target,  int damage,  float knockback,  bool crit)
         {
         	target.scale *= 0.5f;
         }

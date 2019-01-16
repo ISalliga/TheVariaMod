@@ -39,6 +39,7 @@ namespace Varia.Items.Miscellaneous
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Cobweb, 15);
             recipe.AddIngredient(ItemID.Pumpkin, 20);
+            recipe.AddIngredient(ItemID.Bone, 10);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

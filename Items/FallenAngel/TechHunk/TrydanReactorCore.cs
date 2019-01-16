@@ -19,7 +19,7 @@ namespace Varia.Items.FallenAngel.TechHunk
             item.width = 32;
             item.height = 42;
 			item.rare = 2;
-            item.value = Item.sellPrice(0, 1, 0, 0);
+            item.value = Item.sellPrice(0,  1,  0,  0);
             item.accessory = true;
         }
         public override void SetStaticDefaults()
@@ -27,7 +27,7 @@ namespace Varia.Items.FallenAngel.TechHunk
             DisplayName.SetDefault("Trydan Reactor Core");
             Tooltip.SetDefault("You emit spark clouds when you're hit");
         }
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateAccessory(Player player,  bool hideVisual)
 		{
 			player.GetModPlayer<VariaPlayer>().trydanCore = true;
 		}

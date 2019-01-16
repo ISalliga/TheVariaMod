@@ -37,68 +37,43 @@ namespace Varia.Items.QueensInfantry
  
         public override void OpenBossBag(Player player)
         {
-            switch (Main.rand.Next(1, 5))
+            int numOfWeapons = 2;
+            int weaponPoolCount = 4;
+            int[] weaponLoot = new int[numOfWeapons];
+            for (int n = 0; n < numOfWeapons; n++)
             {
-                case 1:
-                    Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("Arachnophobia"), 1);
-                    switch (Main.rand.Next(1, 4))
+                weaponLoot[n] = Main.rand.Next(weaponPoolCount - n);
+                for (int j = 0; j < n; j++)
+                {
+                    if (weaponLoot[n] >= weaponLoot[j])
                     {
-                        case 1:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("VenomPiercer"), 1);
-                            break;
-                        case 2:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("RainforestsBane"), 1);
-                            break;
-                        case 3:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("QueensJaw"), 1);
-                            break;
+                        weaponLoot[n]++;
                     }
-                    break;
-                case 2:
-                    Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("VenomPiercer"), 1);
-                    switch (Main.rand.Next(1, 4))
-                    {
-                        case 1:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("Arachnophobia"), 1);
-                            break;
-                        case 2:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("RainforestsBane"), 1);
-                            break;
-                        case 3:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("QueensJaw"), 1);
-                            break;
-                    }
-                    break;
-                case 3:
-                    Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("RainforestsBane"), 1);
-                    switch (Main.rand.Next(1, 4))
-                    {
-                        case 1:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("VenomPiercer"), 1);
-                            break;
-                        case 2:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("Arachnophobia"), 1);
-                            break;
-                        case 3:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("QueensJaw"), 1);
-                            break;
-                    }
-                    break;
-                case 4:
-                    Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("QueensJaw"), 1);
-                    switch (Main.rand.Next(1, 4))
-                    {
-                        case 1:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("VenomPiercer"), 1);
-                            break;
-                        case 2:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("Arachnophobia"), 1);
-                            break;
-                        case 3:
-                            Item.NewItem((int)player.position.X, (int)player.position.Y, player.width, player.height, mod.ItemType("RainforestsBane"), 1);
-                            break;
-                    }
-                    break;
+                    Array.Sort(weaponLoot);
+                }
+            }
+            for (int i = 0; i < weaponLoot.Length; i++)
+            {
+                string dropName = "none";
+                switch (weaponLoot[i])
+                {
+                    case 0:
+                        dropName = "RainforestsBane";
+                        break;
+                    case 1:
+                        dropName = "QueensJaw";
+                        break;
+                    case 2:
+                        dropName = "VenomPiercer";
+                        break;
+                    case 3:
+                        dropName = "Arachnophobia";
+                        break;
+                }
+                if (dropName != "none")
+                {
+                    player.QuickSpawnItem(mod.ItemType(dropName));
+                }
             }
             player.QuickSpawnItem(mod.ItemType("QueensJewel"));
         }

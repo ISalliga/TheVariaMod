@@ -1,9 +1,8 @@
 author = Turquoise
-version = 1.0.4
-displayName = Varia (Open Beta)
+version = 1.0.5.3
+displayName = Varia
 hideCode = true
 hideResources = false
 includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
-modReferences = BaseMod

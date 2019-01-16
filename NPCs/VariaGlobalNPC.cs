@@ -29,6 +29,11 @@ namespace Varia.NPCs
             }
         }
 
+        public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
+        {
+            if (Main.LocalPlayer.GetModPlayer<VariaPlayer>().zoneBreeze) maxSpawns = 0;
+        }
+
         public override void NPCLoot(NPC npc)
         {
             if (npc.type == 439 && Main.rand.Next(1, 3) == 1)

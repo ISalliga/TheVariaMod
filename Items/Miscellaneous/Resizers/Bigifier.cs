@@ -11,7 +11,7 @@ namespace Varia.Items.Miscellaneous.Resizers
 {
     public class Bigifier : ModItem
     {
-		public override void SetStaticDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Bigifier");
             Tooltip.SetDefault("Makes enemies larger \n'If I had a dollar for every pixel I can see right now, I'd have 75 cents.'");
@@ -24,7 +24,7 @@ namespace Varia.Items.Miscellaneous.Resizers
             item.height = 40;
             item.useTime = 34;
             item.useAnimation = 34;
-			item.UseSound = new Terraria.Audio.LegacySoundStyle(2, 115);
+            item.UseSound = new Terraria.Audio.LegacySoundStyle(2, 115);
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 7f;
@@ -36,8 +36,9 @@ namespace Varia.Items.Miscellaneous.Resizers
         }
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(10, 0);
+            return new Vector2(-10, -5);
         }
+
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
             Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 100f;

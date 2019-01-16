@@ -25,7 +25,7 @@ namespace Varia.Items.Miscellaneous.GelatineGear
         }
         public override void AI()
         {
-            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y,  (double)projectile.velocity.X);
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -39,16 +39,16 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             }
             return false;
         }
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(SpriteBatch spriteBatch,  Color lightColor)
         {
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f,  projectile.height * 0.5f);
             for (int k = 0; k < projectile.oldPos.Length; k++)
             {
                 Texture2D trail = mod.GetTexture("Items/Miscellaneous/GelatineGear/HighVelocityBlob");
-                lightColor = new Color(0, k * 50, 0);
-                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+                lightColor = new Color(0,  k * 50,  0);
+                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f,  projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-                spriteBatch.Draw(trail, drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(trail,  drawPos,  null,  color,  projectile.rotation,  drawOrigin,  projectile.scale,  SpriteEffects.None,  0f);
             }
             return true;
         }

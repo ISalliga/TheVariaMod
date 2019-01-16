@@ -22,7 +22,7 @@ namespace Varia.Items.FallenAngel.TechHunk
 		}
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(255, 255, 255, projectile.alpha);
+            return new Color(255,  255,  255,  projectile.alpha);
         }
         public override void SetDefaults()	
 		{
@@ -30,9 +30,9 @@ namespace Varia.Items.FallenAngel.TechHunk
 			projectile.friendly = true;
 			projectile.thrown = true;
 			projectile.timeLeft = 17;
-			projectile.width = 6;
+			projectile.width = 44;
             projectile.tileCollide = false;
-			projectile.height = 44;
+			projectile.height = 6;
 			projectile.ignoreWater = true;
 			projectile.penetrate = -1;
 			projectile.alpha = 50;
@@ -45,13 +45,13 @@ namespace Varia.Items.FallenAngel.TechHunk
             {
                 if (projectile.ai[0] == -1)
                 {
-                    int spark = Projectile.NewProjectile(projectile.Center.X - 36, projectile.Center.Y, 0, 0, mod.ProjectileType("LanceSpark"), projectile.damage - 2, 0f, Main.myPlayer, 0f, 0f);
+                    int spark = Projectile.NewProjectile(projectile.Center.X - 36,  projectile.Center.Y,  0,  0,  mod.ProjectileType("LanceSpark"),  projectile.damage - 2,  0f,  Main.myPlayer,  0f,  0f);
                     Main.projectile[spark].ai[1] = projectile.ai[1] + 1;
                     Main.projectile[spark].ai[0] = projectile.ai[0];
                 }
                 else
                 {
-                    int spark = Projectile.NewProjectile(projectile.Center.X + 36, projectile.Center.Y, 0, 0, mod.ProjectileType("LanceSpark"), projectile.damage - 2, 0f, Main.myPlayer, 0f, 0f);
+                    int spark = Projectile.NewProjectile(projectile.Center.X + 36,  projectile.Center.Y,  0,  0,  mod.ProjectileType("LanceSpark"),  projectile.damage - 2,  0f,  Main.myPlayer,  0f,  0f);
                     Main.projectile[spark].ai[1] = projectile.ai[1] + 1;
                     Main.projectile[spark].ai[0] = projectile.ai[0];
                 }

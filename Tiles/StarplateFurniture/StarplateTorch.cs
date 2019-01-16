@@ -18,7 +18,6 @@ namespace Varia.Tiles.StarplateFurniture
 			Main.tileSolid[Type] = false;
 			Main.tileNoAttach[Type] = true;
 			Main.tileNoFail[Type] = true;
-			Main.tileWaterDeath[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.StyleTorch);
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.newAlternate.CopyFrom(TileObjectData.StyleTorch);

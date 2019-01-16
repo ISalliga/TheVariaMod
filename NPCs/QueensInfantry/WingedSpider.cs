@@ -33,7 +33,7 @@ namespace Varia.NPCs.QueensInfantry
             animationType = 62;
             npc.knockBackResist = 0f;
             npc.width = 50;
-            npc.height = 66;
+            npc.height = 42;
             npc.npcSlots = 0.5f;
             npc.lavaImmune = true;
             npc.noGravity = true;
@@ -52,9 +52,9 @@ namespace Varia.NPCs.QueensInfantry
             dashTime++;
             if (dashTime > 170)
             {
-                npc.velocity += npc.DirectionTo(player.Center) * 1;
+                npc.velocity += npc.DirectionTo(player.Center) * 0.6f;
             }
-            if (dashTime > 180)
+            if (dashTime > 185)
             {
                 dashTime = 0;
             }

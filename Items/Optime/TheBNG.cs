@@ -16,7 +16,7 @@ namespace Varia.Items.Optime
             item.ranged = true;
             item.width = 58;
             item.height = 28;
-            item.crit = 20; 
+            item.crit = 20;
             item.useTime = 40;
             item.useAnimation = 40;
             item.useStyle = 5;
@@ -24,8 +24,8 @@ namespace Varia.Items.Optime
             item.knockBack = 4.25f;
             item.value = 40000;
             item.rare = 3;
-			item.useAmmo = AmmoID.Bullet;
-			item.UseSound = SoundID.Item38;
+            item.useAmmo = AmmoID.Bullet;
+            item.UseSound = SoundID.Item38;
             item.autoReuse = true;
             item.shoot = mod.ProjectileType("BNGProj");
             item.shootSpeed = 9f;
@@ -35,18 +35,22 @@ namespace Varia.Items.Optime
             Projectile.NewProjectile(position, new Vector2(speedX, speedY), mod.ProjectileType("BNGProj"), 19, 0.3f, player.whoAmI, 0, 0);
             return false;
         }
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-15, -4);
+        }
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("The B.N.G.");
-			Tooltip.SetDefault("For each time this weapon's shot pierces, it deals 1.5x more damage");
+            Tooltip.SetDefault("For each time this weapon's shot pierces, it deals 1.5x more damage");
         }
         public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "PureConcentratedDarkness", 16);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(null, "PureConcentratedDarkness", 16);
+            recipe.AddTile(TileID.MythrilAnvil);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
     }
 }

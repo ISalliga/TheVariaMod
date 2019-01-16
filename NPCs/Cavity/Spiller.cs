@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BaseMod;
 using System.Threading.Tasks;
 using Terraria;
 using Varia;
@@ -25,7 +24,7 @@ namespace Varia.NPCs.Cavity
         public override void SetDefaults()
         {
             npc.lifeMax = Main.expertMode ? 45 : 90;
-            npc.aiStyle = -1;
+            npc.aiStyle = 14;
             npc.damage = Main.expertMode ? 30 : 39;
             npc.defense = 0;
             npc.knockBackResist = 0f;
@@ -37,16 +36,25 @@ namespace Varia.NPCs.Cavity
             npc.noGravity = true;
             npc.noTileCollide = false;
             npc.HitSound = SoundID.NPCHit19;
+            Main.npcFrameCount[npc.type] = 6;
             npc.DeathSound = SoundID.NPCDeath23;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             return VariaWorld.cavityTiles > 75 ? 10f : 0f;
         }
+        public override void FindFrame(int frameHeight)
+        {
+            npc.spriteDirection = npc.direction;
+            npc.frameCounter++;
+            if (npc.frameCounter >= 5) // ticks per frame
+            {
+                npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
+                npc.frameCounter = 0;
+            }
+        }
         public override void AI()
         {
-            BaseAI.AISpaceOctopus(npc, ref npc.ai, 0.05f, 3f, 175f, 70f, null);
-
             shootTime++;
             if (shootTime > 17)
             {

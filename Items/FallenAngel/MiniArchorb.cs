@@ -30,8 +30,8 @@ namespace Varia.Items.FallenAngel
 			float Speed = 8f;
 			int damage = 80;
 			int type = ProjectileID.DeathLaser;
-			float rotation = ((((float)Math.PI / 5) * i) + (float)Math.Atan2(projectile.Center.Y - 10, projectile.Center.X - 10));
-			int proj = Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, (float)((Math.Cos(rotation) * Speed) * -1), (float)((Math.Sin(rotation) * Speed) * -1), type, damage, 0f, 0);
+			float rotation = ((((float)Math.PI / 5) * i) + (float)Math.Atan2(projectile.Center.Y - 10,  projectile.Center.X - 10));
+			int proj = Projectile.NewProjectile(projectile.Center.X,  projectile.Center.Y,  (float)((Math.Cos(rotation) * Speed) * -1),  (float)((Math.Sin(rotation) * Speed) * -1),  type,  damage,  0f,  0);
 			Main.projectile[proj].timeLeft = 300;
 			Main.projectile[proj].tileCollide = false;                    
 			}

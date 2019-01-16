@@ -11,7 +11,7 @@ namespace Varia.Items.Miscellaneous
             Tooltip.SetDefault(@"y'all everjust true melee nice guy
 i can't believe someone took the time to actually sprite this
 what did dawn say at the end of that one video 
-oh right, yeah, 
+oh right,  yeah,  
 where is my dev set
 right there was also something about the ocean and being eternal
 idrc tho

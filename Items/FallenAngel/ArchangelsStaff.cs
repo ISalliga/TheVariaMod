@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,7 +11,8 @@ namespace Varia.Items.FallenAngel
 		{
 			DisplayName.SetDefault("Arch-Angel's Staff");
 			Tooltip.SetDefault("Fires two laser orbs which follow the cursor then explode");
-		}
+            Item.staff[item.type] = true;
+        }
 		public override void SetDefaults()
 		{
 			item.damage = 47;
@@ -21,7 +24,7 @@ namespace Varia.Items.FallenAngel
 			item.useAnimation = 33;
 			item.shoot = mod.ProjectileType("MiniArchorbFriendly");
 			item.shootSpeed = 8;
-			item.useStyle = 1;
+			item.useStyle = 5;
 			item.mana = 9;
 			item.knockBack = 2;
 			item.rare = 5;

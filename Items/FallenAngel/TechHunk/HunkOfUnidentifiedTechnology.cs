@@ -30,7 +30,7 @@ namespace Varia.Items.FallenAngel.TechHunk
             npc.width = 66;
             npc.height = 56;
             npc.aiStyle = 14;
-            npc.value = Item.buyPrice(0, 0, 1, 0);
+            npc.value = Item.buyPrice(0,  0,  1,  0);
             npc.npcSlots = 0.5f;
             npc.lavaImmune = false;
             npc.noGravity = true;
@@ -48,19 +48,19 @@ namespace Varia.Items.FallenAngel.TechHunk
         }
         public override void NPCLoot()
         {
-            switch(Main.rand.Next(1, 5))
+            switch(Main.rand.Next(1,  5))
             {
                 case 1:
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TrydaniumPhaserapier"), 1);
+                    Item.NewItem((int)npc.position.X,  (int)npc.position.Y,  npc.width,  npc.height,  mod.ItemType("TrydaniumPhaserapier"),  1);
                     break;
                 case 2:
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TheEnergizer"), 1);
+                    Item.NewItem((int)npc.position.X,  (int)npc.position.Y,  npc.width,  npc.height,  mod.ItemType("TheEnergizer"),  1);
                     break;
                 case 3:
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("TrydanReactorCore"), 1);
+                    Item.NewItem((int)npc.position.X,  (int)npc.position.Y,  npc.width,  npc.height,  mod.ItemType("TrydanReactorCore"),  1);
                     break;
                 case 4:
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("EnergyFusillade"), 1);
+                    Item.NewItem((int)npc.position.X,  (int)npc.position.Y,  npc.width,  npc.height,  mod.ItemType("EnergyFusillade"),  1);
                     break;
             }
             VariaWorld.hunkCount += 1;

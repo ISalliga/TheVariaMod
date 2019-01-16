@@ -18,9 +18,9 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault("Taxon Crit Boost");
-			Description.SetDefault("When you hit hard, you hit REALLY hard.");
+			Description.SetDefault("When you hit hard,  you hit REALLY hard.");
 		}
-		public override void Update(Player player, ref int buffIndex)
+		public override void Update(Player player,  ref int buffIndex)
 		{
 			player.meleeCrit += 12;
 			player.rangedCrit += 12;

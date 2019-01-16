@@ -9,7 +9,7 @@ namespace Varia.Tiles
 		public override void SetDefaults()
 		{
             drop = mod.ItemType("StarplateWall");
-            AddMapEntry(new Color(142, 117, 191));
+            AddMapEntry(new Color(102, 87, 151));
         }
 	}
 }

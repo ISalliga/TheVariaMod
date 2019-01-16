@@ -17,7 +17,7 @@ namespace Varia.Items.Miscellaneous
         }
         public override void SetDefaults()
         {
-            item.damage = 16;
+            item.damage = 15;
             item.magic = true;
             item.width = 46;
             item.height = 20;
@@ -39,6 +39,7 @@ namespace Varia.Items.Miscellaneous
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.Cobweb, 12);
             recipe.AddIngredient(ItemID.Pumpkin, 23);
+            recipe.AddIngredient(ItemID.Bone, 9);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

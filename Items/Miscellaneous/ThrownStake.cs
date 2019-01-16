@@ -30,21 +30,21 @@ namespace Varia.Items.Miscellaneous
         }
         public override void AI()
         {
-            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y, (double)projectile.velocity.X);
+            projectile.rotation = (float)Math.Atan2((double)projectile.velocity.Y,  (double)projectile.velocity.X);
             projectile.velocity.X = projectile.velocity.X * 30/31;
             projectile.velocity.Y += 0.6f;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+        public override bool PreDraw(SpriteBatch spriteBatch,  Color lightColor)
         {
-            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+            Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f,  projectile.height * 0.5f);
             for (int k = 0; k < projectile.oldPos.Length; k++)
             {
                 Texture2D trail = mod.GetTexture("Items/Miscellaneous/ThrownStake");
-                lightColor = new Color(k * 25, 15, 15);
-                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
+                lightColor = new Color(k * 25,  15,  15);
+                Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f,  projectile.gfxOffY);
                 Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-                spriteBatch.Draw(trail, drawPos, null, color, projectile.rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(trail,  drawPos,  null,  color,  projectile.rotation,  drawOrigin,  projectile.scale,  SpriteEffects.None,  0f);
             }
             return true;
         }

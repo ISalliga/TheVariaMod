@@ -4,25 +4,25 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
- 
+
 namespace Varia.Items.Miscellaneous
 {
     public class RainGuillotineProj : ModProjectile
     {
         Vector2 mountedCenter;
-		int timer = 0;
+        int timer = 0;
         public override void SetDefaults()
         {
-            projectile.width = 10;
-            projectile.height = 10;
+            projectile.width = 24;
+            projectile.height = 24;
             projectile.friendly = true;
             projectile.tileCollide = true;
-            projectile.penetrate = -1; 
+            projectile.penetrate = -1;
             projectile.melee = true;
             projectile.ai[1] = 0;
         }
-		
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
             Texture2D texture = ModLoader.GetTexture("Varia/Items/Miscellaneous/RainGuillotineChain");
             Texture2D baseTex = ModLoader.GetTexture("Varia/Items/Miscellaneous/RainGuillotineBase");
@@ -58,10 +58,11 @@ namespace Varia.Items.Miscellaneous
                     Color color2 = Lighting.GetColor((int)position.X / 16, (int)((double)position.Y / 16.0));
                     color2 = projectile.GetAlpha(color2);
                     Main.spriteBatch.Draw(texture, position - Main.screenPosition, sourceRectangle, color2, rotation, origin, 1f, SpriteEffects.None, 0.0f);
-                    
+
                 }
             }
-            Main.spriteBatch.Draw(baseTex, new Vector2(mountedCenter.X - baseTex.Width / 2, mountedCenter.Y - baseTex.Height / 2) - Main.screenPosition, sourceRectangle, Lighting.GetColor((int)position.X / 16, (int)((double)position.Y / 16.0)), 0f, origin, 1f, SpriteEffects.None, 0.0f);
+            origin = new Vector2((float)baseTex.Width * 0.5f, (float)baseTex.Height * 0.5f);
+            Main.spriteBatch.Draw(baseTex, mountedCenter - Main.screenPosition, sourceRectangle, Lighting.GetColor((int)position.X / 16, (int)((double)position.Y / 16.0)), 0f, origin, 1f, SpriteEffects.None, 0.0f);
             return true;
         }
         public override void AI()
@@ -70,8 +71,8 @@ namespace Varia.Items.Miscellaneous
             if (timer > 40)
             {
                 projectile.velocity = projectile.DirectionTo(mountedCenter) * 19;
-                if(projectile.Distance(mountedCenter) < 20)
-            {
+                if (projectile.Distance(mountedCenter) < 20)
+                {
                     projectile.active = false;
                 }
             }

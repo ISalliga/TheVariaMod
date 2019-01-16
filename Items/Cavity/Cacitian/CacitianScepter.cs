@@ -39,16 +39,16 @@ namespace Varia.Items.Cavity.Cacitian
 			item.shoot = mod.ProjectileType("ToxicWaste");
 			item.shootSpeed = 15;
 		}
-        public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        public override bool Shoot(Player player,  ref Microsoft.Xna.Framework.Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
-            Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0, 0, type, damage, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
+            Projectile.NewProjectile(Main.MouseWorld.X,  Main.MouseWorld.Y,  0,  0,  type,  damage,  knockBack,  player.whoAmI,  0.0f,  0.5f + (float)Main.rand.NextDouble() * 0.9f);
             return false;
         }
         public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "CacitianBar", 7);
-            recipe.AddIngredient(null, "MutatedBlob", 9);
+			recipe.AddIngredient(null,  "CacitianBar",  7);
+            recipe.AddIngredient(null,  "MutatedBlob",  9);
             recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

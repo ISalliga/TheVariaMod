@@ -29,15 +29,15 @@ namespace Varia.Items.Cavity
 			item.autoReuse = true;
 			item.useTurn = true;
 		}
-        public virtual void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public virtual void OnHitNPC(Player player,  NPC target,  int damage,  float knockBack,  bool crit)
         {
-            target.AddBuff(BuffID.Poisoned, 3000);
+            target.AddBuff(BuffID.Poisoned,  3000);
         }
         public override void AddRecipes()
         {
             ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(null, "CacitianBar", 3);
-            recipe.AddIngredient(287, 20);
+            recipe.AddIngredient(null,  "CacitianBar",  3);
+            recipe.AddIngredient(287,  20);
             recipe.AddTile(TileID.Anvils);
             recipe.SetResult(this);
             recipe.AddRecipe();

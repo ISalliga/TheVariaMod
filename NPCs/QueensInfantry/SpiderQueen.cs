@@ -4,7 +4,6 @@ using Terraria.ModLoader;
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using BaseMod;
 using Varia;
 using System.IO;
 
@@ -33,8 +32,8 @@ namespace Varia.NPCs.QueensInfantry
 
         bool aboutToPlatform = false;
         int dirChangeTimer = 0;
-        int dirChangeInterval = Main.rand.Next(20, 71);
-        int move = Main.rand.Next(7, 10);
+        int dirChangeInterval = 40;
+        int move = 8;
         int dirChanges = 0;
 
         public override void SetDefaults()
@@ -99,7 +98,7 @@ namespace Varia.NPCs.QueensInfantry
                             if (npc.life <= npc.lifeMax * 0.4f) attack3Timer = 0;
                             else
                             {
-                                switch(Main.rand.Next(1, 3))
+                                switch (Main.rand.Next(1, 3))
                                 {
                                     case 1:
                                         {
@@ -177,7 +176,7 @@ namespace Varia.NPCs.QueensInfantry
                 else npc.velocity.X = npc.direction * move;
                 if (dirChangeTimer >= dirChangeInterval + 10)
                 {
-                    switch(Main.rand.Next(1, 4))
+                    switch (Main.rand.Next(1, 4))
                     {
                         case 1:
                             {
@@ -234,69 +233,42 @@ namespace Varia.NPCs.QueensInfantry
             }*/
             if (!Main.expertMode)
             {
+                int numOfWeapons = 2;
+                int weaponPoolCount = 4;
+                int[] weaponLoot = new int[numOfWeapons];
+                for (int n = 0; n < numOfWeapons; n++)
                 {
-                    switch (Main.rand.Next(1, 5))
+                    weaponLoot[n] = Main.rand.Next(weaponPoolCount - n);
+                    for (int j = 0; j < n; j++)
                     {
+                        if (weaponLoot[n] >= weaponLoot[j])
+                        {
+                            weaponLoot[n]++;
+                        }
+                        Array.Sort(weaponLoot);
+                    }
+                }
+                for (int i = 0; i < weaponLoot.Length; i++)
+                {
+                    string dropName = "none";
+                    switch (weaponLoot[i])
+                    {
+                        case 0:
+                            dropName = "RainforestsBane";
+                            break;
                         case 1:
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Arachnophobia"), 1);
-                            switch (Main.rand.Next(1, 4))
-                            {
-                                case 1:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VenomPiercer"), 1);
-                                    break;
-                                case 2:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RainforestsBane"), 1);
-                                    break;
-                                case 3:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueensJaw"), 1);
-                                    break;
-                            }
+                            dropName = "QueensJaw";
                             break;
                         case 2:
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VenomPiercer"), 1);
-                            switch (Main.rand.Next(1, 4))
-                            {
-                                case 1:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Arachnophobia"), 1);
-                                    break;
-                                case 2:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RainforestsBane"), 1);
-                                    break;
-                                case 3:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueensJaw"), 1);
-                                    break;
-                            }
+                            dropName = "VenomPiercer";
                             break;
                         case 3:
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RainforestsBane"), 1);
-                            switch (Main.rand.Next(1, 4))
-                            {
-                                case 1:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VenomPiercer"), 1);
-                                    break;
-                                case 2:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Arachnophobia"), 1);
-                                    break;
-                                case 3:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueensJaw"), 1);
-                                    break;
-                            }
+                            dropName = "Arachnophobia";
                             break;
-                        case 4:
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("QueensJaw"), 1);
-                            switch (Main.rand.Next(1, 4))
-                            {
-                                case 1:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("VenomPiercer"), 1);
-                                    break;
-                                case 2:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Arachnophobia"), 1);
-                                    break;
-                                case 3:
-                                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("RainforestsBane"), 1);
-                                    break;
-                            }
-                            break;
+                    }
+                    if (dropName != "none")
+                    {
+                        Item.NewItem(npc.getRect(), mod.ItemType(dropName));
                     }
                 }
             }

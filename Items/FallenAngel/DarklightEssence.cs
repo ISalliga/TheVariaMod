@@ -8,7 +8,7 @@ namespace Varia.Items.FallenAngel
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Darklight Essence");
-			Tooltip.SetDefault("The Fallen Angel dropped this. It emanates a gloomy aura on one side, and a happy one on the other.");
+			Tooltip.SetDefault("'It emanates a gloomy aura on one side,  and a happy one on the other.'");
 		}
 		public override void SetDefaults()
 		{

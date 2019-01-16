@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Microsoft.Xna.Framework;
 
 namespace Varia.Items.FallenAngel
 {
@@ -29,7 +30,10 @@ namespace Varia.Items.FallenAngel
             item.shoot = mod.ProjectileType("MegaCannonProj");
             item.value = Item.sellPrice(silver: 3);
         }
-
+        public override Vector2? HoldoutOffset()
+        {
+            return new Vector2(-1, 0);
+        }
         public override bool UseItem(Player player)
         {
             player.statMana -= 1;

@@ -17,13 +17,13 @@ namespace Varia.Items.QueensInfantry
         }
         public override void SetDefaults()
         {
-            item.damage = 9;
+            item.damage = 10;
             item.magic = true;
             item.width = 46;
             item.height = 20;
-            item.useTime = 16;
+            item.useTime = 30;
             item.mana = 10;
-            item.useAnimation = 16;
+            item.useAnimation = 30;
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 4.5f;
@@ -32,7 +32,7 @@ namespace Varia.Items.QueensInfantry
             item.UseSound = SoundID.Item84;
             item.autoReuse = true;
             item.shootSpeed = 18f;
-            item.shoot = 355;
+            item.shoot = mod.ProjectileType("VenomFang");
         }
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {

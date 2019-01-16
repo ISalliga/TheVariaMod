@@ -44,9 +44,9 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.CrystalShard, 15);
-			recipe.AddIngredient(ItemID.StoneBlock, 100);
-			recipe.AddIngredient(null, "CrystalliaBar", 25);
+			recipe.AddIngredient(ItemID.CrystalShard,  15);
+			recipe.AddIngredient(ItemID.StoneBlock,  100);
+			recipe.AddIngredient(null,  "CrystalliaBar",  25);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

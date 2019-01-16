@@ -35,24 +35,24 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.StoneBlock, 70);
-			recipe.AddIngredient(null, "CrystalliaBar", 12);
+			recipe.AddIngredient(ItemID.StoneBlock,  70);
+			recipe.AddIngredient(null,  "CrystalliaBar",  12);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
-		public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		public override bool Shoot(Player player,  ref Microsoft.Xna.Framework.Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-			Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
-            Projectile.NewProjectile(player.Center.X, player.Center.Y, speedX + Main.rand.Next(-10, 10), speedY + Main.rand.Next(-10, 10), 90, damage - Main.rand.Next(1, 27), knockBack, player.whoAmI, 0.0f, 0.0f);
+			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
             return false;
 		}
 	}

@@ -1,5 +1,4 @@
 using System;
-using BaseMod;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -38,24 +37,15 @@ namespace Varia.NPCs.SoulOfTheGuide
             projectile.tileCollide = false;
             projectile.timeLeft = 235;
         }
+
+        float ang;
+        float speed = 4;
+        Vector2 DirectionVelocity;
         public override void AI()
         {
-            dist += 1f;
-            startTimer++;
-            if (startTimer > 60)
-            {
-                BaseAI.AIRotate(projectile, ref projectile.ai[1], ref projectile.ai[1], projectile.Center, false, dist, 20f, 0.1f);
-                foreach (Player player in Main.player)
-                {
-                    if (Vector2.Distance(projectile.Center, player.Center) < 800)
-                    {
-                        projectile.position += player.DirectionFrom(projectile.position) * 3;
-                    }
-                }
-            }
-            else projectile.velocity.Y += 0.1f;
-            if (projectile.timeLeft < 10) projectile.alpha += 25;
-            else projectile.alpha -= 5;
+            ang += (float)Math.PI / 30;
+            projectile.velocity = new Vector2((float)Math.Cos(ang), (float)Math.Sin(ang)) * speed;
+            projectile.velocity += projectile.DirectionTo(Main.player[Player.FindClosest(projectile.position, 300, 300)].Center) * 4;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

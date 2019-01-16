@@ -15,7 +15,7 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             item.width = 32;
             item.height = 42;
 			item.defense = 4;
-            item.value = Item.sellPrice(0, 5, 0, 0);
+            item.value = Item.sellPrice(0,  5,  0,  0);
             item.rare = 4;
             item.accessory = true;
         }
@@ -24,7 +24,7 @@ namespace Varia.Items.Miscellaneous.GelatineGear
             DisplayName.SetDefault("Slimy Barricade");
             Tooltip.SetDefault("Makes acceleration static");
         }
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateAccessory(Player player,  bool hideVisual)
 		{
 			player.runAcceleration = 1.3f;
 			player.runSlowdown = 1f;

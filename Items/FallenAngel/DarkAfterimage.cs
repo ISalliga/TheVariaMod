@@ -40,7 +40,7 @@ namespace Varia.Items.FallenAngel
         {
 			for (int num623 = 0; num623 < 35; num623++)
 			{
-				int num624 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 20, 0f, 0f, 100, Color.Purple, 3f);
+				int num624 = Dust.NewDust(new Vector2(projectile.position.X,  projectile.position.Y),  projectile.width,  projectile.height,  20,  0f,  0f,  100,  Color.Purple,  3f);
 				Main.dust[num624].noGravity = true;
 				Main.dust[num624].velocity *= 2f;
 			}

@@ -51,7 +51,6 @@ namespace Varia.NPCs.QueensInfantry
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Bone, 5);
             recipe.AddIngredient(ItemID.Silk, 10);
             recipe.AddIngredient(ItemID.Cobweb, 40);
             recipe.AddTile(TileID.Anvils);

@@ -15,7 +15,7 @@ namespace Varia.Items.FallenAngel
         {
             item.width = 48;
             item.height = 32;
-            item.value = Item.sellPrice(0, 15, 0, 0);
+            item.value = Item.sellPrice(0,  15,  0,  0);
             item.rare = -12;
             item.accessory = true;
         }
@@ -24,7 +24,7 @@ namespace Varia.Items.FallenAngel
             DisplayName.SetDefault("The Infinity Cloud");
             Tooltip.SetDefault("Grants you infinite jumps at the cost of mana \n" + "Expert");
         }   
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateAccessory(Player player,  bool hideVisual)
         {
 			player.GetModPlayer<VariaPlayer>().infinityCloudEquipped = true;
         }

@@ -11,10 +11,10 @@ namespace Varia.Items.Miscellaneous.Resizers
 {
     public class Smallerizer : ModItem
     {
-		public override void SetStaticDefaults()
+        public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Smallerizer");
-            Tooltip.SetDefault("Shrinks enemies and, as long as the enemy's defense isn't below five, cuts their defense down");
+            Tooltip.SetDefault("Shrinks enemies and,  as long as the enemy's defense isn't below five,  cuts their defense down");
         }
         public override void SetDefaults()
         {
@@ -24,7 +24,7 @@ namespace Varia.Items.Miscellaneous.Resizers
             item.height = 40;
             item.useTime = 34;
             item.useAnimation = 34;
-			item.UseSound = new Terraria.Audio.LegacySoundStyle(2, 114);
+            item.UseSound = new Terraria.Audio.LegacySoundStyle(2, 114);
             item.useStyle = 5;
             item.noMelee = true; //so the item's animation doesn't do damage
             item.knockBack = 7f;
@@ -35,16 +35,16 @@ namespace Varia.Items.Miscellaneous.Resizers
             item.shoot = mod.ProjectileType("SmallThing");
         }
         public override Vector2? HoldoutOffset()
-		{
-			return new Vector2(10, 0);
-		}
+        {
+            return new Vector2(-10, -5);
+        }
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-			Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 100f;
-			if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
-			{
-				position += muzzleOffset;
-			}
+            Vector2 muzzleOffset = Vector2.Normalize(new Vector2(speedX, speedY)) * 100f;
+            if (Collision.CanHit(position, 0, 0, position + muzzleOffset, 0, 0))
+            {
+                position += muzzleOffset;
+            }
             Projectile.NewProjectile(position.X, position.Y, speedX, speedY, mod.ProjectileType("SmallThing"), damage, knockBack, player.whoAmI, 0.0f, 0.0f);
             return false;
         }
