@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
+using BaseMod;
 using Terraria.ModLoader;
 
 namespace Varia.Items.FallenAngel.TechHunk
@@ -32,9 +33,8 @@ namespace Varia.Items.FallenAngel.TechHunk
 		}
 		public override void AI()
 		{
-			projectile.rotation -= 0.4f;
-			projectile.velocity.Y += 0.35f;
-		}
+            BaseAI.AIThrownWeapon(projectile, ref projectile.ai, true, 13, 0.92f, 0.38f, 18);
+        }
 		public override void Kill(int timeLeft)
         {
             Main.PlaySound(new Terraria.Audio.LegacySoundStyle(2,  94),  projectile.Center);

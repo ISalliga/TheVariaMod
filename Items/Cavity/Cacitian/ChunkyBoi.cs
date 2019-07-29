@@ -52,5 +52,11 @@ namespace Varia.Items.Cavity.Cacitian
                 projectile.timeLeft = 2;
             }
         }
-	}
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            projectile.velocity.X = -projectile.velocity.X * 2;
+            projectile.velocity.Y = -projectile.velocity.Y * 2;
+        }
+    }
 }

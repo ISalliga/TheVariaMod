@@ -10,7 +10,7 @@ namespace Varia.Items.Cavity
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Plagued Stabber");
-			Tooltip.SetDefault("Stabbing an enemy with this thing inflicts poison for an immense amount of time");
+			Tooltip.SetDefault("Stabbing an enemy inflicts poison for an immense amount of time");
 		}
 		public override void SetDefaults()
 		{

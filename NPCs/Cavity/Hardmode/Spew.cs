@@ -37,12 +37,24 @@ namespace Varia.NPCs.Cavity.Hardmode
 
         public override void AI()
         {
+            if (Main.rand.NextFloat() < 1f)
+            {
                 Dust dust;
                 // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
                 Vector2 position = projectile.Center;
-                dust = Main.dust[Terraria.Dust.NewDust(position, 0, 0, 35, 0f, 0f, 0, new Color(255, 125, 0), 1.118421f)];
+                dust = Main.dust[Terraria.Dust.NewDust(new Vector2(position.X, position.Y), 0, 0, 33, 0f, -5.631579f, 0, new Color(255, 226, 0), 1f)];
                 dust.noGravity = true;
-                dust.shader = GameShaders.Armor.GetSecondaryShader(80, Main.LocalPlayer);
+                dust.shader = GameShaders.Armor.GetSecondaryShader(53, Main.LocalPlayer);
+            }
+
+            if (Main.rand.NextFloat() < 0.5f)
+            {
+                Dust dust;
+                // You need to set position depending on what you are doing. You may need to subtract width/2 and height/2 as well to center the spawn rectangle.
+                Vector2 position = projectile.Center;
+                dust = Main.dust[Terraria.Dust.NewDust(new Vector2(position.X, position.Y), 0, 0, 36, 0f, -2.631579f, 0, new Color(255, 226, 0), 0.3947368f)];
+                dust.shader = GameShaders.Armor.GetSecondaryShader(53, Main.LocalPlayer);
+            }
 
             projectile.velocity.Y++;
         }

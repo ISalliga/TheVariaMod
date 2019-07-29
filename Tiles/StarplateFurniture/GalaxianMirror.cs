@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using BaseMod;
 using Terraria.ModLoader;
 
 namespace Varia.Tiles.StarplateFurniture
@@ -25,6 +26,7 @@ namespace Varia.Tiles.StarplateFurniture
             Main.spriteBatch.Draw(mod.GetTexture("Tiles/StarplateFurniture/GalaxianMirror_Shine"), new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(0 * Main.rand.Next(0, 3), 0 * Main.rand.Next(0, 2), 16, 16), GalaxianMirrorShineEffect.shine1, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(mod.GetTexture("Tiles/StarplateFurniture/GalaxianMirror_Shine2"), new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y) + zero, new Rectangle(0 * Main.rand.Next(0, 3), 0 * Main.rand.Next(0, 2), 16, 16), GalaxianMirrorShineEffect.shine2, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
+        
     }
 
     public class GalaxianMirrorShineEffect : ModWorld

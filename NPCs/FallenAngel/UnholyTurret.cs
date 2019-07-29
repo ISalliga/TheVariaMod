@@ -9,6 +9,7 @@ using Terraria;
 using Varia;
 using Terraria.ID;
 using Terraria.ModLoader;
+using BaseMod;
 
 namespace Varia.NPCs.FallenAngel
 {
@@ -99,6 +100,24 @@ namespace Varia.NPCs.FallenAngel
                 npc.life = 0;
                 npc.checkDead();
             }
+        }
+
+        public static Texture2D glowTex = null;
+
+        public float auraPercent = 0f;
+        public bool auraDirection = true;
+
+        public override void PostDraw(SpriteBatch spritebatch, Color dColor)
+        {
+            if (glowTex == null)
+            {
+                glowTex = mod.GetTexture("NPCs/FallenAngel/UnholyTurret_GM");
+            }
+            if (auraDirection) { auraPercent += 0.1f; auraDirection = auraPercent < 1f; }
+            else { auraPercent -= 0.1f; auraDirection = auraPercent <= 0f; }
+            BaseDrawing.DrawTexture(spritebatch, Main.npcTexture[npc.type], 0, npc, dColor);
+            BaseDrawing.DrawAura(spritebatch, glowTex, 0, npc, auraPercent, 1f, 0f, 0f, BaseUtility.MultiLerpColor((float)(Main.player[Main.myPlayer].miscCounter % 100) / 100f, Color.Blue, Color.White, Color.SkyBlue, Color.Blue));
+            BaseDrawing.DrawTexture(spritebatch, glowTex, 0, npc, BaseUtility.MultiLerpColor((float)(Main.player[Main.myPlayer].miscCounter % 100) / 100f, Color.Blue, Color.White, Color.SkyBlue, Color.Blue));
         }
 
         public override void FindFrame(int frameHeight)

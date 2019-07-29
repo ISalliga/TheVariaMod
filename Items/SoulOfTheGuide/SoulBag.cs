@@ -19,16 +19,17 @@ namespace Varia.Items.SoulOfTheGuide
             item.height = 32;
             item.expert = true;
             item.rare = 9;
-            bossBagNPC = mod.NPCType("SoulOfTheGuide");
             item.expert = true;      
 			item.value = Item.buyPrice(0, 0, 0, 0);
         }
+        
+        public override int BossBagNPC => mod.NPCType("SoulOfTheGuide");
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Treasure Bag");
-      Tooltip.SetDefault("Right click to open");
-    }
+        public override void SetStaticDefaults()
+        {
+          DisplayName.SetDefault("Treasure Bag");
+          Tooltip.SetDefault("Right click to open");
+        }
 
         public override bool CanRightClick()
         {

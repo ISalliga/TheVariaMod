@@ -11,13 +11,17 @@ namespace Varia.NPCs.Optime
     {
         public override void SetDefaults()
         {
-            projectile.width = 14;
+            projectile.width = 100;
 			projectile.damage = 0;
-            projectile.height = 38;
+            projectile.height = 100;
             projectile.hostile = true;
 			projectile.aiStyle = -1;
             projectile.penetrate = 1;
             projectile.timeLeft = 120;
+        }
+        public override void SetStaticDefaults()
+        {
+            Main.projFrames[projectile.type] = 6;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -39,5 +43,17 @@ namespace Varia.NPCs.Optime
 				Main.dust[num624].velocity *= 2f;
 			}
 		}
+        public override void AI()
+        {
+            if (projectile.frame != 6) projectile.frameCounter++;
+            if (projectile.frameCounter >= 3)
+            {
+                if (projectile.frame < 5)
+                {
+                    projectile.frame++;
+                }
+                projectile.frameCounter = 0;
+            }
+        }
     }
 }

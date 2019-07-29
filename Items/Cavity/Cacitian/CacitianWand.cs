@@ -15,8 +15,9 @@ namespace Varia.Items.Cavity.Cacitian
 	{
 		public override void SetStaticDefaults()
 		{
+            Item.staff[item.type] = true;
 			DisplayName.SetDefault("Cacitian Wand");
-			Tooltip.SetDefault("Creates lingering clouds of Cavitous Smog");
+			Tooltip.SetDefault("Creates lingering clouds of cavitous smog");
 		}
 		public override void SetDefaults()
 		{
@@ -24,7 +25,7 @@ namespace Varia.Items.Cavity.Cacitian
 			item.damage = 20;
             item.mana = 8;
 			item.noMelee = true;
-			item.useStyle = 1;
+			item.useStyle = 5;
 			item.knockBack = 3;
 			item.useTime = 25;
 			item.useAnimation = 25;

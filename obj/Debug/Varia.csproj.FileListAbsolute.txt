@@ -10,3 +10,5 @@ C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\V
 C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.csproj.CopyComplete
 C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.dll
 C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\obj\Debug\Varia.pdb
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\BaseMod.dll
+C:\Users\Ben\Documents\My Games\Terraria\ModLoader\Mod Sources\Varia\bin\Debug\ReLogic.dll

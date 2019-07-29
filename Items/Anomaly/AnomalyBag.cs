@@ -19,16 +19,17 @@ namespace Varia.Items.Anomaly
             item.height = 32;
             item.expert = true;
             item.rare = 9;
-            bossBagNPC = mod.NPCType("TheAnomalyGrief");
             item.expert = true;      
 			item.value = Item.buyPrice(0, 0, 0, 0);
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Treasure Bag");
-      Tooltip.SetDefault("Right click to open");
-    }
+        public override int BossBagNPC => mod.NPCType("TheAnomalyGrief");
+
+        public override void SetStaticDefaults()
+        {
+          DisplayName.SetDefault("Treasure Bag");
+          Tooltip.SetDefault("Right click to open");
+        }
 
         public override bool CanRightClick()
         {

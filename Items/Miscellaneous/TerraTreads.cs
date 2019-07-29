@@ -33,7 +33,7 @@ namespace Varia.Items.Miscellaneous
             player.rocketBoots = 2;
             player.accFlipper = true;
             player.iceSkate = true;
-            player.accRunSpeed += 5f;
+            player.accRunSpeed += 3f;
             player.runAcceleration = 1.3f;
             player.runSlowdown = 1f;
         }

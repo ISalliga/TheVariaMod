@@ -8,7 +8,7 @@ namespace Varia.Items.Anomaly
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Anomalous Altar");
-			Tooltip.SetDefault("(Not Yet Implemented) In the future this will be used to craft all-new expert-only items");
+			Tooltip.SetDefault("Used to craft all-new expert-only items as well as Varia developer items");
 		}
 
 		public override void SetDefaults()

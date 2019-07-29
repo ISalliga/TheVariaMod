@@ -12,7 +12,7 @@ namespace Varia.Items.Cavity.Cacitian
     {
         public override void SetDefaults()
         {
-            item.damage = 3;
+            item.damage = 28;
             item.ranged = true;
             item.width = 26;
             item.height = 40;
@@ -37,11 +37,11 @@ namespace Varia.Items.Cavity.Cacitian
         }
         public override bool Shoot(Player player,  ref Microsoft.Xna.Framework.Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
-            for (int i = 0; i <= 2; i++)
+            for (int i = 0; i < 3; i++)
             {
                 float SpeedX = speedX + (float)Main.rand.Next(-20,  21) * 0.045f;
                 float SpeedY = speedY + (float)Main.rand.Next(-20,  21) * 0.045f;
-                int projectile1 = Projectile.NewProjectile(position.X,  position.Y,  SpeedX,  SpeedY,  type,  damage,  knockBack,  player.whoAmI,  0.0f,  0.5f + (float)Main.rand.NextDouble() * 0.9f);
+                int projectile1 = Projectile.NewProjectile(position.X,  position.Y,  SpeedX,  SpeedY,  type,  12,  knockBack,  player.whoAmI,  0.0f,  0.5f + (float)Main.rand.NextDouble() * 0.9f);
             }
             return false;
         }

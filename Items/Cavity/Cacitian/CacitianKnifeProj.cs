@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using BaseMod;
 
 namespace Varia.Items.Cavity.Cacitian
 {
@@ -29,14 +30,10 @@ namespace Varia.Items.Cavity.Cacitian
 			projectile.height = 20;
 			projectile.ignoreWater = true;
 			projectile.penetrate = 3;
-			projectile.alpha = 50;
 		}
 		public override void AI()
 		{
-			projectile.rotation += 0.4f;
-			projectile.velocity.Y += 0.45f;
-            projectile.velocity.X = projectile.velocity.X * 50 / 51;
-
+            BaseAI.AIThrownWeapon(projectile, ref projectile.ai, true, 15, 0.99f, 0.35f, 14);
         }
         public override void OnHitNPC(NPC target,  int damage,  float knockback,  bool crit)
         {
@@ -47,6 +44,7 @@ namespace Varia.Items.Cavity.Cacitian
         public override void Kill(int timeLeft)
         {
             Main.PlaySound(new Terraria.Audio.LegacySoundStyle(42,  5),  projectile.Center);
+            if (Main.rand.NextBool(3)) Item.NewItem(projectile.getRect(), mod.ItemType("CacitianKnife"));
         }
 	}
 }

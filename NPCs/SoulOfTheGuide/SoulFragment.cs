@@ -23,7 +23,7 @@ namespace Varia.NPCs.SoulOfTheGuide
 			npc.alpha = 255;
             npc.width = 16;
             npc.height = 20;
-            npc.damage = 14;
+            npc.damage = Main.expertMode ? 14 : 9;
             npc.defense = 2;
             npc.lifeMax = Main.expertMode ? 1 : 2;
             npc.HitSound = SoundID.NPCHit1;

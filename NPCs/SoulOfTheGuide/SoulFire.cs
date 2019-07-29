@@ -27,6 +27,7 @@ namespace Varia.NPCs.SoulOfTheGuide
         }
         public override void SetDefaults()
         {
+            projectile.damage = 5;
             startPos = projectile.Center;
             projectile.aiStyle = -1;
             projectile.alpha = 255;
@@ -38,11 +39,12 @@ namespace Varia.NPCs.SoulOfTheGuide
             projectile.timeLeft = 235;
         }
 
+        float speed = 2;
         float ang;
-        float speed = 4;
         Vector2 DirectionVelocity;
         public override void AI()
         {
+            if (Main.hardMode) speed = 10;
             ang += (float)Math.PI / 30;
             projectile.velocity = new Vector2((float)Math.Cos(ang), (float)Math.Sin(ang)) * speed;
             projectile.velocity += projectile.DirectionTo(Main.player[Player.FindClosest(projectile.position, 300, 300)].Center) * 4;

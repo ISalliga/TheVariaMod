@@ -6,9 +6,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Varia;
 using System.IO;
+using System;
 
 namespace Varia.NPCs.QueensInfantry
 {
+    [AutoloadBossHead]
     public class SpiderQueen : ModNPC
     {
         public override void SetStaticDefaults()
@@ -22,19 +24,35 @@ namespace Varia.NPCs.QueensInfantry
             else return true;
         }
 
-        int platformsCreated = 0;
-
-        int despawn = 0;
-        int attackTimer = 0;
-        int attack1Timer = 200;
-        int attack2Timer = 200;
-        int attack3Timer = 200;
+        public int[] customAI = new int[6];
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            base.SendExtraAI(writer);
+            if ((Main.netMode == 2 || Main.dedServ))
+            {
+                writer.Write((short)customAI[0]);
+                writer.Write((short)customAI[1]);
+                writer.Write((short)customAI[2]);
+                writer.Write((short)customAI[3]);
+                writer.Write((short)customAI[4]);
+                writer.Write((short)customAI[5]);
+            }
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            base.ReceiveExtraAI(reader);
+            if (Main.netMode == 1)
+            {
+                customAI[0] = reader.ReadInt16();
+                customAI[1] = reader.ReadInt16();
+                customAI[2] = reader.ReadInt16();
+                customAI[3] = reader.ReadInt16();
+                customAI[4] = reader.ReadInt16();
+                customAI[5] = reader.ReadInt16();
+            }
+        }
 
         bool aboutToPlatform = false;
-        int dirChangeTimer = 0;
-        int dirChangeInterval = 40;
-        int move = 8;
-        int dirChanges = 0;
 
         public override void SetDefaults()
         {
@@ -55,6 +73,20 @@ namespace Varia.NPCs.QueensInfantry
             npc.lifeMax = Main.expertMode ? 750 : 1500;
             npc.buffImmune[BuffID.Venom] = true;
             Main.npcFrameCount[npc.type] = 8;
+
+            npc.ai[0] = 0; //Despawn
+
+            npc.ai[1] = 0; //Platforms created before cooldown
+
+            npc.ai[2] = 200; //Attack 1
+            npc.ai[3] = 200; //Attack 2
+            customAI[0] = 200;
+
+            customAI[1] = 0; //Directional change timer
+            customAI[2] = 40; //Directional change interval
+            customAI[3] = 8; //Movement speed
+            customAI[4] = 0; //Directional changes until attack
+            customAI[5] = 0; //Workaround variable for the infamous freeze glitch
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -67,47 +99,47 @@ namespace Varia.NPCs.QueensInfantry
             Player player = Main.player[npc.target];
             if (!Main.player[npc.target].dead)
             {
-                despawn = 0;
+                npc.ai[0] = 0;
             }
             else
             {
-                npc.velocity.Y += despawn;
-                despawn++;
-                if (despawn > 40)
+                npc.velocity.Y += npc.ai[0];
+                npc.ai[0]++;
+                if (npc.ai[0] > 40)
                 {
                     npc.active = false;
                 }
             }
 
-            if (dirChanges >= 2)
+            if (customAI[4] >= 2)
             {
                 switch (Main.rand.Next(1, 4))
                 {
                     case 1:
                         {
-                            attack1Timer = 0;
+                            npc.ai[2] = 0;
                             break;
                         }
                     case 2:
                         {
-                            attack2Timer = 0;
+                            npc.ai[3] = 0;
                             break;
                         }
                     case 3:
                         {
-                            if (npc.life <= npc.lifeMax * 0.4f) attack3Timer = 0;
+                            if (npc.life <= npc.lifeMax * 0.4f) customAI[0] = 0;
                             else
                             {
                                 switch (Main.rand.Next(1, 3))
                                 {
                                     case 1:
                                         {
-                                            attack1Timer = 0;
+                                            npc.ai[2] = 0;
                                             break;
                                         }
                                     case 2:
                                         {
-                                            attack2Timer = 0;
+                                            npc.ai[3] = 0;
                                             break;
                                         }
                                 }
@@ -115,12 +147,12 @@ namespace Varia.NPCs.QueensInfantry
                             break;
                         }
                 }
-                dirChanges = 0;
+                customAI[4] = 0;
             }
 
-            attack1Timer++;
+            npc.ai[2]++;
 
-            if (attack1Timer == 2 || attack1Timer == 8)
+            if (npc.ai[2] == 2 || npc.ai[2] == 8)
             {
                 for (int vT = 0; vT < 3; vT++)
                 {
@@ -128,16 +160,16 @@ namespace Varia.NPCs.QueensInfantry
                 }
             }
 
-            attack2Timer++;
+            npc.ai[3]++;
 
-            if (attack2Timer == 5)
+            if (npc.ai[3] == 5)
             {
                 NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("SpiderEgg"));
             }
 
-            attack3Timer++;
+            customAI[0]++;
 
-            if (attack3Timer == 5 || attack3Timer == 10 || attack3Timer == 15)
+            if (customAI[0] == 5 || customAI[0] == 10 || customAI[0] == 15)
             {
                 Projectile.NewProjectile(npc.Center, new Vector2((float)Math.Cos((player.Center - npc.Center).ToRotation()), (float)Math.Sin((player.Center - npc.Center).ToRotation())) * 10, ProjectileID.WebSpit, Main.expertMode ? 7 : 10, 0f, player.whoAmI);
             }
@@ -149,12 +181,12 @@ namespace Varia.NPCs.QueensInfantry
                 {
                     if ((Main.tile[(int)(npc.Center.X / 16), (int)(npc.Center.Y / 16 + i)].active() && Main.tileSolid[Main.tile[(int)npc.Center.X / 16, (int)(npc.Center.Y / 16) + i].type]))
                     {
-                        dirChangeTimer++;
+                        customAI[1]++;
                         break;
                     }
                     if (npc.collideY)
                     {
-                        dirChangeTimer++;
+                        customAI[1]++;
                         break;
                     }
                 }
@@ -167,55 +199,59 @@ namespace Varia.NPCs.QueensInfantry
                         {
                             WorldGen.PlaceTile((int)(npc.Center.X / 16 + i), (int)(npc.position.Y / 16 + 10), mod.TileType("SturdyVenom"));
                             aboutToPlatform = false;
-                            dirChangeTimer = dirChangeInterval;
+                            customAI[1] = customAI[2];
                         }
                     }
                 }
 
-                if (dirChangeTimer >= dirChangeInterval) npc.velocity.X = 0;
-                else npc.velocity.X = npc.direction * move;
-                if (dirChangeTimer >= dirChangeInterval + 10)
+                if (customAI[1] >= customAI[2]) npc.velocity.X = 0;
+                else npc.velocity.X = npc.direction * customAI[3];
+                if (customAI[1] >= customAI[2] + 10)
                 {
                     switch (Main.rand.Next(1, 4))
                     {
                         case 1:
                             {
-                                move = Main.rand.Next(4, 8);
-                                platformsCreated = 0;
+                                customAI[3] = Main.rand.Next(4, 8);
+                                npc.ai[1] = 0;
                                 npc.TargetClosest();
                                 break;
                             }
                         case 2:
                             {
-                                move = Main.rand.Next(4, 8);
+                                customAI[3] = Main.rand.Next(4, 8);
                                 npc.TargetClosest();
                                 npc.velocity.Y = -7;
-                                platformsCreated = 0;
+                                npc.ai[1] = 0;
                                 break;
                             }
                         case 3:
                             {
-                                if (platformsCreated < 2)
+                                if (npc.ai[1] < 2)
                                 {
-                                    move = Main.rand.Next(3, 6);
+                                    customAI[3] = Main.rand.Next(3, 6);
                                     npc.TargetClosest();
                                     npc.velocity.Y = -15;
-                                    platformsCreated++;
+                                    npc.ai[1]++;
                                     aboutToPlatform = true;
                                 }
                                 else
                                 {
-                                    move = Main.rand.Next(4, 8);
+                                    customAI[3] = Main.rand.Next(4, 8);
                                     npc.TargetClosest();
                                     npc.velocity.Y = -7;
-                                    platformsCreated = 0;
+                                    npc.ai[1] = 0;
                                 }
                                 break;
                             }
                     }
-                    dirChanges++;
-                    dirChangeTimer = 0;
-                    dirChangeInterval = Main.rand.Next(30, 81);
+                    customAI[4]++;
+                    customAI[1] = 0;
+                    customAI[2] = Main.rand.Next(30, 81);
+                }
+                if (npc.collideX)
+                {
+                    npc.velocity.Y = -2;
                 }
             }
         }
@@ -271,6 +307,7 @@ namespace Varia.NPCs.QueensInfantry
                         Item.NewItem(npc.getRect(), mod.ItemType(dropName));
                     }
                 }
+                Item.NewItem(npc.getRect(), mod.ItemType("SpiderFlesh"), Main.rand.Next(20, 31));
             }
             else
             {

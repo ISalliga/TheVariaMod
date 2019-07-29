@@ -26,7 +26,7 @@ namespace Varia.NPCs.Cavity
         {
             npc.lifeMax = Main.expertMode ? 40 : 80;
             npc.aiStyle = 14;
-            npc.damage = Main.expertMode ? 36 : 60;
+            npc.damage = Main.expertMode ? 8 : 12;
             npc.defense = 0;
             npc.knockBackResist = 0f;
             npc.width = 56;

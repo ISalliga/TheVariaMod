@@ -27,9 +27,15 @@ namespace Varia
 {
     public class VariaWorld : ModWorld
     {
+        public static bool spaceHasShimmered = false;
+        public static bool ninja = false;
+        public static bool jelliumSpawned = false;
+
         public static int cavityTiles = 0;
         public static int breezeTiles = 0;
         public static int breezeTiles2 = 0;
+
+        public static int dropBoost = 0;
 
         public static bool downedAngel = false;
         public static bool downedOptime = false;
@@ -37,6 +43,7 @@ namespace Varia
         public static bool downedAnomaly = false;
         public static bool downedSpoderQueen = false;
         public static bool downedSotG = false;
+        public static bool downedCore = false;
 
         public static bool storyMode = false;
 
@@ -44,9 +51,15 @@ namespace Varia
 
         public static int hunkCount = 0;
 
+        private static bool dayTimeLast = false;
+        public static bool dayTimeSwitched = false;
+        public static bool starShower = false;
+
+        public static int purityTiles = 0;
+        public static int oldWorldTiles = 0;
 
         public override void Initialize()
-		{
+        {
             hunkCount = 0;
             downedAngel = false;
             downedOptime = false;
@@ -55,6 +68,9 @@ namespace Varia
             downedSpoderQueen = false;
             downedAnomaly = false;
             downedSotG = false;
+            downedCore = false;
+            starShower = false;
+            dropBoost = 0;
         }
 
         public override void PostUpdate()
@@ -68,6 +84,13 @@ namespace Varia
             {
                 hitsTakenNice = 0;
             }
+
+            dropBoost = 0;
+
+            if (Main.dayTime)
+            {
+                starShower = false;
+            }
         }
 
         public override TagCompound Save()
@@ -79,7 +102,7 @@ namespace Varia
             if (downedSpoderQueen) downed.Add("downedSpoderInvasion");
             if (downedSotG) downed.Add("downedSotG");
             if (downedAnomaly) downed.Add("downedAnomaly");
-            if (storyMode) downed.Add("storyMode");
+            if (downedCore) downed.Add("downedCore");
 
             return new TagCompound
 			{
@@ -96,7 +119,7 @@ namespace Varia
             downedSpoderQueen = downed.Contains("downedSpoderInvasion");
             downedSotG = downed.Contains("downedSotG");
             downedAnomaly = downed.Contains("downedAnomaly");
-            storyMode = downed.Contains("storyMode");
+            downedCore = downed.Contains("downedCore");
         }
 
         public override void LoadLegacy(BinaryReader reader)
@@ -111,6 +134,7 @@ namespace Varia
                 downedSpoderQueen = flags[3];
                 downedSotG = flags[4];
                 downedAnomaly = flags[5];
+                downedCore = flags[6];
             }
             else
             {
@@ -127,6 +151,7 @@ namespace Varia
             flags[3] = downedSpoderQueen;
             flags[4] = downedSotG;
             flags[5] = downedAnomaly;
+            flags[6] = downedCore;
             writer.Write(flags);
         }
         public override void NetReceive(BinaryReader reader)
@@ -138,13 +163,15 @@ namespace Varia
             downedSpoderQueen = flags[3];
             downedSotG = flags[4];
             downedAnomaly = flags[5];
+            downedCore = flags[6];
         }
 
         public override void TileCountsAvailable(int[] tileCounts)
         {
-            cavityTiles = tileCounts[mod.TileType("Holestone")];
+            cavityTiles = tileCounts[mod.TileType("Holestone")] + tileCounts[mod.TileType("ToothySpike")];
             breezeTiles = tileCounts[mod.TileType("ForgottenCloud")];
             breezeTiles2 = tileCounts[mod.TileType("StarplateBrick")];
+            oldWorldTiles = tileCounts[mod.TileType("WornBrick")];
         }
 
         public override void ResetNearbyTileEffects()

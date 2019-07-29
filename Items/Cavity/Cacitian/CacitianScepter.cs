@@ -16,7 +16,8 @@ namespace Varia.Items.Cavity.Cacitian
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cacitian Scepter");
-			Tooltip.SetDefault("Creates a droplet of toxic waste at your mouse cursor that forms a lingering puddle when it hits a tile");
+            Tooltip.SetDefault("Creates a droplet of toxic waste at your mouse cursor that forms a lingering puddle when it hits a tile");
+            Item.staff[item.type] = true;
 		}
 		public override void SetDefaults()
 		{
@@ -24,7 +25,7 @@ namespace Varia.Items.Cavity.Cacitian
 			item.damage = 30;
             item.mana = 9;
 			item.noMelee = true;
-			item.useStyle = 1;
+			item.useStyle = 5;
 			item.knockBack = 3;
 			item.useTime = 35;
 			item.useAnimation = 35;

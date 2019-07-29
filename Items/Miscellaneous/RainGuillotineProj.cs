@@ -24,8 +24,8 @@ namespace Varia.Items.Miscellaneous
 
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            Texture2D texture = ModLoader.GetTexture("Varia/Items/Miscellaneous/RainGuillotineChain");
-            Texture2D baseTex = ModLoader.GetTexture("Varia/Items/Miscellaneous/RainGuillotineBase");
+            Texture2D texture = ModContent.GetTexture("Varia/Items/Miscellaneous/RainGuillotineChain");
+            Texture2D baseTex = ModContent.GetTexture("Varia/Items/Miscellaneous/RainGuillotineBase");
             if (projectile.ai[1] < 1)
             {
                 mountedCenter = projectile.Center;

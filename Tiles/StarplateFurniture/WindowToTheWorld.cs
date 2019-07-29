@@ -27,12 +27,19 @@ namespace Varia.Tiles.StarplateFurniture
             {
                 Main.mapFullscreen = true;
                 Main.LocalPlayer.GetModPlayer<VariaPlayer>().nearWindow = true;
-                Main.NewText("You may teleport anywhere you like. Press T to teleport.", new Color(200, 210, 255));
+                Main.NewText("You may warp anywhere you like. Press P to warp.", new Color(200, 210, 255));
             }
             else
             {
-                Main.NewText("You are not worthy. Come back when you are post-Plantera.", new Color(200, 200, 200));
+                Main.NewText("You are not worthy. Return once the plant that reigns over the jungle has been slain.", new Color(200, 200, 200));
             }
+        }
+        public override void MouseOver(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = mod.ItemType("GalaxianMirror");
         }
     }
 }

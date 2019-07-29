@@ -29,7 +29,7 @@ namespace Varia.NPCs.FallenAngel
 			npc.dontTakeDamage = true;
             npc.lifeMax = Main.expertMode ? 15000 : 10000;
             npc.aiStyle = 0;
-            npc.damage = Main.expertMode ? 35 : 50;
+            npc.damage = Main.expertMode ? 50 : 84;
             npc.defense = Main.expertMode ? 1 : 1;
             npc.knockBackResist = 0.2f;
             npc.width = 152;
@@ -70,7 +70,7 @@ namespace Varia.NPCs.FallenAngel
                 }
             }
         }
-		/*public override void FindFrame(int frameHeight)
+	    public override void FindFrame(int frameHeight)
         {
             npc.spriteDirection = npc.direction;
 			npc.frameCounter++;
@@ -79,6 +79,6 @@ namespace Varia.NPCs.FallenAngel
 				npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
 				npc.frameCounter = 0;
 			}
-        }*/
+        }
     }
 }

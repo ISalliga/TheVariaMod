@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria;
 using Varia;
+using BaseMod;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,6 +28,7 @@ namespace Varia.NPCs.FallenAngel
         public override void SetDefaults()
         {
             npc.scale = 0f;
+            npc.dontTakeDamage = true;
             npc.lifeMax = Main.expertMode ? 100 : 150;
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 25 : 42;
@@ -60,7 +62,7 @@ namespace Varia.NPCs.FallenAngel
                 
             
             //Factors for calculations
-            double deg = (double)npc.ai[1]; //The degrees, you can multiply npc.ai[1] to make it orbit faster, may be choppy depending on the value
+            double deg = (double)npc.ai[1] * 2; //The degrees, you can multiply npc.ai[1] to make it orbit faster, may be choppy depending on the value
             double rad = deg * (Math.PI / 180); //Convert degrees to radians
             double dist = 200; //Distance away from angel
 
@@ -71,7 +73,7 @@ namespace Varia.NPCs.FallenAngel
             npc.position.Y = parent.Center.Y - (int)(Math.Sin(rad) * dist) - npc.height / 2;
 
             //Increase the counter/angle in degrees by 1 point, you can change the rate here too, but the orbit may look choppy depending on the value
-            npc.ai[1] += 3f;
+            npc.ai[1] += 2f;
 
             npc.velocity.X = npc.velocity.X * 3 / 4;
             npc.velocity.Y = npc.velocity.Y * 3 / 4;
@@ -102,6 +104,24 @@ namespace Varia.NPCs.FallenAngel
                 shootTime = 0;
             }
             return false;
+        }
+
+        public static Texture2D glowTex = null;
+
+        public float auraPercent = 0f;
+        public bool auraDirection = true;
+
+        public override void PostDraw(SpriteBatch spritebatch, Color dColor)
+        {
+            if (glowTex == null)
+            {
+                glowTex = mod.GetTexture("NPCs/FallenAngel/UnholyTurret_GM");
+            }
+            if (auraDirection) { auraPercent += 0.1f; auraDirection = auraPercent < 1f; }
+            else { auraPercent -= 0.1f; auraDirection = auraPercent <= 0f; }
+            BaseDrawing.DrawTexture(spritebatch, Main.npcTexture[npc.type], 0, npc, dColor);
+            BaseDrawing.DrawAura(spritebatch, glowTex, 0, npc, auraPercent, 1f, 0f, 0f, BaseUtility.MultiLerpColor((float)(Main.player[Main.myPlayer].miscCounter % 100) / 100f, Color.Blue, Color.White, Color.SkyBlue, Color.Blue));
+            BaseDrawing.DrawTexture(spritebatch, glowTex, 0, npc, BaseUtility.MultiLerpColor((float)(Main.player[Main.myPlayer].miscCounter % 100) / 100f, Color.Blue, Color.White, Color.SkyBlue, Color.Blue));
         }
 
         public override void FindFrame(int frameHeight)

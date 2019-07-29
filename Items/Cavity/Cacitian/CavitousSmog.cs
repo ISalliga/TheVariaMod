@@ -35,7 +35,8 @@ namespace Varia.Items.Cavity.Cacitian
         }
 		public override void AI()
 		{
-			if (timeAlive < 20)
+            timeAlive++;
+            if (timeAlive < 20)
 			{
 				projectile.alpha -= 15;
 			}

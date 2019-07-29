@@ -16,7 +16,7 @@ namespace Varia.Items.Cavity.Cacitian
 
         public override void SetDefaults()
         {
-            item.damage = 8;
+            item.damage = 17;
             item.summon = true;
             item.mana = 10;
             item.width = 40;
@@ -25,7 +25,7 @@ namespace Varia.Items.Cavity.Cacitian
             item.useAnimation = 30;
             item.useStyle = 1;
             item.noMelee = true;
-            item.knockBack = 3;
+            item.knockBack = 1;
             item.value = Item.buyPrice(0,  0,  9,  0);
             item.rare = 3;
             item.UseSound = SoundID.Item44;

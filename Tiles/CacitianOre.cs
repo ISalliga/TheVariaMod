@@ -14,5 +14,13 @@ namespace Varia.Tiles
 			drop = mod.ItemType("CacitianOre");
 			AddMapEntry(new Color(176, 91, 44));
 		}
-	}
+        public override bool CanKillTile(int i, int j, ref bool blockDamaged)
+        {
+            if (!VariaWorld.downedCore)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
 }

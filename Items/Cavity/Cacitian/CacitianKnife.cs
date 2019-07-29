@@ -20,25 +20,23 @@ namespace Varia.Items.Cavity.Cacitian
 		}
 		public override void SetDefaults()
 		{
-			item.damage = 18;
+			item.damage = 16;
             item.noMelee = true;
             item.noUseGraphic = true;
 			item.thrown = true;
 			item.useStyle = 1;
 			item.knockBack = 3;
-			item.useTime = 15;
-			item.useAnimation = 15;
+			item.useTime = 18;
+			item.useAnimation = 18;
 			item.width = 30;
 			item.height = 30;
-			item.value = 1350;
+			item.value = 350;
             item.shoot = mod.ProjectileType("CacitianKnifeProj");
-            item.shootSpeed = 18;
+            item.shootSpeed = 11;
 			item.rare = 3;
 			item.UseSound = SoundID.Item1;
 			item.maxStack = 999;
             item.consumable = true;
-			item.autoReuse = true;
-			item.useTurn = true;
 		}
 
 		public override void AddRecipes()

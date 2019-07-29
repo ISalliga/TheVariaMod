@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Varia;
 using Terraria.ID;
+using BaseMod;
 using Terraria.ModLoader;
 
 namespace Varia.NPCs.Cavity.Hardmode
@@ -25,7 +26,7 @@ namespace Varia.NPCs.Cavity.Hardmode
         public override void SetDefaults()
         {
             npc.lifeMax = Main.expertMode ? 100 : 177;
-            npc.aiStyle = 14;
+            npc.aiStyle = -1;
             npc.damage = Main.expertMode ? 10 : 15;
             npc.defense = 0;
             npc.knockBackResist = 0f;
@@ -35,13 +36,15 @@ namespace Varia.NPCs.Cavity.Hardmode
             npc.npcSlots = 0.5f;
             npc.lavaImmune = false;
             Main.npcFrameCount[npc.type] = 4;
-            npc.noGravity = false;
+            npc.noGravity = true;
             npc.noTileCollide = false;
             npc.HitSound = SoundID.NPCHit9;
             npc.DeathSound = SoundID.NPCDeath17;
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
+            BaseAI.AIEater(npc, ref npc.ai, 0.022f, 42, 0.7f, false, true);
+            npc.rotation = 0f;
             if (Main.hardMode)
             {
                 return VariaWorld.cavityTiles > 75 ? 8f : 0f;
@@ -67,7 +70,7 @@ namespace Varia.NPCs.Cavity.Hardmode
         {
             npc.spriteDirection = npc.direction;
             npc.frameCounter++;
-            if (npc.frameCounter >= 3) // ticks per frame
+            if (npc.frameCounter >= 5) // ticks per frame
             {
                 npc.frame.Y = (npc.frame.Y / frameHeight + 1) % Main.npcFrameCount[npc.type] * frameHeight;
                 npc.frameCounter = 0;

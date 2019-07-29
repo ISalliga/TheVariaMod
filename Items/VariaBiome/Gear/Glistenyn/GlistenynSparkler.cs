@@ -28,7 +28,7 @@ namespace Varia.Items.VariaBiome.Gear.Glistenyn
 			item.mana = 9;
 			item.knockBack = 2;
 			item.rare = 5;
-			item.UseSound = SoundID.Item43;
+			item.UseSound = SoundID.Item1;
 			item.autoReuse = true;
 			item.useTurn = false;
         }
@@ -39,7 +39,6 @@ namespace Varia.Items.VariaBiome.Gear.Glistenyn
                 Projectile.NewProjectile(Main.MouseWorld, new Vector2(Main.rand.Next(-9, 10), Main.rand.Next(-9, 10)), type, damage, 0.5f, Main.myPlayer);
             }
             return false;
-
         }
 		public override void AddRecipes()
 		{

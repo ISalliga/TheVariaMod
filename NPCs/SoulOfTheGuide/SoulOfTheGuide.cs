@@ -39,7 +39,8 @@ namespace Varia.NPCs.SoulOfTheGuide
 
         public override void SetDefaults()
         {
-            npc.lifeMax = Main.expertMode ? 600 : 1700;
+            if (!Main.hardMode) npc.lifeMax = Main.expertMode ? 600 : 1700;
+            else npc.lifeMax = Main.expertMode ? 3000 : 5000;
             npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 6 : 9;
             npc.defense = 0;
@@ -75,6 +76,7 @@ namespace Varia.NPCs.SoulOfTheGuide
         }
         public override void AI()
         {
+            npc.TargetClosest();
             if (!bowSpawned)
             {
                 NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y, mod.NPCType("TrueWoodenBow"), 0, npc.whoAmI);
@@ -114,7 +116,8 @@ namespace Varia.NPCs.SoulOfTheGuide
                         Vector2 tPos;
                         tPos.X = targetX;
                         tPos.Y = targetY;
-                        npc.velocity = npc.DirectionTo(tPos) * vMag;
+                        if (!Main.hardMode) npc.velocity = npc.DirectionTo(tPos) * (vMag - 0.6f);
+                        else npc.velocity = npc.DirectionTo(tPos) * (vMag + 2.3f);
                     }
                 }
             }
@@ -127,7 +130,7 @@ namespace Varia.NPCs.SoulOfTheGuide
                 {
                     case 1:
                         {
-                            npc.velocity = npc.DirectionTo(player.Center) * 11;
+                            if (Main.hardMode) npc.velocity = npc.DirectionTo(player.Center) * 14;
                             attackTimer1 = 0;
                             break;
                         }
@@ -143,20 +146,39 @@ namespace Varia.NPCs.SoulOfTheGuide
                         }
                 }
                 timer = 0;
-                timerInc = Main.rand.Next(115, 136);
+                if (Main.hardMode) timerInc = Main.rand.Next(80, 96);
+                else timerInc = Main.rand.Next(115, 136);
             }
 
             attackTimer2++;
 
             if (attackTimer2 < 20) npc.velocity = Vector2.Zero;
 
-            if (attackTimer2 == 20) NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 30, mod.NPCType("SoulFragment"));
+            if (attackTimer2 == 20)
+            {
+                NPC.NewNPC((int)npc.Center.X, (int)npc.Center.Y - 30, mod.NPCType("SoulFragment"));
+                if (Main.hardMode)
+                {
+                    NPC.NewNPC((int)npc.Center.X - 50, (int)npc.Center.Y - 20, mod.NPCType("SoulFragment"));
+                    NPC.NewNPC((int)npc.Center.X + 50, (int)npc.Center.Y - 20, mod.NPCType("SoulFragment"));
+                }
+            }
 
             attackTimer1++;
 
-            if (attackTimer1 == 10 || attackTimer1 == 25 || attackTimer1 == 40)
+            if (!Main.hardMode)
             {
-                Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("SoulFire"), Main.expertMode ? 10 : 15, 0.3f, 255, npc.whoAmI);
+                if (attackTimer1 == 25 || attackTimer1 == 50)
+                {
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("SoulFire"), Main.expertMode ? 7 : 10, 0.3f, Main.myPlayer);
+                }
+            }
+            else
+            {
+                if (attackTimer1 == 10 || attackTimer1 == 20 || attackTimer1 == 30 || attackTimer1 == 40)
+                {
+                    Projectile.NewProjectile(npc.Center, Vector2.Zero, mod.ProjectileType("SoulFire"), Main.expertMode ? 20 : 30, 0.3f, Main.myPlayer);
+                }
             }
         }
 

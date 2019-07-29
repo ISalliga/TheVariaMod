@@ -1,8 +1,10 @@
 author = Turquoise
-version = 1.0.5.3
+version = 1.0.6
 displayName = Varia
 hideCode = true
 hideResources = false
 includeSource = true
 buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
 includePDB = true
+modReferences = BaseMod
+homepage = https://discord.gg/H7XGnVQ

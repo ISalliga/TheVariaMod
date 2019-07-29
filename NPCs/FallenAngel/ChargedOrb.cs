@@ -29,7 +29,6 @@ namespace Varia.NPCs.FallenAngel
             DisplayName.SetDefault("Unholy Beam");
             ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
             ProjectileID.Sets.TrailingMode[projectile.type] = 0;
-            Main.projFrames[projectile.type] = 4;
         }
         public override Color? GetAlpha(Color lightColor)
         {
@@ -56,16 +55,6 @@ namespace Varia.NPCs.FallenAngel
                 projectile.active = false;
             }
             projectile.velocity.Y += 0.4f;
-            FrameCountMeter++;
-            if (FrameCountMeter >= 4)
-            {
-                projectile.frame++;
-                FrameCountMeter = 0;
-                if (projectile.frame >= 4)
-                {
-                    projectile.frame = 0;
-                }
-            }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

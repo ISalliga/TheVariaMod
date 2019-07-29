@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Varia;
 using Terraria.ID;
+using BaseMod;
 using Terraria.ModLoader;
 
 namespace Varia.NPCs.Cavity
@@ -24,7 +25,7 @@ namespace Varia.NPCs.Cavity
         public override void SetDefaults()
         {
             npc.lifeMax = Main.expertMode ? 45 : 90;
-            npc.aiStyle = 14;
+            npc.aiStyle = 0;
             npc.damage = Main.expertMode ? 30 : 39;
             npc.defense = 0;
             npc.knockBackResist = 0f;
@@ -55,10 +56,11 @@ namespace Varia.NPCs.Cavity
         }
         public override void AI()
         {
+            BaseAI.AISpaceOctopus(npc, ref npc.ai, 0.15f, 6f, 140);
             shootTime++;
             if (shootTime > 17)
             {
-                Projectile.NewProjectile(npc.position.X + (33 + Main.rand.Next(0, 7)), npc.position.Y + 35, 0, 13, mod.ProjectileType("SpillerRain"), Main.expertMode ? 19 : 30, 0f, 0);
+                Projectile.NewProjectile(npc.position.X + (33 + Main.rand.Next(0, 7)), npc.position.Y + 35, 0, 13, mod.ProjectileType("SpillerRain"), Main.expertMode ? 4 : 6, 0f, 0);
                 shootTime = 0;
             }
         }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using BaseMod;
 using Terraria.Graphics.Shaders;
 
 namespace Varia.Items.VariaBiome.Gear.Glistenyn
@@ -49,7 +50,22 @@ namespace Varia.Items.VariaBiome.Gear.Glistenyn
                 }
             }
         }
-		public override void Kill(int timeLeft)
+
+        public float auraPercent = 0f;
+        public bool auraDirection = true;
+
+        public override bool PreDraw(SpriteBatch spritebatch, Color dColor)
+        {
+            Texture2D glowTex = mod.GetTexture("Items/VariaBiome/Gear/Glistenyn/RadiantOrb");
+
+            if (auraDirection) { auraPercent += 0.1f; auraDirection = auraPercent < 1f; }
+            else { auraPercent -= 0.1f; auraDirection = auraPercent <= 0f; }
+            BaseDrawing.DrawTexture(spritebatch, glowTex, 0, projectile, dColor);
+            BaseDrawing.DrawAura(spritebatch, glowTex, 0, projectile, auraPercent, 1f, 0f, 0f, BaseUtility.MultiLerpColor((float)(Main.player[Main.myPlayer].miscCounter % 100) / 100f, Color.Pink * 6f, Color.Lavender * 6f, Color.SkyBlue * 6f, Color.Pink * 6f));
+            BaseDrawing.DrawTexture(spritebatch, glowTex, 0, projectile, new Color(254, 254, 254, 50));
+            return false;
+        }
+        public override void Kill(int timeLeft)
 		{
 			Main.PlaySound(2, (int)projectile.position.X, (int)projectile.position.Y, 14);
             for (int i = 0; i < 16; i++)

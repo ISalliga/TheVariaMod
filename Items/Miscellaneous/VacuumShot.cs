@@ -33,7 +33,7 @@ namespace Varia.Items.Miscellaneous
         }
         public override void AI()
         {
-            FrameCountMeter++;
+            projectile.frameCounter++;
             if (FrameCountMeter >= 4)
             {
                 projectile.frame++;

@@ -19,16 +19,17 @@ namespace Varia.Items.Optime
             item.height = 32;
             item.expert = true;
             item.rare = 9;
-            bossBagNPC = mod.NPCType("Optime");
             item.expert = true;      
 			item.value = Item.buyPrice(0, 0, 0, 0);
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Treasure Bag");
-      Tooltip.SetDefault("Right click to open");
-    }
+        public override int BossBagNPC => mod.NPCType("Optime");
+
+        public override void SetStaticDefaults()
+        {
+          DisplayName.SetDefault("Treasure Bag");
+          Tooltip.SetDefault("Right click to open");
+        }
 
         public override bool CanRightClick()
         {
@@ -37,7 +38,44 @@ namespace Varia.Items.Optime
  
         public override void OpenBossBag(Player player)
         {
-            player.QuickSpawnItem(mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(25, 31));
+            int numOfWeapons = 2;
+            int weaponPoolCount = 3;
+            int[] weaponLoot = new int[numOfWeapons];
+            for (int n = 0; n < numOfWeapons; n++)
+            {
+                weaponLoot[n] = Main.rand.Next(weaponPoolCount - n);
+                for (int j = 0; j < n; j++)
+                {
+                    if (weaponLoot[n] >= weaponLoot[j])
+                    {
+                        weaponLoot[n]++;
+                    }
+                    Array.Sort(weaponLoot);
+                }
+            }
+            for (int i = 0; i < weaponLoot.Length; i++)
+            {
+                string dropName = "none";
+                switch (weaponLoot[i])
+                {
+                    case 0:
+                        dropName = "MrNicey";
+                        break;
+                    case 1:
+                        dropName = "HappyPills";
+                        break;
+                    case 2:
+                        dropName = "GoldenDollar";
+                        break;
+                }
+                if (dropName != "none")
+                {
+                    player.QuickSpawnItem(mod.ItemType(dropName));
+                }
+            }
+
+            player.QuickSpawnItem(mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(20, 35));
+
             player.QuickSpawnItem(mod.ItemType("HisTopHat"));
         }
     }

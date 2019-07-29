@@ -1,3 +1,5 @@
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,7 +11,8 @@ namespace Varia.Items.QueensInfantry
 		{
 			DisplayName.SetDefault("Arachnophobia");
 			Tooltip.SetDefault("Fires venom bubbles");
-		}
+            Item.staff[item.type] = true;
+        }
 		public override void SetDefaults()
 		{
 			item.damage = 10;
@@ -21,10 +24,10 @@ namespace Varia.Items.QueensInfantry
 			item.useAnimation = 15;
 			item.shoot = mod.ProjectileType("VenomBolt");
 			item.shootSpeed = 10;
-			item.useStyle = 1;
+			item.useStyle = 5;
 			item.mana = 9;
 			item.knockBack = 2;
-			item.rare = 7;
+			item.rare = 3;
 			item.UseSound = SoundID.Item43;
 			item.autoReuse = true;
 			item.useTurn = false;

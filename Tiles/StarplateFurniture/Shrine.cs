@@ -17,12 +17,19 @@ namespace Varia.Tiles.StarplateFurniture
             Main.tileFrameImportant[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.Origin = new Point16(2, 2);
-            //TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
             TileObjectData.addTile(Type);
             AddMapEntry(new Color(150, 150, 150));
             animationFrameHeight = 52;
             disableSmartCursor = true;
             //adjTiles = new int[] { TileID.LunarMonolith };
+        }
+
+        public override void MouseOver(int i, int j)
+        {
+            Player player = Main.LocalPlayer;
+            player.noThrow = 2;
+            player.showItemIcon = true;
+            player.showItemIcon2 = mod.ItemType("Shrine");
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

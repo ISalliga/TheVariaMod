@@ -35,8 +35,8 @@ namespace Varia.Items.Cavity.Cacitian
 		}
         public override bool Shoot(Player player, ref Microsoft.Xna.Framework.Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
         {
-            Projectile.NewProjectile(position.X, position.Y, speedX + Main.rand.Next(-10, 11) * 0.045f, speedY + Main.rand.Next(-10, 11) * 0.045f, type, damage, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
-			Projectile.NewProjectile(position.X, position.Y, speedX + Main.rand.Next(-10, 11) * 0.045f, speedY + Main.rand.Next(-10, 11) * 0.045f, type, damage, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
+            Projectile.NewProjectile(position.X, position.Y, speedX + Main.rand.Next(-10, 11) * 0.045f, speedY + Main.rand.Next(-10, 11) * 0.045f, type, 6, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
+			Projectile.NewProjectile(position.X, position.Y, speedX + Main.rand.Next(-10, 11) * 0.045f, speedY + Main.rand.Next(-10, 11) * 0.045f, type, 6, knockBack, player.whoAmI, 0.0f, 0.5f + (float)Main.rand.NextDouble() * 0.9f);
             return false;
         }
 		public override void AddRecipes()

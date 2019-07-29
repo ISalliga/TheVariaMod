@@ -14,7 +14,7 @@ namespace Varia.Items.Cavity
 			item.consumable = true;
 			item.width = 16;
 			item.height = 16;
-			item.value = 150;
+			item.value = 0;
 			item.useStyle = 1;
 			item.rare = 0;
 			item.useTime = 10;

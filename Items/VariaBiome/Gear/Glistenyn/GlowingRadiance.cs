@@ -50,7 +50,7 @@ namespace Varia.Items.VariaBiome.Gear.Glistenyn
             ModRecipe recipe = new ModRecipe(mod);
             recipe.AddIngredient(ItemID.SpellTome, 1);
             recipe.AddIngredient(null, "GlistenynBar", 9);
-            recipe.AddTile(TileID.AdamantiteForge);
+            recipe.AddTile(TileID.MythrilAnvil);
             recipe.SetResult(this);
             recipe.AddRecipe();
         }

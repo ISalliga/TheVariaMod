@@ -218,9 +218,43 @@ namespace Varia.NPCs.Optime
         {
             if (!Main.expertMode)
             {
+                int numOfWeapons = 2;
+                int weaponPoolCount = 3;
+                int[] weaponLoot = new int[numOfWeapons];
+                for (int n = 0; n < numOfWeapons; n++)
                 {
-                    Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(25, 31));
+                    weaponLoot[n] = Main.rand.Next(weaponPoolCount - n);
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (weaponLoot[n] >= weaponLoot[j])
+                        {
+                            weaponLoot[n]++;
+                        }
+                        Array.Sort(weaponLoot);
+                    }
                 }
+                for (int i = 0; i < weaponLoot.Length; i++)
+                {
+                    string dropName = "none";
+                    switch (weaponLoot[i])
+                    {
+                        case 0:
+                            dropName = "MrNicey";
+                            break;
+                        case 1:
+                            dropName = "HappyPills";
+                            break;
+                        case 2:
+                            dropName = "GoldenDollar";
+                            break;
+                    }
+                    if (dropName != "none")
+                    {
+                        Item.NewItem(npc.getRect(), mod.ItemType(dropName));
+                    }
+                }
+
+                Item.NewItem(npc.getRect(), mod.ItemType("PureConcentratedDarkness"), Main.rand.Next(20, 35));
             }
             else
             {
@@ -228,7 +262,6 @@ namespace Varia.NPCs.Optime
             }
             potionType = ItemID.GreaterHealingPotion;
             VariaWorld.downedOptime = true;
-            VariaWorld.hitsTakenNice = 0;
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {

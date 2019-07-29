@@ -19,16 +19,17 @@ namespace Varia.Items.QueensInfantry
             item.height = 32;
             item.expert = true;
             item.rare = 9;
-            bossBagNPC = mod.NPCType("SpiderQueen");
             item.expert = true;      
 			item.value = Item.buyPrice(0, 0, 0, 0);
         }
 
-    public override void SetStaticDefaults()
-    {
-      DisplayName.SetDefault("Treasure Bag");
-      Tooltip.SetDefault("Right click to open");
-    }
+        public override int BossBagNPC => mod.NPCType("SpiderQueen");
+
+        public override void SetStaticDefaults()
+        {
+          DisplayName.SetDefault("Treasure Bag");
+          Tooltip.SetDefault("Right click to open");
+        }
 
         public override bool CanRightClick()
         {
@@ -76,6 +77,7 @@ namespace Varia.Items.QueensInfantry
                 }
             }
             player.QuickSpawnItem(mod.ItemType("QueensJewel"));
+            player.QuickSpawnItem(mod.ItemType("SpiderFlesh"), Main.rand.Next(20, 31));
         }
     }
 }

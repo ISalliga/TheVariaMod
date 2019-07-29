@@ -15,33 +15,6 @@ namespace Varia
 {
     class BiomeGen : ModWorld
     {
-        int mirrorPosX;
-        int mirrorPosY;
-
-        public static bool windowBeingFixed = false;
-        public static bool labBeingFixed = false;
-        public static bool shrineBeingFixed = false;
-
-        /*public override void PostUpdate()
-        {
-            if (windowBeingFixed) FixBreeze(mirrorPosX, mirrorPosY);
-            if (labBeingFixed) FixBreeze(mirrorPosX, mirrorPosY);
-            if (shrineBeingFixed) FixBreeze(mirrorPosX, mirrorPosY);
-        }
-
-        public void FixBreeze(int x, int y)
-        {
-            if (Main.tile[x, y].type == mod.TileType("OtherworldlyMirrorBroken"))
-            {
-                //WorldGen.KillTile(mirrorPosX, mirrorPosY);
-                WorldGen.PlaceTile(mirrorPosX, mirrorPosY, mod.TileType("WindowToTheWorld"));
-                Main.NewText("The Mirror is no longer shattered. It is now... the Window to the World.", 50, 152, 197);
-                Main.NewText("Right click on it to open a map, and press T anywhere on that map to teleport there.", 50, 152, 197);
-            }
-            windowBeingFixed = false;
-            labBeingFixed = false;
-            shrineBeingFixed = false;
-        }*/
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks,  ref float totalWeight)
         {
@@ -52,8 +25,8 @@ namespace Varia
                 {
                     for (int i = 0; i < Main.maxTilesX / 500; ++i) //Repeats ~8 times on a small world (i.e. 8 biomes/world)
                           {
-                        Point pos = new Point(WorldGen.genRand.Next(70, Main.maxTilesX - 70), WorldGen.genRand.Next((int)Main.worldSurface, Main.maxTilesY - 200)); //Position of the biome
-                              if (!AreaContains(pos, 50, TileID.BlueDungeonBrick) && !AreaContains(pos, 50, TileID.GreenDungeonBrick) && !AreaContains(pos, 50, TileID.PinkDungeonBrick) && !AreaContains(pos, 50, TileID.LihzahrdBrick) && !AreaContains(pos, 50, TileID.StoneSlab)) //checks for unwanted blocks
+                        Point pos = new Point(WorldGen.genRand.Next(70, Main.maxTilesX - 70), WorldGen.genRand.Next((int)Main.worldSurface + 200, Main.maxTilesY - 300)); //Position of the biome
+                              if (!AreaContains(pos, 50, TileID.BlueDungeonBrick) && !AreaContains(pos, 50, TileID.GreenDungeonBrick) && !AreaContains(pos, 50, TileID.PinkDungeonBrick) && !AreaContains(pos, 50, TileID.LihzahrdBrick) && !AreaContains(pos, 50, TileID.StoneSlab) && !AreaContains(pos, 20, TileID.Ash)) //checks for unwanted blocks
                                   GenCavity(pos, WorldGen.genRand.Next(3)); //places biome
                               else
                             i--; //Repeat until valid placement
@@ -78,15 +51,24 @@ namespace Varia
             */
 
             ErrorLogger.ClearLogs();
-            tasks.Add(new PassLegacy("Adding the forgotten airborne wasteland",  delegate (GenerationProgress progress)
+            tasks.Add(new PassLegacy("Adding the forgotten airborne wasteland", delegate (GenerationProgress progress)
             {
                 GenBreeze(); //places the Everlasting Breeze
+            }));
+
+            ErrorLogger.ClearLogs();
+            tasks.Add(new PassLegacy("Adding Ruinum", delegate (GenerationProgress progress)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    AddRuinum(); //places Ruinum
+                }
             }));
         }
 
         public void GenCavity(Point pos,  int size) //Gen code for the biome
         {
-            int[] types = new int[] { mod.TileType("Holestone"),  TileID.Stone,  mod.WallType("HolestoneWall"),  mod.TileType("CacitianOre") }; //types[0] is the main "custom" block type,  the one that is used for the inlining and the 'spikes'. types[1] is the outline. types[2] is the wallID. types[3] is the ore.
+            int[] types = new int[] { mod.TileType("Holestone"),  TileID.Stone,  mod.WallType("HolestoneWall"),  mod.TileType("CacitianOre"), mod.TileType("ToothySpike") }; //types[0] is the main "custom" block type,  the one that is used for the inlining and the 'spikes'. types[1] is the outline. types[2] is the wallID. types[3] is the ore.
             int reps = WorldGen.genRand.Next(4,  8); //Repeats (how many holes there are)
             int sizeCircle = WorldGen.genRand.Next(6,  12); //Size of the holes
             int[] randSiz = new int[] { -10,  10 }; //Random offset
@@ -127,7 +109,7 @@ namespace Varia
                 {
                     if (Main.tile[(int)nPos.X,  (int)nPos.Y].active())
                         hasTouched = true;
-                    DirectSmoothRunner(nPos.ToPoint(),  (int)(totalReps < 9 ? siz : siz * 2),  types[0],  types[2]); //Places spike
+                    DirectSmoothRunner(nPos.ToPoint(),  (int)(totalReps < 9 ? siz : siz * 2),  siz > 4 ? types[0] : types[4],  types[2]); //Places spike
                     nPos += dir * siz; //Changes placement pos
                     siz += WorldGen.genRand.Next(2) + (WorldGen.genRand.NextFloat() - 0.5f); //Increases size
                     if (hasTouched)
@@ -146,7 +128,7 @@ namespace Varia
                 WorldGen.TileRunner((int)placePos.X,  (int)placePos.Y,  WorldGen.genRand.Next(4,  8),  5,  types[3],  true,  0,  0,  false,  true);
             }
         }
-        
+
         public void GenBreeze()
         {
             int currentPosL = 80;
@@ -1124,8 +1106,6 @@ namespace Varia
                 }
                 WorldGen.PlaceObject((int)x + 12, (int)y - 7, (ushort)mod.TileType("StarplateDoorClosed"));
                 WorldGen.PlaceObject((int)x + 48, (int)y - 7, (ushort)mod.TileType("StarplateDoorClosed"));
-                mirrorPosX = x + 30;
-                mirrorPosY = y - 6;
             }
         }
 
@@ -1177,6 +1157,61 @@ namespace Varia
         {
             WorldGen.PlaceTile(x,  y,  TileID.Meteorite);
             ErrorLogger.Log(debug + " " + x + " " + y);
+        }
+
+        public void AddRuinum()
+        {
+            bool leftSideGenned = false;
+            bool rightSideGenned = false;
+            for (int i = 0; i < Main.rand.Next(20, 33); i++)
+            {
+                int LowX1 = 70;
+                int HighX1 = 300;
+                int LowX2 = (int)Main.maxTilesX - 300;
+                int HighX2 = (int)Main.maxTilesX - 70;
+                int LowY = (int)Main.worldSurface - 100;
+                int HighY = (int)Main.worldSurface + 100;
+
+                int X1 = WorldGen.genRand.Next(LowX1, HighX1);
+                int X2 = WorldGen.genRand.Next(LowX2, HighX2);
+                int Y = WorldGen.genRand.Next(LowY, HighY);
+
+                int OreSpread = WorldGen.genRand.Next(5, 9);
+                int OreFrequency = WorldGen.genRand.Next(5, 9);
+
+                if (!leftSideGenned)
+                {
+                    if (Main.tile[X1, Y - 1].type == 53)
+                    {
+                        while (Main.tile[X1, Y - 1].active())
+                        {
+                            Y -= 1;
+                        }
+                        WorldGen.OreRunner(X1, Y, OreSpread, OreFrequency, (ushort)mod.TileType("RuinumTile"));
+                        leftSideGenned = true;
+                    }
+                }
+
+                if (!rightSideGenned)
+                {
+                    if (Main.tile[X2, Y - 1].type == 53)
+                    {
+                        while (Main.tile[X2, Y - 1].active())
+                        {
+                            Y -= 1;
+                        }
+                        WorldGen.OreRunner(X2, Y, OreSpread, OreFrequency, (ushort)mod.TileType("RuinumTile"));
+                        rightSideGenned = true;
+                    }
+                }
+
+                if (leftSideGenned && rightSideGenned)
+                {
+                    i++;
+                    leftSideGenned = false;
+                    rightSideGenned = false;
+                }
+            }
         }
     }
 }

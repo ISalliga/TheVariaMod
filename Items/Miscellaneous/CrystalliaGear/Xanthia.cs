@@ -12,6 +12,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		{
 			DisplayName.SetDefault("Xanthia");
 			Tooltip.SetDefault("Sprays an absolute barrage of crystal shards");
+            Item.staff[item.type] = true;
 		}
 		public override void SetDefaults()
 		{
@@ -43,16 +44,7 @@ namespace Varia.Items.Miscellaneous.CrystalliaGear
 		}
 		public override bool Shoot(Player player,  ref Microsoft.Xna.Framework.Vector2 position,  ref float speedX,  ref float speedY,  ref int type,  ref int damage,  ref float knockBack)
         {
-			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-			Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
-            Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
+			for (int i = 0; i < 10; i++) Projectile.NewProjectile(player.Center.X,  player.Center.Y,  speedX + Main.rand.Next(-10,  10),  speedY + Main.rand.Next(-10,  10),  90,  damage - Main.rand.Next(1,  27),  knockBack,  player.whoAmI,  0.0f,  0.0f);
             return false;
 		}
 	}

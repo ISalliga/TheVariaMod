@@ -19,9 +19,16 @@ namespace Varia.NPCs.QueensInfantry
         {
             WorldGen.KillTile(i, j);
         }
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+
+        public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
-            if (!NPC.AnyNPCs(mod.NPCType("SpiderQueen"))) WorldGen.KillTile(i, j);
+            if (NPC.AnyNPCs(mod.NPCType("SpiderQueen")))
+            {
+                for (int x = -1; x <= 1; x++)
+                {
+                    if (Main.tile[i + x, j].type == mod.TileType("SturdyVenom")) WorldGen.KillTile(i + x, j);
+                }
+            }
         }
     }
 }

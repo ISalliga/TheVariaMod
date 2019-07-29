@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +17,31 @@ namespace Varia.NPCs.Optime
     [AutoloadBossHead]
     public class NiceGuy : ModNPC
     {
-        int despawn = 0;
+        public int[] customAI = new int[4];
 
-        int shootTime = 0;
-        int shootInterval = 165;
-        int orbTime = 400;
-        int portTime = 400;
-        int crosshairTime = 400;
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            base.SendExtraAI(writer);
+            if ((Main.netMode == 2 || Main.dedServ))
+            {
+                writer.Write((short)customAI[0]);
+                writer.Write((short)customAI[1]);
+                writer.Write((short)customAI[2]);
+                writer.Write((short)customAI[3]);
+            }
+        }
 
-        bool phase1Yet = false;
-        public int hits = 0;
-
-        bool justPorted = true;
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            base.ReceiveExtraAI(reader);
+            if (Main.netMode == 1)
+            {
+                customAI[0] = reader.ReadInt16();
+                customAI[1] = reader.ReadInt16();
+                customAI[2] = reader.ReadInt16();
+                customAI[3] = reader.ReadInt16();
+            }
+        }
 
         public override void SetStaticDefaults()
         {
@@ -54,7 +68,15 @@ namespace Varia.NPCs.Optime
             npc.noTileCollide = false;
             Main.npcFrameCount[npc.type] = 6;
             npc.HitSound = mod.GetLegacySoundSlot(SoundType.Custom, "Sounds/Boss/NiceGuy_Hit");
+
+            npc.ai[0] = 0; //Despawn
+            npc.ai[1] = 0; //Shoot Time
+            npc.ai[2] = 165; //Shoot Interval
+            npc.ai[3] = 400; //Orb Time
+            customAI[0] = 400; //Teleportation Time
+            customAI[1] = 400; //Crosshair Time
         }
+
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
             npc.lifeMax = (int)(npc.lifeMax*bossLifeScale);
@@ -64,19 +86,19 @@ namespace Varia.NPCs.Optime
             Player player = Main.player[npc.target];
             if (!Main.player[npc.target].dead)
             {
-                despawn = 0;
+                npc.ai[0] = 0;
             }
             else
             {
-                npc.velocity.Y += despawn;
-                despawn++;
-                if (despawn > 40)
+                npc.velocity.Y += npc.ai[0];
+                npc.ai[0]++;
+                if (npc.ai[0] > 40)
                 {
                     npc.active = false;
                 }
             }
-            shootTime++;
-            if (shootTime >= shootInterval)
+            npc.ai[1]++;
+            if (npc.ai[1] >= npc.ai[2])
             {
                 switch(Main.rand.Next(1, 5))
                 {
@@ -93,25 +115,25 @@ namespace Varia.NPCs.Optime
                         }
                     case 2:
                         {
-                            portTime = 39;
+                            customAI[0] = 39;
                             break;
                         }
                     case 3:
                         {
-                            orbTime = 0;
+                            npc.ai[3] = 0;
                             break;
                         }
                     case 4:
                         {
-                            crosshairTime = 0;
+                            customAI[1] = 0;
                             break;
                         }
                 }
-                shootTime = 0;
-                shootInterval = Main.rand.Next(190, 251);
+                npc.ai[1] = 0;
+                npc.ai[2] = Main.rand.Next(190, 251);
             }
-            orbTime++;
-            if (orbTime == 50 || orbTime == 70 || orbTime == 100 || orbTime == 140 || orbTime == 190)
+            npc.ai[3]++;
+            if (npc.ai[3] == 50 || npc.ai[3] == 70 || npc.ai[3] == 100 || npc.ai[3] == 140 || npc.ai[3] == 190)
             {
                 {
                     float Speed = 14f;
@@ -122,8 +144,8 @@ namespace Varia.NPCs.Optime
                     }
                 }
             }
-            crosshairTime++;
-            if (crosshairTime == 50 || crosshairTime == 100 || crosshairTime == 150 || crosshairTime == 200 || crosshairTime == 250)
+            customAI[1]++;
+            if (customAI[1] == 50 || customAI[1] == 100 || customAI[1] == 150 || customAI[1] == 200 || customAI[1] == 250)
             {
                 {
                     int damage = 0;
@@ -133,8 +155,8 @@ namespace Varia.NPCs.Optime
                     }
                 }
             }
-            portTime++;
-            if (portTime == 40 || portTime == 80 || portTime == 120 || portTime == 160 || portTime == 200)
+            customAI[0]++;
+            if (customAI[0] == 40 || customAI[0] == 80 || customAI[0] == 120 || customAI[0] == 160 || customAI[0] == 200)
             {
                 switch (player.position.X > npc.position.X)
                 {

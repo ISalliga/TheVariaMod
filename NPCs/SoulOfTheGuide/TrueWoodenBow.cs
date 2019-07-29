@@ -87,7 +87,7 @@ namespace Varia.NPCs.SoulOfTheGuide
                             dashTimer++;
                             if (dashTimer > 70)
                             {
-                                npc.velocity = npc.DirectionTo(player.Center) * 5f;
+                                npc.velocity = npc.DirectionTo(player.Center) * (Main.hardMode ? 7f : 4f);
                                 dashTimer = 0;
                             }
                         }
@@ -115,9 +115,13 @@ namespace Varia.NPCs.SoulOfTheGuide
             shootTime++;
             if (shootTime >= 70)
             {
-                float Speed = 18f;
+                float Speed = 10f;
+                if (Main.hardMode) Speed = 14f;
 
-                int damage = Main.expertMode ? 10 : 15;
+                int damage;
+
+                if (!Main.hardMode) damage = Main.expertMode ? 6 : 4;
+                else damage = Main.expertMode ? 25 : 17;
 
                 if (Main.netMode != 1)
                 {

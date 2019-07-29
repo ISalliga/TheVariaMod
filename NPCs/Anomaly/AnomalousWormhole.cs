@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 
 namespace Varia.NPCs.Anomaly
 {
+    [AutoloadBossHead]
     public class AnomalousWormhole : ModNPC
 	{
 		int despawn = 0;

@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -29,6 +30,12 @@ namespace Varia.Items.Miscellaneous
             item.maxStack = 1;
             item.autoReuse = true;
             item.useTurn = true;
+        }
+        public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            position.X += speedX * 3f;
+            position.Y += speedY * 3f;
+            return true;
         }
         public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
         {
